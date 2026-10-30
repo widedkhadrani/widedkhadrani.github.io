@@ -228,28 +228,31 @@
       font-size: 12px;
     }
 
+    /* Navigation de fin de page */
     .bottom-nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 15px;
-      padding: 25px 0;
+      gap: 20px;
+      padding: 30px 0 34px;
     }
 
     .bottom-nav a {
+      color: var(--accent);
       font-size: 13px;
-      text-underline-offset: 4px;
+      text-decoration: none;
+      transition: color 0.2s ease;
     }
 
     .bottom-nav a:hover {
-      color: var(--accent);
+      color: var(--ink);
     }
 
     footer {
       display: flex;
       justify-content: center;
       padding: 18px 0;
-      border-top: 1px solid var(--line);
+      border-top: none;
       color: var(--muted);
       font-size: 11px;
       text-align: center;
@@ -318,8 +321,7 @@
       }
 
       .bottom-nav {
-        align-items: flex-start;
-        flex-direction: column;
+        gap: 12px;
       }
     }
   </style>
@@ -386,7 +388,6 @@
             moyen, l’évolution mensuelle des écoutes et leur répartition par album.
           </p>
 
-          <!-- Remplacer le bloc ci-dessous par l'image du dashboard principal. -->
           <img
             class="project-image"
             src="spotify-dashboard.png"
@@ -413,7 +414,6 @@
             selon les différentes dimensions du jeu de données.
           </p>
 
-          <!-- Remplacer le bloc ci-dessous par l'image du schéma en étoile. -->
           <img
             class="project-image"
             src="spotify-schema.png"
@@ -440,7 +440,6 @@
             classement détaillé des morceaux.
           </p>
 
-          <!-- Remplacer le bloc ci-dessous par l'image de la page Hits du Mois. -->
           <img
             class="project-image"
             src="spotify-hits-du-mois.png"
@@ -477,10 +476,10 @@
         </div>
       </section>
 
-      <div class="bottom-nav">
-        <a href="index.html#projets">← Retour à tous les projets</a>
+      <nav class="bottom-nav" aria-label="Navigation de fin de page">
+        <a href="index.html#projets">← Tous les projets</a>
         <a href="index.html#contact">Me contacter ↗</a>
-      </div>
+      </nav>
     </main>
 
     <footer>
