@@ -245,9 +245,9 @@
     }
 
     .skill h3 {
-      margin: 0 0 6px;
+      margin: 0 0 8px;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 400;
     }
 
@@ -258,11 +258,7 @@
       line-height: 1.7;
     }
 
-    /* Contact */
-
-    .contact {
-      border-top: none;
-    }
+    /* Contact : même structure d'en-tête que les autres sections */
 
     .contact-inner {
       display: grid;
@@ -271,12 +267,16 @@
       align-items: start;
     }
 
+    .contact-content {
+      min-width: 0;
+    }
+
     .contact-content h2 {
-      margin: 0 0 12px;
+      margin: 0 0 24px;
     }
 
     .contact-content p {
-      max-width: 620px;
+      max-width: 580px;
       margin: 0;
       color: #62645c;
       font-size: 14px;
@@ -293,6 +293,7 @@
     .text-link {
       font-size: 13px;
       text-underline-offset: 4px;
+      overflow-wrap: anywhere;
     }
 
     /* Pied de page */
@@ -395,16 +396,15 @@
       }
 
       .contact-content h2 {
-        margin-bottom: 10px;
+        margin-bottom: 20px;
+      }
+
+      .contact-content p {
+        max-width: 100%;
       }
 
       .contact-links {
         gap: 10px 16px;
-      }
-
-      footer {
-        flex-direction: column;
-        gap: 5px;
       }
     }
   </style>
@@ -568,26 +568,27 @@
         </div>
       </section>
 
-      <section class="contact" id="contact">
+      <section id="contact">
         <div class="contact-inner">
           <div class="section-number">04 / CONTACT</div>
 
           <div class="contact-content">
             <h2>Contact</h2>
             <p>
-              Pour toute question concernant mes projets ou ma recherche de stage, 
-              vous pouvez me contacter par e-mail. Je serai ravie d’échanger avec vous.
+              Pour toute question concernant mes projets ou ma recherche de
+              stage, vous pouvez me contacter par e-mail. Je serai ravie
+              d’échanger avec vous.
             </p>
 
             <div class="contact-links">
               <a class="text-link" href="mailto:khadraniwided@gmail.com">
                 khadraniwided@gmail.com
               </a>
-            
+
               <a class="text-link" href="https://www.linkedin.com/in/wided-khadrani/" target="_blank" rel="noopener noreferrer">
                 LinkedIn ↗
               </a>
-            
+
               <a class="text-link" href="https://github.com/widedkhadrani" target="_blank" rel="noopener noreferrer">
                 GitHub ↗
               </a>
