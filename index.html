@@ -175,31 +175,26 @@
     .projects {
       border-top: 1px solid var(--line);
     }
-
+    
     .project {
       display: grid;
-      grid-template-columns: 155px minmax(0, 1fr);
-      column-gap: 25px;
+      grid-template-columns: 1fr;
       padding: 23px 0;
       border-bottom: 1px solid var(--line);
-      align-items: start;
     }
-
+    
     .project-number {
-      grid-column: 2;
-      grid-row: 1;
       margin: 0 0 12px;
+      padding: 0;
       color: var(--muted);
       font-size: 12px;
       line-height: 1.5;
     }
-
+    
     .project-content {
-      grid-column: 2;
-      grid-row: 2;
       min-width: 0;
     }
-
+    
     .project-type {
       display: block;
       margin-bottom: 5px;
@@ -207,14 +202,14 @@
       font-size: 10px;
       letter-spacing: 0.5px;
     }
-
+    
     .project h3 {
       margin: 0 0 7px;
       font-size: 21px;
       line-height: 1.4;
       letter-spacing: -0.3px;
     }
-
+    
     .project p {
       max-width: 680px;
       margin: 0;
@@ -222,18 +217,19 @@
       font-size: 13px;
       line-height: 1.75;
     }
-
+    
     .project-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 5px 15px;
       margin-top: 10px;
     }
-
+    
     .project-tags span {
       color: var(--muted);
       font-size: 11px;
     }
+
 
     /* Compétences */
     .skills-grid {
