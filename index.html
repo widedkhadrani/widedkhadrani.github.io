@@ -178,17 +178,16 @@
     }
 
     .project {
-      display: grid;
-      grid-template-columns: 35px minmax(0, 1fr);
-      gap: 18px;
-      margin-left: -53px;
+      position: relative;
       padding: 23px 0;
       border-bottom: 1px solid var(--line);
-      align-items: start;
     }
 
     .project-number {
-      padding-top: 2px;
+      position: absolute;
+      top: 25px;
+      left: -35px;
+      width: 25px;
       color: var(--muted);
       font-size: 12px;
     }
@@ -372,9 +371,12 @@
       }
 
       .project {
-        grid-template-columns: 25px minmax(0, 1fr);
-        gap: 10px;
         padding: 20px 0;
+      }
+
+      .project-number {
+        top: 22px;
+        left: -25px;
       }
 
       .project h3 {
