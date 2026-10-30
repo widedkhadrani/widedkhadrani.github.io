@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -130,15 +130,17 @@
       color: var(--ink);
     }
 
-    section {
-      padding: 58px 0;
+    /* Espacement commun des sections */
+
+    section:not(.hero) {
+      padding: 46px 0;
     }
 
     .section-head {
       display: grid;
       grid-template-columns: 155px minmax(0, 1fr);
       gap: 25px;
-      margin-bottom: 27px;
+      margin-bottom: 24px;
     }
 
     .section-number {
@@ -154,6 +156,8 @@
       line-height: 1.3;
       letter-spacing: -0.4px;
     }
+
+    /* À propos */
 
     .about-text {
       max-width: 680px;
@@ -172,13 +176,14 @@
     }
 
     /* Projets */
+
     .projects {
       margin-left: 180px;
       border-top: 1px solid var(--line);
     }
 
     .project {
-      padding: 23px 0;
+      padding: 20px 0;
       border-bottom: 1px solid var(--line);
     }
 
@@ -222,6 +227,7 @@
     }
 
     /* Compétences */
+
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -230,7 +236,7 @@
     }
 
     .skill {
-      padding: 18px 20px 18px 0;
+      padding: 16px 20px 16px 0;
       border-bottom: 1px solid var(--line);
     }
 
@@ -252,9 +258,9 @@
     }
 
     /* Contact */
+
     .contact {
-      border-top: 1px solid var(--line);
-      padding: 43px 0 48px;
+      border-top: none;
     }
 
     .contact-inner {
@@ -265,7 +271,7 @@
     }
 
     .contact-content h2 {
-      margin-bottom: 10px;
+      margin: 0 0 12px;
     }
 
     .contact-content p {
@@ -273,19 +279,22 @@
       margin: 0;
       color: #62645c;
       font-size: 14px;
+      line-height: 1.8;
     }
 
     .contact-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 18px;
-      margin-top: 17px;
+      gap: 12px 18px;
+      margin-top: 15px;
     }
 
     .text-link {
       font-size: 13px;
       text-underline-offset: 4px;
     }
+
+    /* Pied de page */
 
     footer {
       display: flex;
@@ -296,6 +305,8 @@
       color: var(--muted);
       font-size: 11px;
     }
+
+    /* Version mobile */
 
     @media (max-width: 650px) {
       .wrap {
@@ -334,15 +345,18 @@
         font-size: 14px;
       }
 
-      section {
-        padding: 43px 0;
+      section:not(.hero) {
+        padding: 35px 0;
       }
 
       .section-head,
       .contact-inner {
         grid-template-columns: 1fr;
         gap: 9px;
-        margin-bottom: 22px;
+      }
+
+      .section-head {
+        margin-bottom: 20px;
       }
 
       .section-number {
@@ -360,7 +374,7 @@
       }
 
       .project {
-        padding: 20px 0;
+        padding: 18px 0;
       }
 
       .project h3 {
@@ -371,16 +385,20 @@
         grid-template-columns: 1fr;
       }
 
+      .skill {
+        padding: 15px 0;
+      }
+
       .skill:nth-child(odd) {
         margin-right: 0;
       }
 
-      .contact {
-        padding: 35px 0;
+      .contact-content h2 {
+        margin-bottom: 10px;
       }
 
-      .contact-inner {
-        margin-bottom: 0;
+      .contact-links {
+        gap: 10px 16px;
       }
 
       footer {
@@ -453,13 +471,11 @@
             <div class="project-content">
               <span class="project-type">PROJET ACADÉMIQUE</span>
               <h3>Tableau de bord Spotify</h3>
-
               <p>
                 Conception d’un tableau de bord interactif à partir de données
                 musicales, avec préparation, modélisation et visualisation
                 des données pour explorer différents indicateurs.
               </p>
-
               <div class="project-tags">
                 <span>Power BI</span>
                 <span>Préparation des données</span>
@@ -472,13 +488,11 @@
             <div class="project-content">
               <span class="project-type">EXPÉRIENCE PROFESSIONNELLE · INETUM</span>
               <h3>Collecte et structuration de données</h3>
-
               <p>
                 Développement de scripts Python pour automatiser la collecte
                 d’offres d’emploi, structuration et enrichissement des données,
                 et extraction d’informations à partir de CV.
               </p>
-
               <div class="project-tags">
                 <span>Python</span>
                 <span>Web scraping</span>
@@ -492,13 +506,11 @@
             <div class="project-content">
               <span class="project-type">PROJET ACADÉMIQUE</span>
               <h3>Base de données relationnelle — MySQL</h3>
-
               <p>
                 Conception d’une base de données pour la gestion d’une station
                 de ski, avec modélisation relationnelle, requêtes SQL, jointures,
                 agrégations et fonctionnalités d’automatisation.
               </p>
-
               <div class="project-tags">
                 <span>SQL</span>
                 <span>MySQL</span>
@@ -511,12 +523,10 @@
             <div class="project-content">
               <span class="project-type">PROJET ACADÉMIQUE</span>
               <h3>CINEMATION — Site web sur le cinéma d’animation</h3>
-
               <p>
                 Création d’un site web associant développement front-end,
                 visualisations de données et animation d’un personnage.
               </p>
-
               <div class="project-tags">
                 <span>HTML / CSS</span>
                 <span>JavaScript</span>
@@ -563,7 +573,6 @@
 
           <div class="contact-content">
             <h2>Contact</h2>
-
             <p>
               Pour toute opportunité de stage ou pour échanger au sujet
               de mes projets, vous pouvez me contacter par e-mail ou
@@ -574,11 +583,9 @@
               <a class="text-link" href="https://github.com/widedkhadrani" target="_blank" rel="noopener noreferrer">
                 GitHub ↗
               </a>
-
               <a class="text-link" href="mailto:khadraniwided@gmail.com">
                 khadraniwided@gmail.com
               </a>
-
               <a class="text-link" href="https://www.linkedin.com/in/wided-khadrani/" target="_blank" rel="noopener noreferrer">
                 LinkedIn ↗
               </a>
@@ -595,4 +602,3 @@
   </div>
 </body>
 </html>
-```
