@@ -72,13 +72,13 @@
     }
 
     h1 {
-      margin: 24px 0;
-      max-width: 850px;
+      margin: 16px 0;
+      max-width: 700px;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(45px, 8vw, 88px);
-      line-height: 1.02;
+      font-size: clamp(32px, 4vw, 46px);
+      line-height: 1.15;
       font-weight: 400;
-      letter-spacing: -3px;
+      letter-spacing: -1px;
     }
 
     h1 span { color: var(--accent); }
@@ -129,12 +129,17 @@
     }
 
     h2 {
-      margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(30px, 4vw, 43px);
+      font-size: 28px;
+      line-height: 1.25;
       font-weight: 400;
-      letter-spacing: -1px;
-      line-height: 1.15;
+      margin: 16px 0 24px;
+    }
+
+    h3 {
+      font-size: 19px;
+      line-height: 1.4;
+      font-weight: 500;
+      margin: 12px 0;
     }
 
     .about-text {
@@ -312,7 +317,7 @@
       <section id="apropos">
         <div class="section-head">
           <div class="section-number">01 / À PROPOS</div>
-          <h2>Comprendre les données,<br>leur donner du sens.</h2>
+          <h2>À propos</h2>
         </div>
         <div class="about-text">
           <p>
@@ -332,81 +337,80 @@
       <section id="projets">
         <div class="section-head">
           <div class="section-number">02 / SÉLECTION</div>
-          <h2>Quelques projets.</h2>
+          <h2>Projets</h2>
         </div>
         <div class="projects">
           <article class="project">
-            <div class="project-num">01</div>
-            <div>
-              <h3>Analyse de données musicales</h3>
+            <div class="project-number">01</div>
+            <div class="project-content">
+              <h3>Tableau de bord Spotify</h3>
               <p>
-                Conception d’un tableau de bord interactif autour de données
-                Spotify, avec préparation des données, modélisation et
-                visualisations pour explorer différents indicateurs.
+                Conception d’un tableau de bord interactif à partir de données musicales,
+                avec préparation, modélisation et visualisation des données pour explorer
+                différents indicateurs.
               </p>
-              <div class="tags">
-                <span class="tag">Power BI</span>
-                <span class="tag">Data cleaning</span>
-                <span class="tag">Data visualization</span>
+              <div class="project-tags">
+                <span>Power BI</span>
+                <span>Préparation des données</span>
+                <span>KPI</span>
               </div>
+              <span class="project-type">Projet académique</span>
             </div>
-            <div class="project-type">Projet académique</div>
           </article>
 
           <article class="project">
-            <div class="project-num">02</div>
-            <div>
+            <div class="project-number">02</div>
+            <div class="project-content">
               <h3>Collecte et structuration de données</h3>
               <p>
-                Lors de mon stage chez Inetum, participation à l’automatisation
-                de la collecte d’offres d’emploi, à la structuration des
-                données et à l’extraction d’informations à partir de CV.
-                Présentation détaillée à venir.
+                Développement de scripts Python pour automatiser la collecte d’offres
+                d’emploi, structuration et enrichissement des données, et extraction
+                d’informations à partir de CV.
               </p>
-              <div class="tags">
-                <span class="tag">Python</span>
-                <span class="tag">Web scraping</span>
-                <span class="tag">JSON</span>
-                <span class="tag">API LLM</span>
+              <div class="project-tags">
+                <span>Python</span>
+                <span>Web scraping</span>
+                <span>JSON</span>
+                <span>API LLM</span>
               </div>
+              <span class="project-type">Expérience professionnelle · Inetum</span>
             </div>
-            <div class="project-type">Expérience professionnelle</div>
           </article>
 
           <article class="project">
-            <div class="project-num">03</div>
-            <div>
+            <div class="project-number">03</div>
+            <div class="project-content">
               <h3>Base de données relationnelle</h3>
               <p>
-                Conception d’une base de données pour la gestion d’une station
-                de ski, avec requêtes SQL, jointures, agrégations et
-                fonctionnalités d’automatisation.
+                Conception d’une base de données pour la gestion d’une station de ski,
+                avec modélisation relationnelle, requêtes SQL, jointures, agrégations
+                et fonctionnalités d’automatisation.
               </p>
-              <div class="tags">
-                <span class="tag">MySQL</span>
-                <span class="tag">SQL</span>
-                <span class="tag">Modélisation</span>
+              <div class="project-tags">
+                <span>SQL</span>
+                <span>MySQL</span>
+                <span>Modélisation</span>
               </div>
+              <span class="project-type">Projet académique</span>
             </div>
-            <div class="project-type">Projet académique</div>
           </article>
 
           <article class="project">
-            <div class="project-num">04</div>
-            <div>
-              <h3>CINEMATION — Cinéma d’animation</h3>
+            <div class="project-number">04</div>
+            <div class="project-content">
+              <h3>CINEMATION — Site web sur le cinéma d’animation</h3>
               <p>
-                Création d’un site web autour du cinéma d’animation,
-                associant développement front-end, visualisations de données
-                et création d’un personnage animé.
+                Création d’un site web associant développement front-end,
+                visualisations de données et animation d’un personnage.
               </p>
-              <div class="tags">
-                <span class="tag">HTML / CSS / JS</span>
-                <span class="tag">Plotly</span>
-                <span class="tag">Motion design</span>
+              <div class="project-tags">
+                <span>HTML / CSS</span>
+                <span>JavaScript</span>
+                <span>Plotly</span>
+                <span>Motion design</span>
               </div>
+              <span class="project-type">Projet académique</span>
             </div>
-            <div class="project-type">Projet académique</div>
           </article>
         </div>
       </section>
@@ -414,7 +418,7 @@
       <section id="competences">
         <div class="section-head">
           <div class="section-number">03 / OUTILS</div>
-          <h2>Compétences.</h2>
+          <h2>Compétences</h2>
         </div>
         <div class="skills-grid">
           <div class="skill">
@@ -440,7 +444,7 @@
         <div class="contact-inner">
           <div>
             <div class="eyebrow">04 / CONTACT</div>
-            <h2 style="margin-top:15px;">Échangeons.</h2>
+            <h2>Contact</h2>
             <p>
               Je recherche un stage de fin d’études de six mois à partir
               d’avril 2027, dans les domaines de la Data, de la Business
