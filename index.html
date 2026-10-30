@@ -258,7 +258,7 @@
       line-height: 1.7;
     }
 
-    /* Contact : même structure d'en-tête que les autres sections */
+    /* Contact */
 
     .contact-inner {
       display: grid;
@@ -276,11 +276,15 @@
     }
 
     .contact-content p {
-      max-width: 580px;
+      max-width: none;
       margin: 0;
       color: #62645c;
       font-size: 14px;
       line-height: 1.8;
+    }
+
+    .contact-closing {
+      display: block;
     }
 
     .contact-links {
@@ -575,9 +579,9 @@
           <div class="contact-content">
             <h2>Contact</h2>
             <p>
-              Pour toute question concernant mes projets ou ma recherche de
-              stage, vous pouvez me contacter par e-mail. Je serai ravie
-              d’échanger avec vous.
+              Pour toute question concernant mes projets ou ma recherche de stage,
+              vous pouvez me contacter par e-mail.
+              <span class="contact-closing">Je serai ravie d’échanger avec vous.</span>
             </p>
 
             <div class="contact-links">
