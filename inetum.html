@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -687,7 +688,7 @@ threshold_desc = 0.85
             provenant de plateformes différentes.
           </p>
 
-          <!-- Aperçu du CSV en dernier -->
+          <!-- Aperçu du CSV consolidé : 4 offres -->
           <div class="data-preview">
             <div class="data-preview-header">
               <div>
@@ -721,34 +722,10 @@ threshold_desc = 0.85
                     <td>Rekrute</td>
                   </tr>
                   <tr>
-                    <td>Expert (e) DATA | Technopolis</td>
-                    <td>DXC - CDG</td>
-                    <td>Technopolis (Maroc)</td>
-                    <td>CDI</td>
-                    <td>Data</td>
-                    <td>Rekrute</td>
-                  </tr>
-                  <tr>
-                    <td>Chef de Projet Data &amp; Digital Senior H/F</td>
-                    <td>Sothema</td>
-                    <td>Bouskoura (Maroc)</td>
-                    <td>CDI</td>
-                    <td>Data</td>
-                    <td>Rekrute</td>
-                  </tr>
-                  <tr>
                     <td>Data Steward Junior – Audit &amp; Assurance</td>
                     <td>Deloitte</td>
                     <td>Casablanca (Maroc)</td>
                     <td>Premier emploi</td>
-                    <td>Data</td>
-                    <td>Stagiaires.ma</td>
-                  </tr>
-                  <tr>
-                    <td>Gestionnaire de données Bilingue</td>
-                    <td>Maroc Climate and Security</td>
-                    <td>Casablanca (Maroc)</td>
-                    <td>CDI</td>
                     <td>Data</td>
                     <td>Stagiaires.ma</td>
                   </tr>
@@ -758,22 +735,6 @@ threshold_desc = 0.85
                     <td>Casablanca (Maroc)</td>
                     <td>Non précisé</td>
                     <td>Data</td>
-                    <td>Jobiglo</td>
-                  </tr>
-                  <tr>
-                    <td>Data Engineer DBT &amp; SQL – GCP, BigQuery</td>
-                    <td>Devoteam</td>
-                    <td>Rabat (Maroc)</td>
-                    <td>Non précisé</td>
-                    <td>Data</td>
-                    <td>Jobiglo</td>
-                  </tr>
-                  <tr>
-                    <td>Data &amp; AI Technology &amp; Solution Architect</td>
-                    <td>Stellantis Middle East &amp; Africa</td>
-                    <td>Casablanca-Settat (Maroc)</td>
-                    <td>Non précisé</td>
-                    <td>Data + IA</td>
                     <td>Jobiglo</td>
                   </tr>
                   <tr>
@@ -789,7 +750,9 @@ threshold_desc = 0.85
             </div>
 
             <div class="table-caption">
-              Extrait du CSV consolidé. Le fichier complet comprend également le secteur, la description de l’offre, l’expérience demandée et le lien vers l’annonce.
+              Extrait du CSV consolidé. Le fichier complet comprend également
+              le secteur, la description de l’offre, l’expérience demandée
+              et le lien vers l’annonce.
             </div>
           </div>
         </div>
@@ -890,15 +853,15 @@ resultats.append({
             La clé API et son initialisation ne sont pas affichées.
           </p>
 
-          <!-- Aperçu du CSV enrichi par le LLM -->
+          <!-- Aperçu du CSV enrichi par le LLM : 4 offres -->
           <div class="data-preview">
             <div class="data-preview-header">
               <div>
                 <h3>Le fichier CSV enrichi</h3>
                 <p>
-                  Le modèle de langage permet de passer des descriptions
-                  d’offres à des informations structurées : compétences
-                  extraites, catégories associées et caractéristiques des postes.
+                  Extrait montrant l’identification des compétences,
+                  leur classification et la structuration des informations
+                  sur les postes par le modèle de langage.
                 </p>
               </div>
             </div>
@@ -923,20 +886,20 @@ resultats.append({
                     <td>Mindrift</td>
                     <td>Technologie / IA</td>
                     <td>Freelance</td>
-                    <td>Confirmé (5 à 10 ans)</td>
+                    <td>Confirmé</td>
                     <td>Data + IA</td>
-                    <td>Python; BeautifulSoup; Selenium; Apify; OpenRouter; AWS; Docker; LangChain; JavaScript; AJAX; SQL</td>
-                    <td>À reprendre depuis le champ <code>Categories</code> du CSV enrichi.</td>
+                    <td>Python; BeautifulSoup; Selenium; Apify; AWS; Docker; LangChain; SQL</td>
+                    <td>Programmation; Web scraping; Cloud; Conteneurisation; IA; Bases de données</td>
                   </tr>
                   <tr>
                     <td>Industry 4.0 Data Engineer</td>
                     <td>Lear Corporation</td>
                     <td>Industrie</td>
                     <td>Non précisé</td>
-                    <td>Intermédiaire (3 à 5 ans)</td>
+                    <td>Intermédiaire</td>
                     <td>Data</td>
                     <td>Python; SQL; Spark; ETL; Data Pipelines</td>
-                    <td>À reprendre depuis le champ <code>Categories</code> du CSV enrichi.</td>
+                    <td>Programmation; Bases de données; Big Data; Intégration de données</td>
                   </tr>
                   <tr>
                     <td>Data analyst H/F – Analyse et visualisation de données financières</td>
@@ -946,24 +909,28 @@ resultats.append({
                     <td>Débutant</td>
                     <td>Data</td>
                     <td>Excel; VBA; Power BI; Python; pandas; matplotlib; seaborn</td>
-                    <td>À reprendre depuis le champ <code>Categories</code> du CSV enrichi.</td>
+                    <td>Analyse de données; BI et visualisation; Programmation; Tableurs</td>
                   </tr>
                   <tr>
-                    <td>Stagiaire PFE – Data Analyst / Reporting IT (ServiceNow &amp; Support)</td>
+                    <td>Stagiaire PFE – Data Analyst / Reporting IT</td>
                     <td>Inetum</td>
                     <td>ESN</td>
                     <td>Stage</td>
-                    <td>Débutant (moins d’1 an)</td>
+                    <td>Débutant</td>
                     <td>Data</td>
                     <td>ServiceNow; Excel</td>
-                    <td>À reprendre depuis le champ <code>Categories</code> du CSV enrichi.</td>
+                    <td>Outils ITSM; Tableurs; Reporting</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
             <div class="table-caption">
-              Extrait du CSV enrichi après analyse des offres par le modèle de langage. Les compétences sont extraites du texte puis associées à des catégories ; d’autres champs, comme le secteur, le contrat et l’expérience, sont également structurés.
+              Extrait du CSV enrichi : le traitement complète les données
+              collectées en identifiant les compétences techniques,
+              en les regroupant par catégories et en structurant des champs
+              comme le secteur, le contrat, l’expérience et le type de métier.
+              Les catégories affichées illustrent cette classification.
             </div>
           </div>
 
