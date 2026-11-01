@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -233,23 +233,24 @@
       font-size: 11px;
     }
 
-    /* Bouton secondaire vers la page détaillée du projet */
+    /* Boutons vers les pages détaillées des projets */
 
     .project-link {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       margin-top: 14px;
-      padding: 7px 11px;
-      border: 1px solid var(--line);
-      color: var(--ink);
+      padding: 8px 12px;
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: white;
       font-size: 12px;
       text-decoration: none;
-      transition: border-color 0.2s ease, color 0.2s ease;
+      transition: background 0.2s ease, color 0.2s ease;
     }
 
     .project-link:hover {
-      border-color: var(--accent);
+      background: transparent;
       color: var(--accent);
     }
 
@@ -648,3 +649,4 @@
   </div>
 </body>
 </html>
+```
