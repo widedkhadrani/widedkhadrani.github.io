@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -233,13 +232,13 @@
       font-size: 13px;
     }
 
-    /* Extraits de code */
+    /* Extraits de code : fond beige clair */
     .code-card {
       margin-top: 22px;
       overflow: hidden;
-      border: 1px solid #e2ded5;
+      border: 1px solid #e5e0d6;
       border-radius: 5px;
-      background: #f2f0ea;
+      background: #fffdf8;
     }
 
     .code-card-header {
@@ -248,8 +247,8 @@
       align-items: center;
       gap: 12px;
       padding: 11px 15px;
-      border-bottom: 1px solid #e2ded5;
-      background: #eae7df;
+      border-bottom: 1px solid #e5e0d6;
+      background: #f1eee6;
       color: #68665f;
       font-size: 11px;
     }
@@ -263,7 +262,7 @@
       margin: 0;
       padding: 17px;
       overflow-x: auto;
-      background: #f2f0ea;
+      background: #fffdf8;
       color: #34342f;
       font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
       font-size: 12px;
@@ -307,16 +306,30 @@
 
     .data-preview-header {
       display: flex;
-      align-items: center;
-      padding: 13px 15px;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 17px 18px;
       border-bottom: 1px solid var(--line);
     }
 
     .data-preview-header h3 {
+      margin: 0 0 4px;
+      font-size: 17px;
+    }
+
+    .data-preview-header p {
       margin: 0;
-      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
       font-size: 12px;
-      font-weight: 400;
+    }
+
+    .file-label {
+      flex-shrink: 0;
+      padding: 4px 8px;
+      border: 1px solid var(--line);
+      color: #62645c;
+      font-size: 10px;
+      letter-spacing: 0.4px;
     }
 
     .table-scroll {
@@ -470,6 +483,11 @@
       .feature-grid {
         grid-template-columns: 1fr;
         gap: 20px;
+      }
+
+      .data-preview-header {
+        flex-direction: column;
+        gap: 10px;
       }
 
       .bottom-nav {
@@ -647,7 +665,7 @@ offres = pd.DataFrame(toutes_les_offres)
 
 <span class="code-comment"># Export des données dans un fichier CSV</span>
 offres.to_csv(
-    <span class="code-string">"offres_consolidees.csv"</span>,
+    <span class="code-string">"offres_emploi.csv"</span>,
     index=<span class="code-keyword">False</span>,
     encoding=<span class="code-string">"utf-8-sig"</span>
 )</code></pre>
@@ -658,10 +676,17 @@ offres.to_csv(
             et non reproduction exacte des scripts développés.
           </p>
 
-          <!-- Aperçu du CSV -->
+          <!-- Aperçu du CSV consolidé provenant de plusieurs plateformes -->
           <div class="data-preview">
             <div class="data-preview-header">
-              <h3>offres_consolidees.csv</h3>
+              <div>
+                <h3>Le fichier CSV consolidé</h3>
+                <p>
+                  Extrait du jeu de données regroupant les offres collectées
+                  sur plusieurs plateformes d’emploi.
+                </p>
+              </div>
+              <span class="file-label">CSV · 10 COLONNES</span>
             </div>
 
             <div class="table-scroll">
@@ -754,9 +779,11 @@ offres.to_csv(
             </div>
 
             <div class="table-caption">
-              Aperçu partiel du fichier. Les autres colonnes comprennent
-              notamment le secteur, la description, l’expérience demandée
-              et le lien vers l’annonce.
+              Aperçu partiel du CSV consolidé. Le fichier complet contient
+              également le secteur, la description de l’offre, l’expérience
+              demandée et le lien vers l’annonce. Certaines informations
+              peuvent être indiquées « Non précisé » lorsqu’elles ne sont
+              pas renseignées dans les données collectées.
             </div>
           </div>
         </div>
