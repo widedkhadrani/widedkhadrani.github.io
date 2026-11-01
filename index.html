@@ -42,6 +42,8 @@
       margin: 0 auto;
     }
 
+    /* En-tête */
+
     header {
       display: flex;
       justify-content: space-between;
@@ -68,12 +70,15 @@
       color: var(--muted);
       font-size: 13px;
       text-decoration: none;
+      transition: color 0.2s ease;
     }
 
     nav a:hover,
     .text-link:hover {
       color: var(--accent);
     }
+
+    /* Introduction */
 
     .hero {
       padding: 65px 0 58px;
@@ -114,6 +119,8 @@
       margin-top: 24px;
     }
 
+    /* Bouton principal */
+
     .button {
       display: inline-block;
       padding: 10px 15px;
@@ -122,7 +129,7 @@
       color: white;
       font-size: 13px;
       text-decoration: none;
-      transition: background 0.2s, color 0.2s;
+      transition: background 0.2s ease, color 0.2s ease;
     }
 
     .button:hover {
@@ -295,9 +302,16 @@
     }
 
     .text-link {
+      color: var(--muted);
       font-size: 13px;
+      text-decoration: underline;
       text-underline-offset: 4px;
       overflow-wrap: anywhere;
+      transition: color 0.2s ease;
+    }
+
+    .text-link:hover {
+      color: var(--accent);
     }
 
     /* Pied de page */
@@ -458,7 +472,7 @@
           </p>
 
           <p>
-            Ce portfolio rassemble des projets académiques et 
+            Ce portfolio rassemble des projets académiques et
             professionnels autour de la collecte, de la préparation, de
             l’analyse et de la visualisation des données.
           </p>
