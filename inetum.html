@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -578,26 +578,27 @@
             publiées sur le marché marocain dans les domaines de la Data
             et de l’intelligence artificielle. Pour cela, j’ai développé
             des scripts Python permettant de collecter des annonces
-            depuis plusieurs plateformes d’emploi.
+            depuis quatre plateformes d’emploi : Stagiaires.ma, Jobiglo,
+            Rekrute et Bayt.
           </p>
 
           <p>
-            Selon les sites, les scripts récupèrent notamment les intitulés
-            de postes, les entreprises, les secteurs, les localisations
-            et les descriptions. Les données collectées sont ensuite
-            organisées dans un fichier CSV commun, avec une colonne
-            permettant d’identifier la plateforme d’origine de chaque offre.
+            Selon la structure des sites, les scripts s’appuient sur
+            Requests et BeautifulSoup ou sur Selenium. Ils récupèrent
+            notamment les intitulés de postes, les entreprises, les
+            localisations, les contrats et les descriptions, puis filtrent
+            les annonces correspondant aux domaines recherchés.
           </p>
 
           <div class="step-list">
             <div class="step">
               <div class="step-number">01</div>
               <div>
-                <h3>Web scraping</h3>
+                <h3>Collecte sur les plateformes</h3>
                 <p>
-                  Utilisation de requêtes HTTP, de BeautifulSoup et de
-                  Selenium pour récupérer les informations disponibles
-                  sur les différentes plateformes.
+                  Parcours des pages de résultats, récupération des annonces
+                  pertinentes et consultation des pages détaillées pour
+                  extraire les informations complémentaires.
                 </p>
               </div>
             </div>
@@ -605,10 +606,11 @@
             <div class="step">
               <div class="step-number">02</div>
               <div>
-                <h3>Nettoyage et filtrage</h3>
+                <h3>Nettoyage et harmonisation</h3>
                 <p>
-                  Traitement des données collectées, filtrage des offres
-                  selon les critères recherchés et traitement des doublons.
+                  Filtrage des intitulés, nettoyage des descriptions,
+                  extraction de certaines informations par expressions
+                  régulières et harmonisation de champs comme l’expérience.
                 </p>
               </div>
             </div>
@@ -616,54 +618,45 @@
             <div class="step">
               <div class="step-number">03</div>
               <div>
-                <h3>Regroupement des données</h3>
+                <h3>Consolidation des fichiers</h3>
                 <p>
-                  Consolidation des offres issues de plusieurs plateformes
-                  dans un fichier CSV commun, avec des champs harmonisés
-                  pour faciliter les traitements ultérieurs.
+                  Regroupement des quatre fichiers CSV, suppression des
+                  doublons et conservation de la source d’origine de chaque
+                  annonce.
                 </p>
               </div>
             </div>
           </div>
 
-          <!-- Extraits illustratifs du processus de collecte et d'export -->
+          <!-- Exemple issu du principe utilisé dans le script Selenium -->
           <div class="code-card">
             <div class="code-card-header">
-              <strong>Collecte des données</strong>
+              <strong>Collecte d’une annonce avec Selenium</strong>
               <span>Python</span>
             </div>
-            <pre><code><span class="code-keyword">import</span> requests
-<span class="code-keyword">from</span> bs4 <span class="code-keyword">import</span> BeautifulSoup
+            <pre><code><span class="code-comment"># Parcours des annonces récupérées sur la page</span>
+<span class="code-keyword">for</span> carte <span class="code-keyword">in</span> cartes:
+    titre = carte.select_one(<span class="code-string">"h2"</span>)
 
-<span class="code-comment"># Récupération du contenu d'une page</span>
-response = requests.get(url, headers=headers)
-soup = BeautifulSoup(response.text, <span class="code-string">"html.parser"</span>)
+    <span class="code-keyword">if</span> titre <span class="code-keyword">and</span> mots_cles_recherches(titre.get_text()):
+        lien = carte.select_one(<span class="code-string">"a"</span>)[<span class="code-string">"href"</span>]
 
-<span class="code-comment"># Extraction des champs selon la structure du site</span>
-<span class="code-comment"># (titre, entreprise, lieu, description, etc.)</span></code></pre>
-          </div>
+        <span class="code-comment"># Accès à la page détaillée de l'offre</span>
+        driver.get(lien)
+        description = extraire_description(driver.page_source)
 
-          <div class="code-card">
-            <div class="code-card-header">
-              <strong>Export du CSV</strong>
-              <span>Python · Pandas</span>
-            </div>
-            <pre><code><span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
-
-<span class="code-comment"># Regroupement des offres collectées</span>
-offres = pd.DataFrame(toutes_les_offres)
-
-<span class="code-comment"># Export des données dans un fichier CSV</span>
-offres.to_csv(
-    <span class="code-string">"offres_consolidees.csv"</span>,
-    index=<span class="code-keyword">False</span>,
-    encoding=<span class="code-string">"utf-8-sig"</span>
-)</code></pre>
+        offres.append({
+            <span class="code-string">"Titre"</span>: titre.get_text(strip=<span class="code-keyword">True</span>),
+            <span class="code-string">"Lien"</span>: lien,
+            <span class="code-string">"Description"</span>: description
+        })</code></pre>
           </div>
 
           <p class="code-note">
-            Extraits illustratifs du principe de collecte et d’export,
-            et non reproduction exacte des scripts développés.
+            Extrait simplifié pour illustrer le principe de collecte :
+            les sélecteurs et certaines fonctions sont représentés ici
+            de manière générique, et ne constituent pas une copie exacte
+            du script.
           </p>
 
           <!-- Aperçu partiel du fichier CSV consolidé -->
@@ -771,6 +764,36 @@ offres.to_csv(
               Aperçu partiel du CSV consolidé. Le fichier complet comprend également le secteur, la description de l’offre, l’expérience demandée et le lien vers l’annonce.
             </div>
           </div>
+
+          <!-- Exemple issu de la logique de consolidation entre les CSV -->
+          <div class="code-card">
+            <div class="code-card-header">
+              <strong>Détection de doublons entre plateformes</strong>
+              <span>Python · Pandas</span>
+            </div>
+            <pre><code><span class="code-keyword">from</span> difflib <span class="code-keyword">import</span> SequenceMatcher
+
+<span class="code-comment"># Comparaison des intitulés, entreprises et descriptions</span>
+<span class="code-keyword">def</span> <span class="code-function">similarite</span>(texte_a, texte_b):
+    <span class="code-keyword">return</span> SequenceMatcher(
+        <span class="code-keyword">None</span>,
+        str(texte_a).lower(),
+        str(texte_b).lower()
+    ).ratio()
+
+<span class="code-comment"># Principe de détection utilisé pour rapprocher les offres</span>
+meme_titre = similarite(titre_a, titre_b) >= 0.90
+meme_entreprise = similarite(entreprise_a, entreprise_b) >= 0.90
+description_proche = similarite(description_a, description_b) >= 0.85</code></pre>
+          </div>
+
+          <p class="code-note">
+            Extrait illustratif de la logique de comparaison utilisée
+            lors de la consolidation. Les seuils sont ceux définis dans
+            le script ; le rapprochement s’appuie sur plusieurs champs
+            pour repérer les annonces similaires provenant de sources
+            différentes.
+          </p>
         </div>
       </section>
 
@@ -921,6 +944,7 @@ offres.to_csv(
             <span>BeautifulSoup</span>
             <span>Selenium</span>
             <span>Pandas</span>
+            <span>SequenceMatcher</span>
             <span>API LLM</span>
             <span>Regex</span>
             <span>JSON</span>
@@ -945,4 +969,3 @@ offres.to_csv(
   </div>
 </body>
 </html>
-```
