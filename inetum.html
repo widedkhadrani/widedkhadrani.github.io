@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -854,7 +855,121 @@ threshold_desc = 0.85
             </div>
           </div>
 
-          <!-- L'exemple avant/après du passage par le LLM sera ajouté ici. -->
+          <!-- Extrait du script d'enrichissement par API LLM -->
+          <div class="code-card">
+            <div class="code-card-header">
+              <strong>Analyse et structuration des offres</strong>
+              <span>Python · API LLM · JSON</span>
+            </div>
+            <pre><code><span class="code-comment"># Analyse du contenu de l'offre par le modèle</span>
+response = client.models.generate_content(
+    model=<span class="code-string">"gemini-3.1-flash-lite"</span>,
+    contents=prompt
+)
+
+<span class="code-comment"># Conversion de la réponse JSON en données Python</span>
+result = json.loads(response.text)
+
+<span class="code-comment"># Structuration des informations extraites</span>
+resultats.append({
+    <span class="code-string">"Titre"</span>: titre,
+    <span class="code-string">"Entreprise"</span>: entreprise,
+    <span class="code-string">"Secteur"</span>: result[<span class="code-string">"secteur"</span>],
+    <span class="code-string">"Contrat"</span>: result[<span class="code-string">"contrat"</span>],
+    <span class="code-string">"Experience"</span>: result[<span class="code-string">"experience"</span>],
+    <span class="code-string">"Type_metier"</span>: result[<span class="code-string">"type_metier"</span>],
+    <span class="code-string">"Hard_skills"</span>: <span class="code-string">"; "</span>.join(result[<span class="code-string">"hard_skills"</span>]),
+    <span class="code-string">"Categories"</span>: <span class="code-string">"; "</span>.join(result[<span class="code-string">"categories"</span>]),
+    <span class="code-string">"Pertinent_data_ia"</span>: result[<span class="code-string">"pertinent_data_ia"</span>]
+})</code></pre>
+          </div>
+
+          <p class="code-note">
+            Extrait du traitement : appel au modèle à partir d’un prompt
+            défini en amont, conversion de sa réponse JSON, puis organisation
+            des informations dans des champs destinés au CSV enrichi.
+            La clé API et son initialisation ne sont pas affichées.
+          </p>
+
+          <p>
+            Après cette étape, les fichiers produits sont regroupés,
+            les offres hors périmètre sont écartées et les annonces
+            identifiées comme pertinentes pour la Data ou l’IA sont
+            conservées. Un traitement complémentaire permet aussi
+            de détailler les compétences pour faciliter leur analyse.
+          </p>
+
+          <!-- Aperçu du CSV enrichi par le LLM -->
+          <div class="data-preview">
+            <div class="data-preview-header">
+              <div>
+                <h3>Le fichier CSV enrichi</h3>
+                <p>
+                  Exemple des informations ajoutées ou normalisées après
+                  l’analyse des offres par le modèle de langage.
+                </p>
+              </div>
+            </div>
+
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Titre</th>
+                    <th>Entreprise</th>
+                    <th>Secteur</th>
+                    <th>Contrat / expérience</th>
+                    <th>Type métier</th>
+                    <th>Compétences identifiées</th>
+                    <th>Pertinence Data/IA</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Senior Python Data Scraping Engineer</td>
+                    <td>Mindrift</td>
+                    <td>Technologie / IA</td>
+                    <td>Freelance · Confirmé</td>
+                    <td>Data + IA</td>
+                    <td>Python; BeautifulSoup; Selenium; Apify; AWS; Docker; LangChain; SQL</td>
+                    <td>Oui</td>
+                  </tr>
+                  <tr>
+                    <td>Industry 4.0 Data Engineer</td>
+                    <td>Lear Corporation</td>
+                    <td>Industrie</td>
+                    <td>Non précisé · Intermédiaire</td>
+                    <td>Data</td>
+                    <td>Python; SQL; Spark; ETL; Data Pipelines</td>
+                    <td>Oui</td>
+                  </tr>
+                  <tr>
+                    <td>Data analyst H/F – Analyse et visualisation de données financières</td>
+                    <td>PKF Arsilon</td>
+                    <td>Conseil / Études</td>
+                    <td>CDI · Débutant</td>
+                    <td>Data</td>
+                    <td>Excel; VBA; Power BI; Python; pandas; matplotlib; seaborn</td>
+                    <td>Oui</td>
+                  </tr>
+                  <tr>
+                    <td>Stagiaire PFE – Data Analyst / Reporting IT</td>
+                    <td>Inetum</td>
+                    <td>ESN</td>
+                    <td>Stage · Débutant</td>
+                    <td>Data</td>
+                    <td>ServiceNow; Excel</td>
+                    <td>Oui</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="table-caption">
+              Extrait représentatif du CSV enrichi. Les compétences sont regroupées par offre dans ce fichier, avec leurs catégories dans un champ associé. Le résultat de pertinence correspond à la classification produite par le traitement, et non à une validation indépendante.
+            </div>
+          </div>
+
         </div>
       </section>
 
