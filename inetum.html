@@ -307,16 +307,23 @@
 
     .data-preview-header {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       padding: 14px 15px;
       border-bottom: 1px solid var(--line);
     }
 
     .data-preview-header h3 {
-      margin: 0;
+      margin: 0 0 4px;
       font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
       font-size: 12px;
       font-weight: 400;
+    }
+
+    .data-preview-header p {
+      margin: 0;
+      color: #62645c;
+      font-size: 12px;
+      line-height: 1.7;
     }
 
     .table-scroll {
@@ -661,7 +668,13 @@ offres.to_csv(
           <!-- Aperçu partiel du fichier CSV consolidé -->
           <div class="data-preview">
             <div class="data-preview-header">
-              <h3>offres_consolidees.csv</h3>
+              <div>
+                <h3>Le fichier CSV consolidé</h3>
+                <p>
+                  Extrait du jeu de données regroupant les offres collectées
+                  sur plusieurs plateformes d’emploi.
+                </p>
+              </div>
             </div>
 
             <div class="table-scroll">
@@ -754,7 +767,7 @@ offres.to_csv(
             </div>
 
             <div class="table-caption">
-              Aperçu partiel du fichier CSV consolidé.
+              Aperçu partiel du CSV consolidé. Le fichier complet comprend également le secteur, la description de l’offre, l’expérience demandée et le lien vers l’annonce.
             </div>
           </div>
         </div>
