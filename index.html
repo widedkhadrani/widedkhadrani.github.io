@@ -22,7 +22,7 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 25px;
+      scroll-padding-top: 90px;
     }
 
     body {
@@ -45,12 +45,16 @@
     /* En-tête */
 
     header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 25px;
       padding: 22px 0;
       border-bottom: 1px solid var(--line);
+      background: var(--paper);
     }
 
     .brand {
@@ -141,6 +145,7 @@
 
     section:not(.hero) {
       padding: 46px 0;
+      scroll-margin-top: 90px;
     }
 
     .section-head {
