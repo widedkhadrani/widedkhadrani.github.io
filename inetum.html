@@ -298,7 +298,7 @@
       line-height: 1.7 !important;
     }
 
-    /* Aperçu du CSV */
+    /* Aperçu des CSV */
     .data-preview {
       margin-top: 28px;
       border: 1px solid var(--line);
@@ -374,6 +374,51 @@
       color: var(--muted);
       font-size: 11px;
       line-height: 1.7;
+    }
+
+    .skills-cell {
+      min-width: 270px;
+      max-width: 370px;
+      line-height: 1.8;
+    }
+
+    .category-cell {
+      min-width: 130px;
+      white-space: normal;
+    }
+
+    .type-label {
+      display: inline-block;
+      padding: 3px 7px;
+      border: 1px solid #d8dfd2;
+      border-radius: 2px;
+      background: #f0f3ec;
+      color: var(--accent);
+      font-size: 10px;
+      white-space: nowrap;
+    }
+
+    .processing-note {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .processing-item {
+      padding-top: 13px;
+      border-top: 1px solid var(--line);
+    }
+
+    .processing-item h3 {
+      margin-bottom: 5px;
+      font-size: 16px;
+    }
+
+    .processing-item p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.8;
     }
 
     .skills-list {
@@ -478,6 +523,11 @@
       .feature-grid {
         grid-template-columns: 1fr;
         gap: 20px;
+      }
+
+      .processing-note {
+        grid-template-columns: 1fr;
+        gap: 16px;
       }
 
       .bottom-nav {
@@ -688,7 +738,7 @@ threshold_desc = 0.85
             provenant de plateformes différentes.
           </p>
 
-          <!-- Aperçu du CSV en dernier -->
+          <!-- Aperçu du CSV collecté -->
           <div class="data-preview">
             <div class="data-preview-header">
               <div>
@@ -790,7 +840,9 @@ threshold_desc = 0.85
             </div>
 
             <div class="table-caption">
-              Aperçu partiel du CSV consolidé. Le fichier complet comprend également le secteur, la description de l’offre, l’expérience demandée et le lien vers l’annonce.
+              Aperçu partiel du CSV consolidé avant l’enrichissement par LLM.
+              Le fichier complet comprend également le secteur, la description,
+              l’expérience demandée et le lien vers l’annonce.
             </div>
           </div>
         </div>
@@ -805,17 +857,17 @@ threshold_desc = 0.85
 
         <div class="section-content">
           <p>
-            Mise en place d’un traitement utilisant une API de modèle
-            de langage (LLM) pour analyser le contenu des offres d’emploi
-            et compléter les informations collectées.
+            Utilisation d’une API de modèle de langage (LLM) pour analyser
+            le contenu des offres d’emploi et enrichir les données collectées.
+            Le modèle reçoit des consignes précises afin d’extraire et de
+            normaliser plusieurs informations à partir des annonces.
           </p>
 
           <p>
-            À partir des intitulés, des descriptions et des autres
-            informations disponibles, le traitement vise notamment à
-            identifier les compétences, leurs catégories, le type de poste,
-            le secteur d’activité et certaines informations liées au contrat
-            ou à l’expérience demandée.
+            Le traitement porte notamment sur les compétences techniques,
+            leur catégorie, le secteur d’activité, le type de métier,
+            le contrat, l’expérience demandée et la pertinence de l’offre
+            pour les domaines de la Data et de l’intelligence artificielle.
           </p>
 
           <div class="step-list">
@@ -824,9 +876,9 @@ threshold_desc = 0.85
               <div>
                 <h3>Analyse du contenu</h3>
                 <p>
-                  Transmission des informations des offres à l’API
-                  accompagnées de consignes précisant les éléments
-                  à identifier.
+                  Transmission du contenu des offres à l’API avec des
+                  consignes précisant les informations à identifier
+                  et les règles de classification à appliquer.
                 </p>
               </div>
             </div>
@@ -834,10 +886,11 @@ threshold_desc = 0.85
             <div class="step">
               <div class="step-number">02</div>
               <div>
-                <h3>Extraction des informations</h3>
+                <h3>Extraction et classification</h3>
                 <p>
-                  Identification de champs complémentaires à partir
-                  du contenu textuel des offres.
+                  Identification des compétences techniques, association
+                  à des catégories et normalisation de champs comme
+                  le secteur, le contrat ou l’expérience.
                 </p>
               </div>
             </div>
@@ -847,15 +900,156 @@ threshold_desc = 0.85
               <div>
                 <h3>Structuration des résultats</h3>
                 <p>
-                  Organisation des informations extraites dans des champs
-                  structurés, puis regroupement et filtrage des fichiers
-                  obtenus.
+                  Conversion de la réponse du modèle en données JSON,
+                  puis organisation des informations dans un tableau
+                  exploitable avec Pandas.
                 </p>
               </div>
             </div>
           </div>
 
-          <!-- L'exemple avant/après du passage par le LLM sera ajouté ici. -->
+          <!-- Extrait : appel API et structuration JSON -->
+          <div class="code-card">
+            <div class="code-card-header">
+              <strong>Enrichissement des offres</strong>
+              <span>Python · API LLM · JSON · Pandas</span>
+            </div>
+            <pre><code><span class="code-comment"># Envoi du prompt au modèle</span>
+response = client.models.generate_content(
+    model=<span class="code-string">"gemini-3.1-flash-lite"</span>,
+    contents=prompt
+)
+
+<span class="code-comment"># Conversion de la réponse JSON en données Python</span>
+result = json.loads(response.text)
+
+<span class="code-comment"># Ajout des informations extraites à la ligne</span>
+resultats.append({
+    <span class="code-string">"Titre"</span>: titre,
+    <span class="code-string">"Entreprise"</span>: entreprise,
+    <span class="code-string">"Secteur"</span>: result[<span class="code-string">"secteur"</span>],
+    <span class="code-string">"Contrat"</span>: result[<span class="code-string">"contrat"</span>],
+    <span class="code-string">"Experience"</span>: result[<span class="code-string">"experience"</span>],
+    <span class="code-string">"Type_metier"</span>: result[<span class="code-string">"type_metier"</span>],
+    <span class="code-string">"Hard_skills"</span>: <span class="code-string">"; "</span>.join(result[<span class="code-string">"hard_skills"</span>]),
+    <span class="code-string">"Categories"</span>: <span class="code-string">"; "</span>.join(result[<span class="code-string">"categories"</span>]),
+    <span class="code-string">"Pertinent_data_ia"</span>: result[<span class="code-string">"pertinent_data_ia"</span>]
+})</code></pre>
+          </div>
+
+          <p class="code-note">
+            Extrait de présentation basé sur le traitement réalisé. Le prompt
+            complet et les paramètres de connexion ne sont pas affichés.
+          </p>
+
+          <!-- Aperçu du CSV enrichi -->
+          <div class="data-preview">
+            <div class="data-preview-header">
+              <div>
+                <h3>Le fichier CSV enrichi</h3>
+                <p>
+                  Exemple des informations extraites et normalisées par le
+                  modèle, avec les compétences regroupées par offre.
+                </p>
+              </div>
+            </div>
+
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Titre</th>
+                    <th>Entreprise</th>
+                    <th>Lieu</th>
+                    <th>Expérience</th>
+                    <th>Type métier</th>
+                    <th>Compétences extraites</th>
+                    <th>Catégories</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Data Analyst – Analyse et visualisation de données financières</td>
+                    <td>PKF Arsilon</td>
+                    <td>Casablanca</td>
+                    <td>Débutant</td>
+                    <td><span class="type-label">Data</span></td>
+                    <td class="skills-cell">Excel; VBA; Power BI; Python; pandas; matplotlib; seaborn</td>
+                    <td class="category-cell">Autre; Langages; Visualisation; Langages; Data Analysis; Visualisation; Visualisation</td>
+                  </tr>
+                  <tr>
+                    <td>Stagiaire PFE – Data Analyst / Reporting IT</td>
+                    <td>Inetum</td>
+                    <td>Marrakech</td>
+                    <td>Débutant</td>
+                    <td><span class="type-label">Data</span></td>
+                    <td class="skills-cell">ServiceNow; Excel</td>
+                    <td class="category-cell">Autre; Autre</td>
+                  </tr>
+                  <tr>
+                    <td>Product Owner – IA</td>
+                    <td>HEOMI</td>
+                    <td>Casablanca</td>
+                    <td>Confirmé</td>
+                    <td><span class="type-label">IA</span></td>
+                    <td class="skills-cell">JIRA; MS Project</td>
+                    <td class="category-cell">Gestion de projet; Gestion de projet</td>
+                  </tr>
+                  <tr>
+                    <td>Data Engineer (F/H)</td>
+                    <td>Sofrecom Maroc</td>
+                    <td>Casablanca</td>
+                    <td>Intermédiaire</td>
+                    <td><span class="type-label">Data</span></td>
+                    <td class="skills-cell">SSIS; SSRS; SSAS; SQL Server; Azure Data Factory; Azure SQL; Azure Synapse Fabric; Power BI; SQL; Python; Git</td>
+                    <td class="category-cell">Bases de données; Visualisation; Bases de données; Bases de données; Pipelines; Bases de données; Big Data; Visualisation; Langages; Langages; DevOps</td>
+                  </tr>
+                  <tr>
+                    <td>Data Intern</td>
+                    <td>Smollan</td>
+                    <td>Casablanca</td>
+                    <td>Débutant</td>
+                    <td><span class="type-label">Data</span></td>
+                    <td class="skills-cell">Microsoft Excel; Power BI; SQL; Python</td>
+                    <td class="category-cell">Autre; Visualisation; Bases de données; Langages</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="table-caption">
+              Extrait partiel du CSV enrichi. Les compétences restent regroupées
+              sur une ligne par offre ; le fichier complet contient aussi le
+              secteur, le contrat, la source, le lien et l’indicateur de pertinence.
+            </div>
+          </div>
+
+          <!-- Étapes de post-traitement -->
+          <div class="processing-note">
+            <div class="processing-item">
+              <h3>Fusion des résultats</h3>
+              <p>
+                Regroupement des fichiers générés lors des traitements
+                en un seul jeu de données.
+              </p>
+            </div>
+
+            <div class="processing-item">
+              <h3>Filtrage des offres</h3>
+              <p>
+                Élimination de certaines localisations hors périmètre,
+                puis conservation des offres identifiées comme pertinentes.
+              </p>
+            </div>
+
+            <div class="processing-item">
+              <h3>Organisation des compétences</h3>
+              <p>
+                Préparation d’un fichier complémentaire avec une compétence
+                par ligne pour permettre des analyses ultérieures.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
