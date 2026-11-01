@@ -42,7 +42,7 @@
       margin: 0 auto;
     }
 
-    /* En-tête identique à la page d'accueil */
+    /* En-tête */
     header {
       display: flex;
       justify-content: space-between;
@@ -69,10 +69,11 @@
       color: var(--muted);
       font-size: 13px;
       text-decoration: none;
+      transition: color 0.2s ease;
     }
 
     nav a:hover,
-    .text-link:hover {
+    .bottom-nav a:hover {
       color: var(--accent);
     }
 
@@ -220,7 +221,7 @@
       font-size: 12px;
     }
 
-    /* Navigation de fin de page */
+    /* Navigation de fin de page : même style que le header */
     .bottom-nav {
       display: flex;
       justify-content: space-between;
@@ -230,14 +231,14 @@
     }
 
     .bottom-nav a {
-      color: var(--accent);
+      color: var(--muted);
       font-size: 13px;
       text-decoration: none;
       transition: color 0.2s ease;
     }
 
     .bottom-nav a:hover {
-      color: var(--ink);
+      color: var(--accent);
     }
 
     footer {
