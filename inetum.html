@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -376,6 +375,43 @@
       line-height: 1.7;
     }
 
+    /* Tableau du CSV enrichi : colonnes resserrées et texte lisible */
+    .enriched-table {
+      min-width: 0;
+      table-layout: fixed;
+    }
+
+    .enriched-table th,
+    .enriched-table td {
+      padding: 10px 12px;
+      overflow-wrap: anywhere;
+      white-space: normal;
+    }
+
+    .enriched-table th:nth-child(1),
+    .enriched-table td:nth-child(1) {
+      width: 27%;
+    }
+
+    .enriched-table th:nth-child(2),
+    .enriched-table td:nth-child(2) {
+      width: 16%;
+    }
+
+    .enriched-table th:nth-child(3),
+    .enriched-table td:nth-child(3) {
+      width: 29%;
+    }
+
+    .enriched-table th:nth-child(4),
+    .enriched-table td:nth-child(4) {
+      width: 28%;
+    }
+
+    .enriched-table td:first-child {
+      min-width: 0;
+    }
+
     .skills-list {
       display: flex;
       flex-wrap: wrap;
@@ -746,7 +782,7 @@ threshold_desc = 0.85
                     <td>Bayt</td>
                   </tr>
                   <tr>
-                    <td>Expert (e) DATA | Technopolis</td>
+                    <td>Expert(e) DATA | Technopolis</td>
                     <td>DXC - CDG</td>
                     <td>Maroc</td>
                     <td>Non précisé</td>
@@ -869,7 +905,7 @@ resultats.append({
             La clé API et son initialisation ne sont pas affichées.
           </p>
 
-          <!-- Aperçu du CSV enrichi : données issues du CSV fourni -->
+          <!-- Aperçu du CSV enrichi : compétences et catégories -->
           <div class="data-preview">
             <div class="data-preview-header">
               <div>
@@ -882,16 +918,11 @@ resultats.append({
             </div>
 
             <div class="table-scroll">
-              <table class="data-table">
+              <table class="data-table enriched-table">
                 <thead>
                   <tr>
                     <th>Titre</th>
                     <th>Entreprise</th>
-                    <th>Secteur</th>
-                    <th>Lieu</th>
-                    <th>Contrat</th>
-                    <th>Expérience</th>
-                    <th>Type métier</th>
                     <th>Hard skills</th>
                     <th>Catégories</th>
                   </tr>
@@ -900,56 +931,24 @@ resultats.append({
                   <tr>
                     <td>Senior Python Data Scraping Engineer (Freelance)</td>
                     <td>Mindrift</td>
-                    <td>Technologie / IA</td>
-                    <td>Télétravail</td>
-                    <td>Freelance</td>
-                    <td>Confirmé (5 à 10 ans)</td>
-                    <td>Data + IA</td>
                     <td>Python; BeautifulSoup; Selenium; Apify; OpenRouter; AWS; Docker; LangChain; JavaScript; AJAX; SQL</td>
                     <td>Langages; Data Acquisition; Data Acquisition; Data Acquisition; ML/IA; Cloud; DevOps; ML/IA; Langages; Langages; Bases de données</td>
                   </tr>
                   <tr>
                     <td>Industry 4.0 Data Engineer</td>
                     <td>Lear Corporation</td>
-                    <td>Industrie</td>
-                    <td>Rabat</td>
-                    <td>Non précisé</td>
-                    <td>Intermédiaire (3 à 5 ans)</td>
-                    <td>Data</td>
                     <td>Python; SQL; Spark; ETL; Data Pipelines</td>
                     <td>Langages; Bases de données; Big Data; Pipelines; Pipelines</td>
-                  </tr>
-                  <tr>
-                    <td>Data Analyst (F/H)</td>
-                    <td>SQLI</td>
-                    <td>ESN</td>
-                    <td>Rabat</td>
-                    <td>Non précisé</td>
-                    <td>Junior (1 à 3 ans)</td>
-                    <td>Data</td>
-                    <td>SQL; GitHub; Python; R; Power BI; Excel</td>
-                    <td>Bases de données; DevOps; Langages; Langages; Visualisation; Autre</td>
-                  </tr>
-                  <tr>
-                    <td>Data Engineer confirmé</td>
-                    <td>Orange</td>
-                    <td>Télécommunications</td>
-                    <td>Non précisé</td>
-                    <td>Non précisé</td>
-                    <td>Confirmé (5 à 10 ans)</td>
-                    <td>Data</td>
-                    <td>Hadoop; Spark; Kafka; NiFi; Azure; AWS; Google Cloud; Scala; Python; Java; Data Factory; Synapse; Power BI; SQL; Kubernetes; Linux</td>
-                    <td>Big Data; Big Data; Big Data; Pipelines; Cloud; Cloud; Cloud; Langages; Langages; Langages; Cloud; Cloud; Visualisation; Bases de données; DevOps; DevOps</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
             <div class="table-caption">
-              Extrait du CSV enrichi. Les compétences extraites sont conservées
-              dans le champ « Hard_skills » et associées aux catégories
-              correspondantes dans le champ « Categories ». Les autres champs
-              permettent de compléter les informations descriptives des offres.
+              Extrait du CSV enrichi par le LLM : les compétences techniques
+              sont extraites des offres et associées à des catégories.
+              Cette étape complète les informations initialement collectées
+              et facilite l’analyse des compétences présentes dans les annonces.
             </div>
           </div>
 
