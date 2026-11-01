@@ -74,8 +74,7 @@
     }
 
     nav a:hover,
-    .text-link:hover,
-    .project-link:hover {
+    .text-link:hover {
       color: var(--accent);
     }
 
@@ -234,18 +233,23 @@
       font-size: 11px;
     }
 
-    /* Lien vers la page détaillée du projet */
+    /* Bouton secondaire vers la page détaillée du projet */
 
     .project-link {
-      display: inline-block;
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-size: 12px;
       text-decoration: none;
-      transition: color 0.2s ease;
+      transition: border-color 0.2s ease, color 0.2s ease;
     }
 
     .project-link:hover {
+      border-color: var(--accent);
       color: var(--accent);
     }
 
@@ -516,7 +520,9 @@
                 <span>Préparation des données</span>
                 <span>KPI</span>
               </div>
-              <a class="project-link" href="spotify.html">Voir le projet ↗</a>
+              <a class="project-link" href="spotify.html">
+                Découvrir le projet ↗
+              </a>
             </div>
           </article>
 
