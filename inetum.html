@@ -896,8 +896,9 @@ resultats.append({
               <div>
                 <h3>Le fichier CSV enrichi</h3>
                 <p>
-                  Exemple des informations ajoutées ou normalisées après
-                  l’analyse des offres par le modèle de langage.
+                  Le modèle de langage permet de passer des descriptions
+                  d’offres à des informations structurées : compétences
+                  extraites, catégories associées et caractéristiques des postes.
                 </p>
               </div>
             </div>
@@ -909,9 +910,11 @@ resultats.append({
                     <th>Titre</th>
                     <th>Entreprise</th>
                     <th>Secteur</th>
-                    <th>Contrat / expérience</th>
+                    <th>Contrat</th>
+                    <th>Expérience</th>
                     <th>Type métier</th>
                     <th>Compétences identifiées</th>
+                    <th>Catégories de compétences</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -919,40 +922,48 @@ resultats.append({
                     <td>Senior Python Data Scraping Engineer</td>
                     <td>Mindrift</td>
                     <td>Technologie / IA</td>
-                    <td>Freelance · Confirmé</td>
+                    <td>Freelance</td>
+                    <td>Confirmé (5 à 10 ans)</td>
                     <td>Data + IA</td>
-                    <td>Python; BeautifulSoup; Selenium; Apify; AWS; Docker; LangChain; SQL</td>
+                    <td>Python; BeautifulSoup; Selenium; Apify; OpenRouter; AWS; Docker; LangChain; JavaScript; AJAX; SQL</td>
+                    <td>À reprendre depuis le champ <code>Categories</code> du CSV enrichi.</td>
                   </tr>
                   <tr>
                     <td>Industry 4.0 Data Engineer</td>
                     <td>Lear Corporation</td>
                     <td>Industrie</td>
-                    <td>Non précisé · Intermédiaire</td>
+                    <td>Non précisé</td>
+                    <td>Intermédiaire (3 à 5 ans)</td>
                     <td>Data</td>
                     <td>Python; SQL; Spark; ETL; Data Pipelines</td>
+                    <td>À reprendre depuis le champ <code>Categories</code> du CSV enrichi.</td>
                   </tr>
                   <tr>
                     <td>Data analyst H/F – Analyse et visualisation de données financières</td>
                     <td>PKF Arsilon</td>
                     <td>Conseil / Études</td>
-                    <td>CDI · Débutant</td>
+                    <td>CDI</td>
+                    <td>Débutant</td>
                     <td>Data</td>
                     <td>Excel; VBA; Power BI; Python; pandas; matplotlib; seaborn</td>
+                    <td>À reprendre depuis le champ <code>Categories</code> du CSV enrichi.</td>
                   </tr>
                   <tr>
-                    <td>Stagiaire PFE – Data Analyst / Reporting IT</td>
+                    <td>Stagiaire PFE – Data Analyst / Reporting IT (ServiceNow &amp; Support)</td>
                     <td>Inetum</td>
                     <td>ESN</td>
-                    <td>Stage · Débutant</td>
+                    <td>Stage</td>
+                    <td>Débutant (moins d’1 an)</td>
                     <td>Data</td>
                     <td>ServiceNow; Excel</td>
+                    <td>À reprendre depuis le champ <code>Categories</code> du CSV enrichi.</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
             <div class="table-caption">
-              Extrait du CSV enrichi : compétences identifiées, catégories associées et informations structurées sur les offres.
+              Extrait du CSV enrichi après analyse des offres par le modèle de langage. Les compétences sont extraites du texte puis associées à des catégories ; d’autres champs, comme le secteur, le contrat et l’expérience, sont également structurés.
             </div>
           </div>
 
