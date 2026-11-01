@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Présentation d'un stage chez Inetum consacré à la collecte, à l'analyse et à la structuration de données avec Python et une API LLM.">
+  <meta name="description" content="Stage chez Inetum : web scraping, analyse et enrichissement d'offres d'emploi, extraction et structuration de données avec Python.">
   <title>Collecte et structuration de données — Wided Khadrani</title>
 
   <style>
@@ -212,6 +212,11 @@
       border-bottom: 1px solid var(--line);
     }
 
+    /* Pas de trait sous la dernière étape */
+    .step:last-child {
+      border-bottom: none;
+    }
+
     .step-number {
       padding-top: 2px;
       color: var(--accent);
@@ -363,16 +368,16 @@
         <h1>Collecte et structuration de données</h1>
 
         <p class="intro">
-          Travail autour de la collecte d’offres d’emploi, de leur analyse
-          et de l’extraction d’informations à partir de CV. Utilisation
-          de Python et d’outils de traitement automatisé pour organiser
-          les données dans des formats structurés.
+          Développement de scripts Python pour collecter des offres d’emploi
+          par web scraping, analyser et enrichir les données à l’aide d’une
+          API LLM, et extraire des informations de CV pour les structurer
+          au format JSON.
         </p>
 
         <div class="meta">
           <span>Inetum</span>
           <span>Python</span>
-          <span>Traitement de données</span>
+          <span>Web scraping</span>
           <span>API LLM</span>
         </div>
       </section>
@@ -387,32 +392,31 @@
         <div class="section-content">
           <p>
             Cette expérience chez Inetum m’a permis de travailler sur
-            plusieurs étapes du traitement de données : collecte
-            d’informations issues de sites d’emploi, analyse et
-            enrichissement des offres, puis extraction d’informations
-            contenues dans des CV.
+            plusieurs étapes du traitement de données : collecte d’offres
+            d’emploi par web scraping, analyse et enrichissement de leur
+            contenu, puis extraction d’informations contenues dans des CV.
           </p>
 
           <p>
-            Les travaux reposaient sur des scripts Python permettant
-            d’automatiser certaines tâches et de transformer des données
-            issues de différentes sources en fichiers structurés.
+            Ces travaux reposaient sur des scripts Python visant à automatiser
+            certaines tâches et à transformer des informations issues de
+            différentes sources en données structurées.
           </p>
 
           <div class="feature-grid">
             <div class="feature">
               <h3>Collecter</h3>
               <p>
-                Récupérer des informations sur des offres d’emploi
-                publiées sur plusieurs sites.
+                Récupérer des informations sur des offres d’emploi publiées
+                sur plusieurs plateformes grâce au web scraping.
               </p>
             </div>
 
             <div class="feature">
               <h3>Structurer</h3>
               <p>
-                Organiser les informations extraites pour faciliter
-                leur lecture et leur exploitation.
+                Nettoyer, organiser et enrichir les informations extraites
+                pour faciliter leur exploitation.
               </p>
             </div>
           </div>
@@ -428,27 +432,28 @@
 
         <div class="section-content">
           <p>
-            Développement de scripts Python pour collecter des offres
-            d’emploi publiées sur plusieurs plateformes. Les scripts
-            récupèrent notamment les intitulés de postes, les entreprises,
-            les localisations et les descriptions, selon les informations
-            disponibles sur chaque site.
+            Développement de scripts Python de web scraping pour collecter
+            des offres d’emploi sur plusieurs plateformes. Selon les sites,
+            les scripts récupèrent notamment les intitulés de postes,
+            les entreprises, les localisations et les descriptions des offres.
           </p>
 
           <p>
             Les données collectées sont ensuite nettoyées et organisées
             dans des fichiers CSV, avec des règles de filtrage et de
-            déduplication adaptées aux données récupérées.
+            déduplication pour limiter les doublons et isoler les offres
+            correspondant aux critères recherchés.
           </p>
 
           <div class="step-list">
             <div class="step">
               <div class="step-number">01</div>
               <div>
-                <h3>Collecte automatisée</h3>
+                <h3>Web scraping</h3>
                 <p>
                   Utilisation de requêtes HTTP, de BeautifulSoup et de
-                  Selenium selon le fonctionnement des plateformes.
+                  Selenium pour récupérer les informations disponibles
+                  sur les différentes plateformes.
                 </p>
               </div>
             </div>
@@ -456,10 +461,11 @@
             <div class="step">
               <div class="step-number">02</div>
               <div>
-                <h3>Nettoyage des données</h3>
+                <h3>Nettoyage et filtrage</h3>
                 <p>
-                  Traitement des descriptions, filtrage des offres
-                  pertinentes et suppression des doublons identifiés.
+                  Traitement des descriptions, filtrage des offres selon
+                  les critères recherchés et suppression des doublons
+                  identifiés.
                 </p>
               </div>
             </div>
@@ -467,16 +473,16 @@
             <div class="step">
               <div class="step-number">03</div>
               <div>
-                <h3>Export des résultats</h3>
+                <h3>Export des données</h3>
                 <p>
-                  Organisation des informations collectées dans des
-                  fichiers CSV pour les étapes de traitement suivantes.
+                  Organisation des offres collectées dans des fichiers CSV
+                  pour permettre leur traitement ultérieur.
                 </p>
               </div>
             </div>
           </div>
 
-          <!-- Un visuel de collecte pourra être ajouté ici. -->
+          <!-- Un visuel du processus de collecte pourra être ajouté ici. -->
         </div>
       </section>
 
@@ -490,16 +496,16 @@
         <div class="section-content">
           <p>
             Mise en place d’un traitement utilisant une API de modèle
-            de langage pour analyser les informations présentes dans
-            les offres d’emploi et compléter les données collectées.
+            de langage (LLM) pour analyser le contenu des offres d’emploi
+            et compléter les informations collectées.
           </p>
 
           <p>
-            À partir des intitulés, des descriptions et des informations
-            disponibles, le traitement vise notamment à identifier
-            les compétences, les catégories de compétences, le type
-            de poste, le secteur d’activité et certaines informations
-            liées au contrat ou à l’expérience demandée.
+            À partir des intitulés, des descriptions et des autres
+            informations disponibles, le traitement vise notamment à
+            identifier les compétences, leurs catégories, le type de poste,
+            le secteur d’activité et certaines informations liées au contrat
+            ou à l’expérience demandée.
           </p>
 
           <div class="step-list">
@@ -508,8 +514,9 @@
               <div>
                 <h3>Analyse du contenu</h3>
                 <p>
-                  Transmission des informations utiles des offres à
-                  l’API afin d’en analyser le contenu textuel.
+                  Transmission des informations des offres à l’API
+                  accompagnées de consignes précisant les éléments
+                  à identifier.
                 </p>
               </div>
             </div>
@@ -520,7 +527,7 @@
                 <h3>Extraction des informations</h3>
                 <p>
                   Identification de champs complémentaires à partir
-                  de consignes définies pour le traitement.
+                  du contenu textuel des offres.
                 </p>
               </div>
             </div>
@@ -530,9 +537,9 @@
               <div>
                 <h3>Structuration des résultats</h3>
                 <p>
-                  Organisation des informations produites dans des
-                  champs structurés, puis traitement des fichiers
-                  pour regrouper et filtrer les données.
+                  Organisation des informations extraites dans des champs
+                  structurés, puis regroupement et filtrage des fichiers
+                  obtenus.
                 </p>
               </div>
             </div>
@@ -552,15 +559,15 @@
         <div class="section-content">
           <p>
             Développement d’un script Python destiné à extraire des
-            informations à partir de CV au format Word. Le script
-            traite trois documents placés dans un dossier et regroupe
-            les informations détectées dans un fichier JSON.
+            informations à partir de CV au format Word. Le script traite
+            trois documents placés dans un dossier et regroupe les
+            informations détectées dans un fichier JSON.
           </p>
 
           <p>
-            L’extraction s’appuie sur des expressions régulières et des
-            règles de détection tenant compte des différentes rubriques
-            et structures des documents.
+            L’extraction s’appuie sur des expressions régulières (Regex)
+            et des règles de détection tenant compte des différentes
+            rubriques et structures des documents.
           </p>
 
           <div class="step-list">
@@ -569,7 +576,7 @@
               <div>
                 <h3>Lecture des documents Word</h3>
                 <p>
-                  Parcours du contenu textuel et de certains tableaux
+                  Parcours du texte et de certains tableaux des CV
                   pour repérer les informations utiles.
                 </p>
               </div>
@@ -613,14 +620,15 @@
 
         <div class="section-content">
           <p>
-            Cette expérience m’a permis de mettre en pratique des
-            techniques de collecte, de nettoyage et de structuration
-            de données, ainsi que des méthodes d’extraction
-            d’informations à partir de contenus textuels.
+            Cette expérience m’a permis de mettre en pratique des techniques
+            de web scraping, de nettoyage et d’enrichissement de données,
+            ainsi que des méthodes d’extraction d’informations à partir
+            de contenus textuels.
           </p>
 
           <div class="skills-list">
             <span>Python</span>
+            <span>Web scraping</span>
             <span>Requests</span>
             <span>BeautifulSoup</span>
             <span>Selenium</span>
@@ -630,7 +638,6 @@
             <span>JSON</span>
             <span>CSV</span>
             <span>Nettoyage de données</span>
-            <span>Web scraping</span>
             <span>Structuration de données</span>
           </div>
         </div>
