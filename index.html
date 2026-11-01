@@ -74,7 +74,8 @@
     }
 
     nav a:hover,
-    .text-link:hover {
+    .text-link:hover,
+    .project-link:hover {
       color: var(--accent);
     }
 
@@ -231,6 +232,21 @@
     .project-tags span {
       color: var(--muted);
       font-size: 11px;
+    }
+
+    /* Lien vers la page détaillée du projet */
+
+    .project-link {
+      display: inline-block;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .project-link:hover {
+      color: var(--accent);
     }
 
     /* Compétences */
@@ -500,6 +516,7 @@
                 <span>Préparation des données</span>
                 <span>KPI</span>
               </div>
+              <a class="project-link" href="spotify.html">Voir le projet ↗</a>
             </div>
           </article>
 
@@ -518,6 +535,7 @@
                 <span>JSON</span>
                 <span>API LLM</span>
               </div>
+              <!-- Ajouter le lien lorsque la page détaillée sera créée. -->
             </div>
           </article>
 
@@ -535,6 +553,7 @@
                 <span>MySQL</span>
                 <span>Modélisation</span>
               </div>
+              <!-- Ajouter le lien lorsque la page détaillée sera créée. -->
             </div>
           </article>
 
@@ -552,6 +571,7 @@
                 <span>Plotly</span>
                 <span>Motion design</span>
               </div>
+              <!-- Ajouter le lien lorsque la page détaillée sera créée. -->
             </div>
           </article>
         </div>
