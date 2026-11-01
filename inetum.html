@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -790,7 +789,7 @@ threshold_desc = 0.85
             </div>
 
             <div class="table-caption">
-              Aperçu partiel du CSV consolidé. Le fichier complet comprend également le secteur, la description de l’offre, l’expérience demandée et le lien vers l’annonce.
+              Extrait du CSV consolidé. Le fichier complet comprend également le secteur, la description de l’offre, l’expérience demandée et le lien vers l’annonce.
             </div>
           </div>
         </div>
@@ -891,14 +890,6 @@ resultats.append({
             La clé API et son initialisation ne sont pas affichées.
           </p>
 
-          <p>
-            Après cette étape, les fichiers produits sont regroupés,
-            les offres hors périmètre sont écartées et les annonces
-            identifiées comme pertinentes pour la Data ou l’IA sont
-            conservées. Un traitement complémentaire permet aussi
-            de détailler les compétences pour faciliter leur analyse.
-          </p>
-
           <!-- Aperçu du CSV enrichi par le LLM -->
           <div class="data-preview">
             <div class="data-preview-header">
@@ -921,7 +912,6 @@ resultats.append({
                     <th>Contrat / expérience</th>
                     <th>Type métier</th>
                     <th>Compétences identifiées</th>
-                    <th>Pertinence Data/IA</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -932,7 +922,6 @@ resultats.append({
                     <td>Freelance · Confirmé</td>
                     <td>Data + IA</td>
                     <td>Python; BeautifulSoup; Selenium; Apify; AWS; Docker; LangChain; SQL</td>
-                    <td>Oui</td>
                   </tr>
                   <tr>
                     <td>Industry 4.0 Data Engineer</td>
@@ -941,7 +930,6 @@ resultats.append({
                     <td>Non précisé · Intermédiaire</td>
                     <td>Data</td>
                     <td>Python; SQL; Spark; ETL; Data Pipelines</td>
-                    <td>Oui</td>
                   </tr>
                   <tr>
                     <td>Data analyst H/F – Analyse et visualisation de données financières</td>
@@ -950,7 +938,6 @@ resultats.append({
                     <td>CDI · Débutant</td>
                     <td>Data</td>
                     <td>Excel; VBA; Power BI; Python; pandas; matplotlib; seaborn</td>
-                    <td>Oui</td>
                   </tr>
                   <tr>
                     <td>Stagiaire PFE – Data Analyst / Reporting IT</td>
@@ -959,14 +946,13 @@ resultats.append({
                     <td>Stage · Débutant</td>
                     <td>Data</td>
                     <td>ServiceNow; Excel</td>
-                    <td>Oui</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
             <div class="table-caption">
-              Extrait représentatif du CSV enrichi. Les compétences sont regroupées par offre dans ce fichier, avec leurs catégories dans un champ associé. Le résultat de pertinence correspond à la classification produite par le traitement, et non à une validation indépendante.
+              Extrait du CSV enrichi : compétences identifiées, catégories associées et informations structurées sur les offres.
             </div>
           </div>
 
