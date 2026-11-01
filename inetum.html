@@ -1032,14 +1032,16 @@ resultats.append({
           <p>
             Développement d’un script Python destiné à extraire des
             informations à partir de CV au format Word. Le script traite
-            trois documents placés dans un dossier et regroupe les
+            les documents placés dans un dossier et regroupe les
             informations détectées dans un fichier JSON.
           </p>
 
           <p>
             L’extraction s’appuie sur des expressions régulières (Regex)
             et des règles de détection tenant compte des différentes
-            rubriques et structures des documents.
+            rubriques et structures des documents. Les informations sont
+            réparties entre formations, compétences techniques,
+            expériences professionnelles et langues.
           </p>
 
           <div class="step-list">
@@ -1048,8 +1050,8 @@ resultats.append({
               <div>
                 <h3>Lecture des documents Word</h3>
                 <p>
-                  Parcours du texte et de certains tableaux des CV
-                  pour repérer les informations utiles.
+                  Lecture des paragraphes et des tableaux des CV à l’aide
+                  de la bibliothèque python-docx.
                 </p>
               </div>
             </div>
@@ -1059,9 +1061,9 @@ resultats.append({
               <div>
                 <h3>Extraction par règles</h3>
                 <p>
-                  Repérage des formations, compétences, langues et
-                  expériences professionnelles à l’aide de règles
-                  et d’expressions régulières.
+                  Détection des rubriques et extraction des informations,
+                  notamment les compétences et leurs catégories, à l’aide
+                  de règles et d’expressions régulières.
                 </p>
               </div>
             </div>
@@ -1071,15 +1073,87 @@ resultats.append({
               <div>
                 <h3>Génération d’un fichier JSON</h3>
                 <p>
-                  Regroupement des informations extraites dans une
-                  structure organisée pour faciliter leur exploitation
-                  ultérieure.
+                  Regroupement des informations détectées dans une structure
+                  organisée pour faciliter leur consultation et leur
+                  exploitation ultérieure.
                 </p>
               </div>
             </div>
           </div>
 
-          <!-- Ajouter ici un exemple JSON avec des données fictives. -->
+          <!-- Extrait du script d'extraction des compétences -->
+          <div class="code-card">
+            <div class="code-card-header">
+              <strong>Extraction et structuration des compétences</strong>
+              <span>Python · Regex · JSON</span>
+            </div>
+            <pre><code><span class="code-comment"># Repérage d'une catégorie suivie d'une liste</span>
+match = re.match(
+    r"^([A-Za-zÀ-ÿ /&']{2,45})\s*[:\uFF1A]\s*(.+)$",
+    txt_sans_puce
+)
+
+<span class="code-keyword">if</span> match <span class="code-keyword">and</span> <span class="code-string">","</span> <span class="code-keyword">in</span> match.group(2):
+    categorie_brute = match.group(1).strip()
+    categorie = <span class="code-string">""</span> <span class="code-keyword">if</span> is_generic_label(categorie_brute) <span class="code-keyword">else</span> categorie_brute
+
+    <span class="code-keyword">for</span> skill <span class="code-keyword">in</span> split_skills(match.group(2)):
+        hard_skills.append({
+            <span class="code-string">"categorie"</span>: categorie,
+            <span class="code-string">"skill"</span>: skill
+        })</code></pre>
+          </div>
+
+          <p class="code-note">
+            Extrait du script : une expression régulière repère une catégorie
+            de compétences, puis la fonction split_skills() sépare les
+            compétences individuelles avant de les organiser dans des objets
+            contenant une catégorie et une compétence.
+          </p>
+
+          <!-- Aperçu illustratif du JSON généré -->
+          <div class="data-preview">
+            <div class="data-preview-header">
+              <div>
+                <h3>Exemple de données structurées en JSON</h3>
+                <p>
+                  Aperçu simplifié de la structure produite par le script
+                  à partir des informations extraites d’un CV.
+                </p>
+              </div>
+            </div>
+
+            <div class="code-card" style="margin-top: 0; border: 0; border-radius: 0;">
+              <pre><code>{
+  <span class="code-string">"poste"</span>: <span class="code-string">"Data Scientist"</span>,
+  <span class="code-string">"formations"</span>: [
+    {
+      <span class="code-string">"periode"</span>: <span class="code-string">"2020-2022"</span>,
+      <span class="code-string">"diplome"</span>: <span class="code-string">"[Diplôme]"</span>,
+      <span class="code-string">"etablissement"</span>: <span class="code-string">"[Établissement]"</span>
+    }
+  ],
+  <span class="code-string">"hard_skills"</span>: [
+    {
+      <span class="code-string">"categorie"</span>: <span class="code-string">"Programmation"</span>,
+      <span class="code-string">"skill"</span>: <span class="code-string">"Python"</span>
+    }
+  ],
+  <span class="code-string">"experiences"</span>: [],
+  <span class="code-string">"langues"</span>: [
+    {
+      <span class="code-string">"langue"</span>: <span class="code-string">"Français"</span>,
+      <span class="code-string">"niveau"</span>: <span class="code-string">"Courant"</span>
+    }
+  ]
+}</code></pre>
+            </div>
+
+            <div class="table-caption">
+              Exemple fictif et simplifié destiné à illustrer la structure
+              du JSON, et non une copie du contenu réel des CV traités.
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1108,6 +1182,7 @@ resultats.append({
             <span>SequenceMatcher</span>
             <span>API LLM</span>
             <span>Regex</span>
+            <span>python-docx</span>
             <span>JSON</span>
             <span>CSV</span>
             <span>Nettoyage de données</span>
