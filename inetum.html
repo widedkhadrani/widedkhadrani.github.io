@@ -634,81 +634,61 @@
               <strong>Scraping des offres · Stagiaires.ma</strong>
               <span>Python · Selenium · BeautifulSoup</span>
             </div>
-            <pre><code><span class="code-comment"># Récupérer les cartes d'offres</span>
+            <pre><code><span class="code-comment"># Récupération des offres</span>
 cards = driver.find_elements(
-    <span class="code-string">"css selector"</span>,
-    <span class="code-string">"div[data-slot='card-content']"</span>
+    <span class="code-string">"css selector"</span>, <span class="code-string">"div[data-slot='card-content']"</span>
 )
 
-idx = 0
-<span class="code-keyword">while</span> idx &lt; len(cards):
-    cards = driver.find_elements(
-        <span class="code-string">"css selector"</span>,
-        <span class="code-string">"div[data-slot='card-content']"</span>
+<span class="code-comment"># Filtrage des intitulés</span>
+title = elements[0].text.strip()
+title_clean = title.lower()
+
+<span class="code-keyword">if</span> <span class="code-string">"data"</span> <span class="code-keyword">in</span> title_clean:
+    <span class="code-comment"># Accès à la page détaillée</span>
+    clickable = card.find_element(
+        <span class="code-string">"css selector"</span>, <span class="code-string">"div[role='link']"</span>
     )
-    <span class="code-keyword">if</span> idx &gt;= len(cards):
-        <span class="code-keyword">break</span>
+    driver.execute_script(<span class="code-string">"arguments[0].click();"</span>, clickable)
 
-    <span class="code-keyword">try</span>:
-        card = cards[idx]
-        elements = card.find_elements(<span class="code-string">"css selector"</span>, <span class="code-string">"h3"</span>)
-        <span class="code-keyword">if not</span> elements:
-            idx += 1
-            <span class="code-keyword">continue</span>
-
-        title = elements[0].text.strip()
-        title_clean = title.lower()
-
-        <span class="code-keyword">if not</span> (
-            <span class="code-string">"data"</span> in title_clean
-            <span class="code-keyword">or</span> <span class="code-string">"machine learning"</span> in title_clean
-            <span class="code-keyword">or</span> <span class="code-string">"deep learning"</span> in title_clean
-            <span class="code-keyword">or</span> <span class="code-string">"big data"</span> in title_clean
-            <span class="code-keyword">or</span> <span class="code-string">"artificial intelligence"</span> in title_clean
-            <span class="code-keyword">or</span> <span class="code-string">"intelligence artificielle"</span> in title_clean
-            <span class="code-keyword">or</span> <span class="code-string">"données"</span> in title_clean
-            <span class="code-keyword">or</span> <span class="code-string">"donnees"</span> in title_clean
-            <span class="code-keyword">or</span> <span class="code-string">"ai"</span> in title_clean.split()
-            <span class="code-keyword">or</span> <span class="code-string">"ia"</span> in title_clean.split()
-            <span class="code-keyword">or</span> <span class="code-string">"ml"</span> in title_clean.split()
-            <span class="code-keyword">or</span> <span class="code-string">"bi"</span> in title_clean.split()
-        ):
-            idx += 1
-            <span class="code-keyword">continue</span>
-
-        <span class="code-comment"># Ouvrir la page détaillée de l'offre</span>
-        clickable = card.find_element(
-            <span class="code-string">"css selector"</span>,
-            <span class="code-string">"div[role='link']"</span>
-        )
-        driver.execute_script(<span class="code-string">"arguments[0].click();"</span>, clickable)
-        time.sleep(3)
-
-        detail_url = driver.current_url
-        soup = BeautifulSoup(driver.page_source, <span class="code-string">"html.parser"</span>)
-
-        desc_block = soup.find(
-            <span class="code-string">"div"</span>,
-            class_=<span class="code-string">"job-description-content"</span>
-        )
-
-        description = <span class="code-string">""</span>
-        <span class="code-keyword">if</span> desc_block:
-            description = desc_block.get_text(separator=<span class="code-string">" "</span>).strip()
-
-        description = description.replace(<span class="code-string">"/"</span>, <span class="code-string">" "</span>)
-        description = description.replace(<span class="code-string">"\n"</span>, <span class="code-string">" "</span>).replace(<span class="code-string">"\r"</span>, <span class="code-string">" "</span>)
-        description = re.sub(r<span class="code-string">'\s+'</span>, <span class="code-string">' '</span>, description).strip()</code></pre>
+    soup = BeautifulSoup(driver.page_source, <span class="code-string">"html.parser"</span>)
+    desc_block = soup.find(
+        <span class="code-string">"div"</span>, class_=<span class="code-string">"job-description-content"</span>
+    )
+    description = desc_block.get_text(separator=<span class="code-string">" "</span>).strip() <span class="code-keyword">if</span> desc_block <span class="code-keyword">else</span> <span class="code-string">""</span>
+    description = re.sub(r<span class="code-string">'\s+'</span>, <span class="code-string">' '</span>, description).strip()</code></pre>
           </div>
 
           <p class="code-note">
-            Extrait du script Stagiaires.ma, raccourci pour présenter les étapes
-            principales : filtrage des intitulés, accès à la page détaillée et
-            extraction de la description. La suite du script gère notamment
-            les autres champs, la navigation et l’enregistrement des résultats.
+            Extrait raccourci illustrant la récupération des annonces,
+            le filtrage des intitulés et l’extraction des descriptions.
           </p>
 
-          <!-- Aperçu partiel du fichier CSV consolidé -->
+          <!-- Extrait 2 : script de consolidation -->
+          <div class="code-card">
+            <div class="code-card-header">
+              <strong>Déduplication entre plateformes</strong>
+              <span>Python · Pandas</span>
+            </div>
+            <pre><code><span class="code-comment"># Comparaison textuelle</span>
+<span class="code-keyword">def</span> <span class="code-function">similar</span>(a, b):
+    <span class="code-keyword">return</span> SequenceMatcher(None, str(a), str(b)).ratio()
+
+<span class="code-comment"># Seuils de similarité définis dans le script</span>
+threshold_title = 0.9
+threshold_company = 0.9
+threshold_desc = 0.85
+
+<span class="code-comment"># Les annonces sont comparées sur le titre,</span>
+<span class="code-comment"># l'entreprise et la description.</span></code></pre>
+          </div>
+
+          <p class="code-note">
+            Extrait illustrant la comparaison des titres, des entreprises
+            et des descriptions afin de repérer les annonces similaires
+            provenant de plateformes différentes.
+          </p>
+
+          <!-- Aperçu du CSV en dernier -->
           <div class="data-preview">
             <div class="data-preview-header">
               <div>
@@ -813,56 +793,6 @@ idx = 0
               Aperçu partiel du CSV consolidé. Le fichier complet comprend également le secteur, la description de l’offre, l’expérience demandée et le lien vers l’annonce.
             </div>
           </div>
-
-          <!-- Extrait 2 : script de consolidation -->
-          <div class="code-card">
-            <div class="code-card-header">
-              <strong>Déduplication intelligente entre plateformes</strong>
-              <span>Python · Pandas</span>
-            </div>
-            <pre><code><span class="code-comment"># Fonction de comparaison textuelle</span>
-<span class="code-keyword">def</span> <span class="code-function">similar</span>(a, b):
-    <span class="code-keyword">return</span> SequenceMatcher(None, str(a), str(b)).ratio()
-
-
-<span class="code-comment"># Seuils de similarité</span>
-threshold_title = 0.9
-threshold_company = 0.9
-threshold_desc = 0.85
-
-to_drop = set()
-
-<span class="code-keyword">for</span> i <span class="code-keyword">in</span> range(len(df)):
-    <span class="code-keyword">for</span> j <span class="code-keyword">in</span> range(i + 1, len(df)):
-
-        <span class="code-keyword">if</span> j <span class="code-keyword">in</span> to_drop:
-            <span class="code-keyword">continue</span>
-
-        <span class="code-keyword">if</span> df.iloc[i][<span class="code-string">"Source"</span>] == df.iloc[j][<span class="code-string">"Source"</span>]:
-            <span class="code-keyword">continue</span>
-
-        score_title = similar(df.iloc[i][<span class="code-string">"Titre"</span>], df.iloc[j][<span class="code-string">"Titre"</span>])
-        score_company = similar(df.iloc[i][<span class="code-string">"Entreprise"</span>], df.iloc[j][<span class="code-string">"Entreprise"</span>])
-        score_desc = similar(df.iloc[i][<span class="code-string">"Description"</span>], df.iloc[j][<span class="code-string">"Description"</span>])
-
-        <span class="code-keyword">if</span> (
-            score_title &gt;= threshold_title
-            <span class="code-keyword">and</span> score_company &gt;= threshold_company
-            <span class="code-keyword">and</span> score_desc &gt;= threshold_desc
-        ):
-            to_drop.add(j)
-
-<span class="code-comment"># Suppression des doublons détectés</span>
-print(<span class="code-string">"Doublons détectés :"</span>, len(to_drop))
-df = df.drop(df.index[list(to_drop)])</code></pre>
-          </div>
-
-          <p class="code-note">
-            Extrait du script de consolidation des quatre CSV. Les offres
-            provenant de plateformes différentes sont comparées selon la
-            similarité de leur titre, de leur entreprise et de leur description.
-            Les seuils affichés correspondent à ceux définis dans le script.
-          </p>
         </div>
       </section>
 
