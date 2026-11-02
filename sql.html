@@ -1,1 +1,836 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Projet universitaire de conception et d'exploitation d'une base de données relationnelle pour une station de ski avec MySQL.">
+  <title>Conception et exploitation d'une base de données — Wided Khadrani</title>
 
+  <style>
+    :root {
+      --paper: #f8f7f3;
+      --ink: #252821;
+      --muted: #77796f;
+      --line: #deded5;
+      --accent: #52654e;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.65;
+    }
+
+    a { color: inherit; }
+
+    .wrap {
+      width: min(1000px, 88%);
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .brand {
+      flex-shrink: 0;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: -0.3px;
+    }
+
+    nav { display: flex; gap: 23px; }
+
+    nav a, .bottom-nav a {
+      color: var(--muted);
+      font-size: 13px;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover, .bottom-nav a:hover { color: var(--accent); }
+
+    .hero {
+      padding: 57px 0 43px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 400;
+    }
+
+    h1 {
+      max-width: 780px;
+      margin: 13px 0 17px;
+      font-size: clamp(34px, 4.5vw, 46px);
+      line-height: 1.15;
+      letter-spacing: -1px;
+    }
+
+    .intro {
+      max-width: 700px;
+      margin: 0;
+      color: #5f6159;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 22px;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    section {
+      padding: 42px 0;
+      border-bottom: 1px solid var(--line);
+      scroll-margin-top: 90px;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 155px minmax(0, 1fr);
+      gap: 25px;
+      margin-bottom: 22px;
+    }
+
+    .section-number {
+      padding-top: 7px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.3;
+      letter-spacing: -0.4px;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      line-height: 1.4;
+    }
+
+    .section-content {
+      min-width: 0;
+      margin-left: 180px;
+    }
+
+    .section-content p {
+      max-width: 710px;
+      margin: 0 0 14px;
+      color: #62645c;
+      font-size: 14px;
+      line-height: 1.85;
+    }
+
+    .section-content p:last-child { margin-bottom: 0; }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 25px;
+    }
+
+    .feature {
+      padding-top: 15px;
+      border-top: 1px solid var(--line);
+    }
+
+    .feature h3 { font-size: 18px; }
+
+    .feature p {
+      margin: 0;
+      color: #62645c;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .step-list {
+      display: grid;
+      gap: 0;
+      margin-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 36px minmax(0, 1fr);
+      gap: 14px;
+      padding: 17px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .step:last-child { border-bottom: none; }
+
+    .step-number {
+      padding-top: 2px;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .step h3 {
+      margin-bottom: 4px;
+      font-size: 17px;
+    }
+
+    .step p { margin: 0; font-size: 13px; }
+
+    .diagram {
+      margin-top: 24px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      background: #fffdf8;
+    }
+
+    .diagram img {
+      display: block;
+      width: 100%;
+      max-height: 780px;
+      object-fit: contain;
+    }
+
+    .diagram-caption {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .code-card {
+      margin-top: 22px;
+      overflow: hidden;
+      border: 1px solid #414247;
+      border-radius: 5px;
+      background: #292a2d;
+    }
+
+    .code-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 15px;
+      border-bottom: 1px solid #414247;
+      background: #323338;
+      color: #b5b5ba;
+      font-size: 11px;
+    }
+
+    .code-card-header strong {
+      color: #e0e0e2;
+      font-weight: 600;
+    }
+
+    .code-card pre {
+      margin: 0;
+      padding: 17px;
+      overflow-x: auto;
+      background: #292a2d;
+      color: #dedee1;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+      line-height: 1.8;
+      tab-size: 4;
+    }
+
+    .code-card code { font-family: inherit; }
+    .code-comment { color: #92949b; }
+    .code-keyword { color: #c9a7d8; }
+    .code-string { color: #d8a18f; }
+    .code-function { color: #e0c18a; }
+
+    .code-note {
+      margin-top: 9px !important;
+      color: var(--muted) !important;
+      font-size: 11px !important;
+      line-height: 1.7 !important;
+    }
+
+    .data-preview {
+      margin-top: 26px;
+      border: 1px solid var(--line);
+      background: #fffdf8;
+    }
+
+    .data-preview-header {
+      padding: 14px 15px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .data-preview-header h3 {
+      margin: 0 0 4px;
+      font-size: 20px;
+    }
+
+    .data-preview-header p {
+      margin: 0;
+      color: #62645c;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .table-scroll { width: 100%; overflow-x: auto; }
+
+    .data-table {
+      width: 100%;
+      min-width: 520px;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 11px;
+    }
+
+    .data-table th, .data-table td {
+      padding: 11px 13px;
+      border-bottom: 1px solid #ebe8df;
+      vertical-align: top;
+    }
+
+    .data-table th {
+      background: #f1eee6;
+      color: #55554e;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .data-table td { color: #55564f; }
+    .data-table td:first-child {
+      color: #30312c;
+      font-weight: 600;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+
+    .table-caption {
+      padding: 10px 15px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .skills-list span {
+      padding: 5px 10px;
+      border: 1px solid var(--line);
+      color: #62645c;
+      font-size: 12px;
+    }
+
+    .download-list {
+      display: grid;
+      gap: 0;
+      margin-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    .download-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+    }
+
+    .download-item span { color: #62645c; }
+
+    .download-item a {
+      flex-shrink: 0;
+      color: var(--accent);
+      font-size: 12px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .download-item a:hover { text-decoration: underline; }
+
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 30px 0 34px;
+    }
+
+    footer {
+      display: flex;
+      justify-content: center;
+      padding: 18px 0;
+      color: var(--muted);
+      font-size: 11px;
+      text-align: center;
+    }
+
+    @media (max-width: 650px) {
+      .wrap { width: 90%; }
+
+      header {
+        align-items: flex-start;
+        gap: 16px;
+        padding: 19px 0;
+      }
+
+      .brand { font-size: 12px; }
+
+      nav {
+        gap: 8px 13px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      nav a { font-size: 11px; }
+      .hero { padding: 43px 0 35px; }
+      h1 { font-size: clamp(32px, 8vw, 42px); }
+      .intro { font-size: 14px; }
+      section { padding: 32px 0; }
+
+      .section-head {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+
+      .section-number { padding-top: 0; }
+      h2 { font-size: 25px; }
+      .section-content { margin-left: 0; }
+      .feature-grid { grid-template-columns: 1fr; gap: 20px; }
+      .bottom-nav { gap: 12px; }
+      .download-item { align-items: flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <header>
+      <a class="brand" href="../index.html">WIDED KHADRANI</a>
+
+      <nav aria-label="Navigation principale">
+        <a href="../index.html#apropos">À propos</a>
+        <a href="../index.html#projets">Projets</a>
+        <a href="../index.html#competences">Compétences</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+
+      <section class="hero">
+        <div class="eyebrow">Projet universitaire · Base de données</div>
+        <h1>Conception et exploitation d'une base de données</h1>
+        <p class="intro">
+          Conception d’une base de données relationnelle pour SnowPeak,
+          une entreprise fictive de gestion de stations de ski. Modélisation
+          des données, création des tables, requêtes SQL et automatisation
+          de traitements à l’aide de vues, de déclencheurs et de procédures stockées.
+        </p>
+        <div class="meta">
+          <span>MySQL</span>
+          <span>SQL</span>
+          <span>Modélisation relationnelle</span>
+          <span>Requêtes & automatisation</span>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div class="section-number">01 / CONTEXTE</div>
+          <h2>Le projet</h2>
+        </div>
+
+        <div class="section-content">
+          <p>
+            Le projet consistait à concevoir une base de données pour
+            accompagner la gestion d’une entreprise fictive de stations
+            de ski, SnowPeak. Le système devait permettre de centraliser
+            les informations liées aux clients, aux stations, aux employés,
+            aux réservations, aux cours, aux équipements et à la facturation.
+          </p>
+          <p>
+            Le travail a couvert la modélisation des données, la création
+            et l’alimentation de la base, puis l’écriture de requêtes
+            permettant de consulter et d’exploiter les informations.
+            Des fonctionnalités SQL avancées ont également été développées
+            pour automatiser certaines opérations.
+          </p>
+
+          <div class="feature-grid">
+            <div class="feature">
+              <h3>14 tables relationnelles</h3>
+              <p>
+                Organisation des données autour des principales activités
+                de gestion de la station, avec des clés primaires,
+                des clés étrangères et des contraintes d’intégrité.
+              </p>
+            </div>
+            <div class="feature">
+              <h3>Base structurée en 3NF</h3>
+              <p>
+                Structuration du modèle relationnel selon la troisième
+                forme normale afin de limiter les redondances.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div class="section-number">02 / MODÉLISATION</div>
+          <h2>Modélisation de la base</h2>
+        </div>
+
+        <div class="section-content">
+          <p>
+            La modélisation permet de représenter les entités du système
+            et les relations entre elles avant leur implémentation dans
+            MySQL. Le schéma ci-dessous présente le modèle entité-association
+            de la base SnowPeak.
+          </p>
+
+          <div class="diagram">
+            <img src="assets/diagram-eer.png" alt="Diagramme entité-association de la base de données SnowPeak">
+            <div class="diagram-caption">
+              Diagramme entité-association — extrait du rapport de projet, page 9.
+            </div>
+          </div>
+
+          <div class="step-list">
+            <div class="step">
+              <div class="step-number">01</div>
+              <div>
+                <h3>Identification des entités</h3>
+                <p>
+                  Définition des principales entités nécessaires à la gestion
+                  des stations, des clients, des employés, des réservations
+                  et des services proposés.
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">02</div>
+              <div>
+                <h3>Définition des relations</h3>
+                <p>
+                  Mise en place des associations entre les entités et des
+                  cardinalités nécessaires pour représenter les règles
+                  de gestion.
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">03</div>
+              <div>
+                <h3>Implémentation relationnelle</h3>
+                <p>
+                  Traduction du modèle en tables SQL, avec des clés primaires,
+                  des clés étrangères et des contraintes adaptées.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <strong>Création de la table reservation</strong>
+              <span>SQL · MySQL</span>
+            </div>
+            <pre><code>CREATE TABLE IF NOT EXISTS reservation (
+id_reservation INT AUTO_INCREMENT,
+date_debut date NOT NULL,
+date_fin date NOT NULL,
+statut ENUM('En cours', 'Terminée', 'Annulée') NOT NULL DEFAULT 'En cours',
+id_client INT NOT NULL,
+id_station INT NOT NULL,
+CONSTRAINT pk_reservation PRIMARY KEY (id_reservation),
+CONSTRAINT fk_reservation_client FOREIGN KEY (id_client) REFERENCES client (id_client),
+CONSTRAINT fk_reservation_station FOREIGN KEY (id_station) REFERENCES station (id_station),
+CONSTRAINT ck_date_fin CHECK (date_fin &gt; date_debut)
+);</code></pre>
+          </div>
+          <p class="code-note">
+            Extrait repris du fichier <strong>1_BD_schema.sql</strong>.
+            Les commentaires du script original ont été retirés de l’affichage ;
+            les instructions SQL présentées sont conservées.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div class="section-number">03 / EXPLOITATION</div>
+          <h2>Interrogation et analyse des données</h2>
+        </div>
+
+        <div class="section-content">
+          <p>
+            Des requêtes SQL ont été conçues pour consulter les données
+            et produire des informations utiles à la gestion de l’activité :
+            suivi des réservations, fréquentation des cours, locations
+            d’équipements et chiffre d’affaires des stations.
+          </p>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <strong>Nombre de réservations par client</strong>
+              <span>SQL · Jointure · Agrégation</span>
+            </div>
+            <pre><code>SELECT cl.nom_client, cl.prenom_client, COUNT(r.id_reservation) AS nb_reservations
+FROM client cl
+LEFT JOIN reservation r ON cl.id_client = r.id_client
+GROUP BY cl.id_client
+ORDER BY nb_reservations DESC;</code></pre>
+          </div>
+          <p class="code-note">
+            Requête reprise de <strong>3_BD_advance.sql</strong> :
+            elle compte les réservations de chaque client et classe les résultats
+            par ordre décroissant.
+          </p>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <strong>Chiffre d'affaires total par station</strong>
+              <span>SQL · Jointures · SUM</span>
+            </div>
+            <pre><code>SELECT s.nom_station, SUM(fc.montant_total) AS chiffre_affaires_total, COUNT(fc.id_facture_client) AS nb_factures
+FROM station s
+JOIN reservation r ON s.id_station = r.id_station
+JOIN facture_client fc ON r.id_reservation = fc.id_reservation
+GROUP BY s.id_station, s.nom_station
+ORDER BY chiffre_affaires_total DESC;</code></pre>
+          </div>
+          <p class="code-note">
+            Requête reprise de <strong>3_BD_advance.sql</strong> :
+            elle regroupe les factures par station et calcule le montant total
+            ainsi que le nombre de factures associées.
+          </p>
+
+          <div class="feature-grid">
+            <div class="feature">
+              <h3>Jointures</h3>
+              <p>
+                Croisement des informations réparties dans plusieurs tables
+                à l’aide de relations entre les identifiants.
+              </p>
+            </div>
+            <div class="feature">
+              <h3>Fonctions d’agrégation</h3>
+              <p>
+                Utilisation de COUNT, SUM, AVG et d’autres fonctions
+                pour produire des indicateurs synthétiques.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div class="section-number">04 / AUTOMATISATION</div>
+          <h2>Fonctionnalités SQL avancées</h2>
+        </div>
+
+        <div class="section-content">
+          <p>
+            Au-delà des requêtes de consultation, le projet intègre des vues,
+            des déclencheurs et des procédures stockées afin de regrouper
+            des traitements et d’automatiser certaines opérations de gestion.
+          </p>
+
+          <div class="feature-grid">
+            <div class="feature">
+              <h3>Vues SQL</h3>
+              <p>
+                Deux vues facilitent la consultation des inscriptions
+                aux cours par moniteur et des locations d’équipements.
+              </p>
+            </div>
+            <div class="feature">
+              <h3>Triggers</h3>
+              <p>
+                Un cours est créé automatiquement après l’ajout d’un employé
+                ayant le rôle de moniteur. Une facture client est également
+                créée après l’insertion d’une réservation.
+              </p>
+            </div>
+          </div>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <strong>Procédure stockée · sp_inscrire_cours</strong>
+              <span>SQL · Contrôles métier</span>
+            </div>
+            <pre><code>IF v_station_cours != v_station_resa THEN
+    SELECT 'Erreur : ce cours n appartient pas à la station de la réservation.' AS message;
+    LEAVE proc;
+END IF;
+
+-- Places déjà occupées (inscriptions non annulées)
+SELECT IFNULL(SUM(nb_participants), 0)
+INTO   v_places_prises
+FROM   inscription_cours
+WHERE  id_cours = p_id_cours
+  AND  statut_inscription != 'Annulé';
+
+SET v_places_libres = v_capacite_max - v_places_prises;
+
+IF p_nb_participants &gt; v_places_libres THEN
+    SELECT CONCAT('Erreur : seulement ', v_places_libres, ' place(s) disponible(s) dans ce cours.') AS message;
+    LEAVE proc;
+END IF;
+
+INSERT INTO inscription_cours
+    (id_reservation, id_cours, nb_participants, statut_inscription)
+VALUES
+    (p_id_reservation, p_id_cours, p_nb_participants, 'Confirmé');</code></pre>
+          </div>
+          <p class="code-note">
+            Extrait consécutif repris de la procédure <strong>sp_inscrire_cours</strong>
+            dans <strong>3_BD_advance.sql</strong>. Il montre les contrôles
+            de station et de capacité avant l’insertion de l’inscription.
+            Les déclarations et les premières instructions de la procédure
+            ne sont pas reproduites ici.
+          </p>
+
+          <div class="feature-grid">
+            <div class="feature">
+              <h3>Inscription à un cours</h3>
+              <p>
+                Vérification de la station et des places disponibles,
+                puis création de l’inscription avec le statut « Confirmé ».
+              </p>
+            </div>
+            <div class="feature">
+              <h3>Réservation d’équipement</h3>
+              <p>
+                Vérification de la disponibilité, calcul du prix selon
+                la durée de location, insertion de la location et mise
+                à jour de la disponibilité de l’équipement.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div class="section-number">05 / COMPÉTENCES</div>
+          <h2>Outils & méthodes</h2>
+        </div>
+
+        <div class="section-content">
+          <p>
+            Ce projet m’a permis de mettre en pratique la conception
+            d’une base de données relationnelle, l’écriture de requêtes
+            SQL et l’automatisation de traitements à partir de règles
+            de gestion.
+          </p>
+
+          <div class="skills-list">
+            <span>MySQL</span>
+            <span>SQL</span>
+            <span>Modélisation relationnelle</span>
+            <span>Modèle entité-association</span>
+            <span>Clés primaires & étrangères</span>
+            <span>Contraintes d’intégrité</span>
+            <span>Jointures</span>
+            <span>Requêtes d’agrégation</span>
+            <span>Vues SQL</span>
+            <span>Triggers</span>
+            <span>Procédures stockées</span>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div class="section-number">06 / RESSOURCES</div>
+          <h2>Fichiers du projet</h2>
+        </div>
+
+        <div class="section-content">
+          <p>
+            Les fichiers SQL et le rapport de projet sont disponibles
+            ci-dessous pour consulter la structure, les données et les
+            traitements développés.
+          </p>
+
+          <div class="download-list">
+            <div class="download-item">
+              <span>Script de création de la base et des tables</span>
+              <a href="fichiers/1_BD_schema.sql" download>Télécharger ↗</a>
+            </div>
+            <div class="download-item">
+              <span>Script d’insertion des données</span>
+              <a href="fichiers/2_BD_data.sql" download>Télécharger ↗</a>
+            </div>
+            <div class="download-item">
+              <span>Requêtes, vues, triggers et procédures stockées</span>
+              <a href="fichiers/3_BD_advance.sql" download>Télécharger ↗</a>
+            </div>
+            <div class="download-item">
+              <span>Rapport complet du projet (PDF)</span>
+              <a href="fichiers/rapport_final_FAJRI_BOUZIAN_ZITI_KHADRANI.pdf" download>Télécharger ↗</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="bottom-nav" aria-label="Navigation de fin de page">
+        <a href="../index.html#projets">← Tous les projets</a>
+        <a href="../index.html#contact">Me contacter ↗</a>
+      </nav>
+
+    </main>
+
+    <footer>
+      <span>© 2026 Wided Khadrani</span>
+    </footer>
+
+  </div>
+</body>
+</html>
