@@ -271,10 +271,14 @@
     }
 
     .code-card code { font-family: inherit; }
-    .code-comment { color: #92949b; }
+
+    /* Coloration syntaxique SQL */
     .code-keyword { color: #c9a7d8; }
-    .code-string { color: #d8a18f; }
     .code-function { color: #e0c18a; }
+    .code-string { color: #a8c995; }
+    .code-comment { color: #92949b; }
+    .code-type { color: #8fc5d8; }
+    .code-number { color: #e0c18a; }
 
     .code-note {
       margin-top: 9px !important;
@@ -330,10 +334,12 @@
     }
 
     .data-table td { color: #55564f; }
+
     .data-table td:first-child {
       color: #30312c;
       font-weight: 600;
     }
+
     .data-table tr:last-child td { border-bottom: none; }
 
     .table-caption {
@@ -533,9 +539,9 @@
           </p>
 
           <div class="diagram">
-            <img src="assets/diagram-eer.png" alt="Diagramme entité-association de la base de données SnowPeak">
+            <img src="assets/EER.png" alt="Diagramme entité-association de la base de données SnowPeak">
             <div class="diagram-caption">
-              Diagramme entité-association — extrait du rapport de projet, page 9.
+              Diagramme entité-association de la base de données SnowPeak (14 tables).
             </div>
           </div>
 
@@ -579,17 +585,17 @@
               <strong>Création de la table reservation</strong>
               <span>SQL · MySQL</span>
             </div>
-            <pre><code>CREATE TABLE IF NOT EXISTS reservation (
-id_reservation INT AUTO_INCREMENT,
-date_debut date NOT NULL,
-date_fin date NOT NULL,
-statut ENUM('En cours', 'Terminée', 'Annulée') NOT NULL DEFAULT 'En cours',
-id_client INT NOT NULL,
-id_station INT NOT NULL,
-CONSTRAINT pk_reservation PRIMARY KEY (id_reservation),
-CONSTRAINT fk_reservation_client FOREIGN KEY (id_client) REFERENCES client (id_client),
-CONSTRAINT fk_reservation_station FOREIGN KEY (id_station) REFERENCES station (id_station),
-CONSTRAINT ck_date_fin CHECK (date_fin &gt; date_debut)
+            <pre><code><span class="code-keyword">CREATE TABLE IF NOT EXISTS</span> reservation (
+    id_reservation <span class="code-type">INT</span> <span class="code-keyword">AUTO_INCREMENT</span>,
+    date_debut <span class="code-type">date</span> <span class="code-keyword">NOT NULL</span>,
+    date_fin <span class="code-type">date</span> <span class="code-keyword">NOT NULL</span>,
+    statut <span class="code-type">ENUM</span>(<span class="code-string">'En cours'</span>, <span class="code-string">'Terminée'</span>, <span class="code-string">'Annulée'</span>) <span class="code-keyword">NOT NULL DEFAULT</span> <span class="code-string">'En cours'</span>,
+    id_client <span class="code-type">INT</span> <span class="code-keyword">NOT NULL</span>,
+    id_station <span class="code-type">INT</span> <span class="code-keyword">NOT NULL</span>,
+    <span class="code-keyword">CONSTRAINT</span> pk_reservation <span class="code-keyword">PRIMARY KEY</span> (id_reservation),
+    <span class="code-keyword">CONSTRAINT</span> fk_reservation_client <span class="code-keyword">FOREIGN KEY</span> (id_client) <span class="code-keyword">REFERENCES</span> client (id_client),
+    <span class="code-keyword">CONSTRAINT</span> fk_reservation_station <span class="code-keyword">FOREIGN KEY</span> (id_station) <span class="code-keyword">REFERENCES</span> station (id_station),
+    <span class="code-keyword">CONSTRAINT</span> ck_date_fin <span class="code-keyword">CHECK</span> (date_fin &gt; date_debut)
 );</code></pre>
           </div>
           <p class="code-note">
@@ -619,11 +625,11 @@ CONSTRAINT ck_date_fin CHECK (date_fin &gt; date_debut)
               <strong>Nombre de réservations par client</strong>
               <span>SQL · Jointure · Agrégation</span>
             </div>
-            <pre><code>SELECT cl.nom_client, cl.prenom_client, COUNT(r.id_reservation) AS nb_reservations
-FROM client cl
-LEFT JOIN reservation r ON cl.id_client = r.id_client
-GROUP BY cl.id_client
-ORDER BY nb_reservations DESC;</code></pre>
+            <pre><code><span class="code-keyword">SELECT</span> cl.nom_client, cl.prenom_client, <span class="code-function">COUNT</span>(r.id_reservation) <span class="code-keyword">AS</span> nb_reservations
+<span class="code-keyword">FROM</span> client cl
+<span class="code-keyword">LEFT JOIN</span> reservation r <span class="code-keyword">ON</span> cl.id_client = r.id_client
+<span class="code-keyword">GROUP BY</span> cl.id_client
+<span class="code-keyword">ORDER BY</span> nb_reservations <span class="code-keyword">DESC</span>;</code></pre>
           </div>
           <p class="code-note">
             Requête reprise de <strong>3_BD_advance.sql</strong> :
@@ -636,12 +642,12 @@ ORDER BY nb_reservations DESC;</code></pre>
               <strong>Chiffre d'affaires total par station</strong>
               <span>SQL · Jointures · SUM</span>
             </div>
-            <pre><code>SELECT s.nom_station, SUM(fc.montant_total) AS chiffre_affaires_total, COUNT(fc.id_facture_client) AS nb_factures
-FROM station s
-JOIN reservation r ON s.id_station = r.id_station
-JOIN facture_client fc ON r.id_reservation = fc.id_reservation
-GROUP BY s.id_station, s.nom_station
-ORDER BY chiffre_affaires_total DESC;</code></pre>
+            <pre><code><span class="code-keyword">SELECT</span> s.nom_station, <span class="code-function">SUM</span>(fc.montant_total) <span class="code-keyword">AS</span> chiffre_affaires_total, <span class="code-function">COUNT</span>(fc.id_facture_client) <span class="code-keyword">AS</span> nb_factures
+<span class="code-keyword">FROM</span> station s
+<span class="code-keyword">JOIN</span> reservation r <span class="code-keyword">ON</span> s.id_station = r.id_station
+<span class="code-keyword">JOIN</span> facture_client fc <span class="code-keyword">ON</span> r.id_reservation = fc.id_reservation
+<span class="code-keyword">GROUP BY</span> s.id_station, s.nom_station
+<span class="code-keyword">ORDER BY</span> chiffre_affaires_total <span class="code-keyword">DESC</span>;</code></pre>
           </div>
           <p class="code-note">
             Requête reprise de <strong>3_BD_advance.sql</strong> :
@@ -704,29 +710,29 @@ ORDER BY chiffre_affaires_total DESC;</code></pre>
               <strong>Procédure stockée · sp_inscrire_cours</strong>
               <span>SQL · Contrôles métier</span>
             </div>
-            <pre><code>IF v_station_cours != v_station_resa THEN
-    SELECT 'Erreur : ce cours n appartient pas à la station de la réservation.' AS message;
-    LEAVE proc;
-END IF;
+            <pre><code><span class="code-keyword">IF</span> v_station_cours != v_station_resa <span class="code-keyword">THEN</span>
+    <span class="code-keyword">SELECT</span> <span class="code-string">'Erreur : ce cours n appartient pas à la station de la réservation.'</span> <span class="code-keyword">AS</span> message;
+    <span class="code-keyword">LEAVE</span> proc;
+<span class="code-keyword">END IF</span>;
 
--- Places déjà occupées (inscriptions non annulées)
-SELECT IFNULL(SUM(nb_participants), 0)
-INTO   v_places_prises
-FROM   inscription_cours
-WHERE  id_cours = p_id_cours
-  AND  statut_inscription != 'Annulé';
+<span class="code-comment">-- Places déjà occupées (inscriptions non annulées)</span>
+<span class="code-keyword">SELECT</span> <span class="code-function">IFNULL</span>(<span class="code-function">SUM</span>(nb_participants), <span class="code-number">0</span>)
+<span class="code-keyword">INTO</span>   v_places_prises
+<span class="code-keyword">FROM</span>   inscription_cours
+<span class="code-keyword">WHERE</span>  id_cours = p_id_cours
+  <span class="code-keyword">AND</span>  statut_inscription != <span class="code-string">'Annulé'</span>;
 
-SET v_places_libres = v_capacite_max - v_places_prises;
+<span class="code-keyword">SET</span> v_places_libres = v_capacite_max - v_places_prises;
 
-IF p_nb_participants &gt; v_places_libres THEN
-    SELECT CONCAT('Erreur : seulement ', v_places_libres, ' place(s) disponible(s) dans ce cours.') AS message;
-    LEAVE proc;
-END IF;
+<span class="code-keyword">IF</span> p_nb_participants &gt; v_places_libres <span class="code-keyword">THEN</span>
+    <span class="code-keyword">SELECT</span> <span class="code-function">CONCAT</span>(<span class="code-string">'Erreur : seulement '</span>, v_places_libres, <span class="code-string">' place(s) disponible(s) dans ce cours.'</span>) <span class="code-keyword">AS</span> message;
+    <span class="code-keyword">LEAVE</span> proc;
+<span class="code-keyword">END IF</span>;
 
-INSERT INTO inscription_cours
+<span class="code-keyword">INSERT INTO</span> inscription_cours
     (id_reservation, id_cours, nb_participants, statut_inscription)
-VALUES
-    (p_id_reservation, p_id_cours, p_nb_participants, 'Confirmé');</code></pre>
+<span class="code-keyword">VALUES</span>
+    (p_id_reservation, p_id_cours, p_nb_participants, <span class="code-string">'Confirmé'</span>);</code></pre>
           </div>
           <p class="code-note">
             Extrait consécutif repris de la procédure <strong>sp_inscrire_cours</strong>
@@ -794,27 +800,22 @@ VALUES
 
         <div class="section-content">
           <p>
-            Les fichiers SQL et le rapport de projet sont disponibles
-            ci-dessous pour consulter la structure, les données et les
-            traitements développés.
+            Les scripts SQL sont disponibles ci-dessous pour consulter
+            la structure de la base, les données de test et les traitements développés.
           </p>
 
           <div class="download-list">
             <div class="download-item">
-              <span>Script de création de la base et des tables</span>
+              <span>Structure de la base — création des tables et relations</span>
               <a href="fichiers/1_BD_schema.sql" download>Télécharger ↗</a>
             </div>
             <div class="download-item">
-              <span>Script d’insertion des données</span>
+              <span>Jeu de données — insertion des données de test</span>
               <a href="fichiers/2_BD_data.sql" download>Télécharger ↗</a>
             </div>
             <div class="download-item">
-              <span>Requêtes, vues, triggers et procédures stockées</span>
+              <span>Fonctionnalités avancées — requêtes, vues, triggers et procédures</span>
               <a href="fichiers/3_BD_advance.sql" download>Télécharger ↗</a>
-            </div>
-            <div class="download-item">
-              <span>Rapport complet du projet (PDF)</span>
-              <a href="fichiers/rapport_final_FAJRI_BOUZIAN_ZITI_KHADRANI.pdf" download>Télécharger ↗</a>
             </div>
           </div>
         </div>
