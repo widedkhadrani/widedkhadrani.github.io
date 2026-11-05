@@ -7,11 +7,11 @@ Je suis étudiante en Master 2 Management des Systèmes d’Information à Greno
 ## Portfolio
 
 - **Version française :** [widedkhadrani.github.io](https://widedkhadrani.github.io/)
-- **English version :** [widedkhadrani.github.io/en/](https://widedkhadrani.github.io/en/)
+- **English version:** [widedkhadrani.github.io/en/](https://widedkhadrani.github.io/en/)
 
 ## Projets présentés
 
-- **Inetum — Collecte et structuration de données :** automatisation de la collecte d’offres d’emploi et enrichissement des données avec Python et des API LLM.
+- **Inetum — Collecte et structuration de données :** automatisation de la collecte d’offres d’emploi et enrichissement des données avec Python et des API de modèles de langage (LLM).
 - **Spotify — Tableau de bord :** préparation, modélisation et visualisation de données musicales avec Power BI.
 - **Base de données MySQL :** conception et exploitation d’une base de données relationnelle pour une station de ski.
 - **CINEMATION — Site web sur le cinéma d’animation :** développement front-end, visualisations interactives et motion design.
@@ -19,7 +19,7 @@ Je suis étudiante en Master 2 Management des Systèmes d’Information à Greno
 ## Technologies & outils
 
 - **Data & BI :** Python (Pandas, NumPy, Seaborn, Plotly), Power BI, Tableau, Excel, ETL, KPI.
-- **Collecte & automatisation :** BeautifulSoup, Requests, Selenium, Regex, JSON, API LLM.
+- **Collecte & automatisation :** BeautifulSoup, Requests, Selenium, Regex, JSON, API de modèles de langage (LLM).
 - **Bases de données :** SQL, MySQL, MongoDB, modélisation relationnelle.
 - **Gestion de projet & analyse métier :** Scrum, Kanban, BPMN, Design Thinking, Jira, Trello.
 - **Développement web :** HTML, CSS, JavaScript, PHP.
@@ -49,7 +49,7 @@ I am a Master's student in Information Systems Management at Grenoble IAE – IN
 - **Inetum — Data Collection and Structuring:** automated job offer collection and data enrichment using Python and LLM APIs.
 - **Spotify — Dashboard:** data preparation, modelling and visualization using Power BI.
 - **MySQL Database:** design and implementation of a relational database for a ski resort.
-- **CINEMATION — Animated Cinema Website:** front-end development, interactive data visualizations and motion design.
+- **CINEMATION — Website about Animated Cinema:** front-end development, interactive data visualizations and motion design.
 
 ## Technologies & Tools
 
