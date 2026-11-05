@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,11 +66,10 @@
     }
 
     nav {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
       display: flex;
+      align-items: center;
       gap: 23px;
+      margin-left: auto;
     }
 
     nav a {
@@ -88,8 +87,11 @@
 
     .language-switch {
       display: flex;
+      align-items: center;
       gap: 7px;
       flex-shrink: 0;
+      padding-left: 18px;
+      border-left: 1px solid var(--line);
       font-size: 11px;
     }
 
@@ -382,8 +384,9 @@
       }
 
       header {
-        align-items: flex-start;
-        gap: 16px;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 14px;
         padding: 19px 0;
       }
 
@@ -391,12 +394,19 @@
         font-size: 12px;
       }
 
+      .language-switch {
+        margin-left: auto;
+        padding-left: 0;
+        border-left: none;
+      }
+
       nav {
-        position: static;
-        transform: none;
-        gap: 8px 13px;
-        flex-wrap: wrap;
+        order: 3;
+        width: 100%;
         justify-content: flex-end;
+        flex-wrap: wrap;
+        gap: 8px 13px;
+        margin-left: 0;
       }
 
       nav a {
@@ -689,3 +699,4 @@
   </div>
 </body>
 </html>
+```
