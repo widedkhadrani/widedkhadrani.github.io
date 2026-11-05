@@ -1,1 +1,1221 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Inetum internship: collection of job offers from the Moroccan Data and AI market using Python web scraping.">
+  <title>Data Collection and Structuring — Wided Khadrani</title>
+
+  <style>
+    :root {
+      --paper: #f8f7f3;
+      --ink: #252821;
+      --muted: #77796f;
+      --line: #deded5;
+      --accent: #52654e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .wrap {
+      width: min(1000px, 88%);
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .brand {
+      flex-shrink: 0;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: -0.3px;
+    }
+
+    nav {
+      display: flex;
+      gap: 23px;
+      margin-left: auto;
+    }
+
+    nav a {
+      color: var(--muted);
+      font-size: 13px;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover,
+    .bottom-nav a:hover,
+    .language-switch a:hover {
+      color: var(--accent);
+    }
+
+    .language-switch {
+      display: flex;
+      gap: 7px;
+      flex-shrink: 0;
+      font-size: 11px;
+    }
+
+    .language-switch a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .language-switch .active {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    /* Introduction */
+    .hero {
+      padding: 57px 0 43px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 400;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 13px 0 17px;
+      font-size: clamp(34px, 4.5vw, 46px);
+      line-height: 1.15;
+      letter-spacing: -1px;
+    }
+
+    .intro {
+      max-width: 690px;
+      margin: 0;
+      color: #5f6159;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 22px;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* Sections */
+    section {
+      padding: 42px 0;
+      border-bottom: 1px solid var(--line);
+      scroll-margin-top: 90px;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 155px minmax(0, 1fr);
+      gap: 25px;
+      margin-bottom: 22px;
+    }
+
+    .section-number {
+      padding-top: 7px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.3;
+      letter-spacing: -0.4px;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      line-height: 1.4;
+    }
+
+    .section-content {
+      min-width: 0;
+      margin-left: 180px;
+    }
+
+    .section-content p {
+      max-width: 700px;
+      margin: 0 0 14px;
+      color: #62645c;
+      font-size: 14px;
+      line-height: 1.85;
+    }
+
+    .section-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Content blocks */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 25px;
+    }
+
+    .feature {
+      padding-top: 15px;
+      border-top: 1px solid var(--line);
+    }
+
+    .feature h3 {
+      font-size: 18px;
+    }
+
+    .feature p {
+      margin: 0;
+      color: #62645c;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .step-list {
+      display: grid;
+      gap: 0;
+      margin-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 36px minmax(0, 1fr);
+      gap: 14px;
+      padding: 17px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .step:last-child {
+      border-bottom: none;
+    }
+
+    .step-number {
+      padding-top: 2px;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .step h3 {
+      margin-bottom: 4px;
+      font-size: 17px;
+    }
+
+    .step p {
+      margin: 0;
+      font-size: 13px;
+    }
+
+    /* Code snippets */
+    .code-card {
+      margin-top: 22px;
+      overflow: hidden;
+      border: 1px solid #414247;
+      border-radius: 5px;
+      background: #292a2d;
+    }
+
+    .code-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 15px;
+      border-bottom: 1px solid #414247;
+      background: #323338;
+      color: #b5b5ba;
+      font-size: 11px;
+    }
+
+    .code-card-header strong {
+      color: #e0e0e2;
+      font-weight: 600;
+    }
+
+    .code-card pre {
+      margin: 0;
+      padding: 17px;
+      overflow-x: auto;
+      background: #292a2d;
+      color: #dedee1;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+      line-height: 1.8;
+      tab-size: 4;
+    }
+
+    .code-card code {
+      font-family: inherit;
+    }
+
+    .code-comment {
+      color: #92949b;
+    }
+
+    .code-keyword {
+      color: #c9a7d8;
+    }
+
+    .code-string {
+      color: #d8a18f;
+    }
+
+    .code-function {
+      color: #e0c18a;
+    }
+
+    .code-note {
+      margin-top: 9px !important;
+      color: var(--muted) !important;
+      font-size: 11px !important;
+      line-height: 1.7 !important;
+    }
+
+    /* CSV preview */
+    .data-preview {
+      margin-top: 28px;
+      border: 1px solid var(--line);
+      background: #fffdf8;
+    }
+
+    .data-preview-header {
+      display: flex;
+      align-items: flex-start;
+      padding: 14px 15px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .data-preview-header h3 {
+      margin: 0 0 4px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .data-preview-header p {
+      margin: 0;
+      color: #62645c;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .table-scroll {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .data-table {
+      width: 100%;
+      min-width: 650px;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 11px;
+    }
+
+    .data-table th,
+    .data-table td {
+      padding: 11px 13px;
+      border-bottom: 1px solid #ebe8df;
+      vertical-align: top;
+    }
+
+    .data-table th {
+      background: #f1eee6;
+      color: #55554e;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .data-table td {
+      color: #55564f;
+    }
+
+    .data-table td:first-child {
+      min-width: 205px;
+      color: #30312c;
+      font-weight: 600;
+    }
+
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .table-caption {
+      padding: 10px 15px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    /* Enriched CSV table */
+    .enriched-table {
+      min-width: 1050px;
+      table-layout: fixed;
+    }
+
+    .enriched-table th,
+    .enriched-table td {
+      padding: 9px 10px;
+      overflow-wrap: normal;
+      word-break: normal;
+      white-space: normal;
+      hyphens: none;
+    }
+
+    .enriched-table th:nth-child(1),
+    .enriched-table td:nth-child(1) {
+      width: 19%;
+    }
+
+    .enriched-table th:nth-child(2),
+    .enriched-table td:nth-child(2) {
+      width: 12%;
+    }
+
+    .enriched-table th:nth-child(3),
+    .enriched-table td:nth-child(3) {
+      width: 12%;
+    }
+
+    .enriched-table th:nth-child(4),
+    .enriched-table td:nth-child(4) {
+      width: 10%;
+    }
+
+    .enriched-table th:nth-child(5),
+    .enriched-table td:nth-child(5) {
+      width: 10%;
+    }
+
+    .enriched-table th:nth-child(6),
+    .enriched-table td:nth-child(6) {
+      width: 12%;
+    }
+
+    .enriched-table th:nth-child(7),
+    .enriched-table td:nth-child(7) {
+      width: 8%;
+    }
+
+    .enriched-table th:nth-child(8),
+    .enriched-table td:nth-child(8) {
+      width: 10%;
+    }
+
+    .enriched-table th:nth-child(9),
+    .enriched-table td:nth-child(9) {
+      width: 17%;
+    }
+
+    .enriched-table td:first-child {
+      min-width: 0;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .skills-list span {
+      padding: 5px 10px;
+      border: 1px solid var(--line);
+      color: #62645c;
+      font-size: 12px;
+    }
+
+    /* Bottom navigation */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 30px 0 34px;
+    }
+
+    .bottom-nav a {
+      color: var(--muted);
+      font-size: 13px;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    footer {
+      display: flex;
+      justify-content: center;
+      padding: 18px 0;
+      color: var(--muted);
+      font-size: 11px;
+      text-align: center;
+    }
+
+    /* Mobile layout */
+    @media (max-width: 650px) {
+      .wrap {
+        width: 90%;
+      }
+
+      header {
+        align-items: flex-start;
+        gap: 12px;
+        padding: 19px 0;
+      }
+
+      .brand {
+        font-size: 12px;
+      }
+
+      nav {
+        gap: 8px 13px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      nav a {
+        font-size: 11px;
+      }
+
+      .language-switch {
+        gap: 5px;
+        font-size: 10px;
+      }
+
+      .hero {
+        padding: 43px 0 35px;
+      }
+
+      h1 {
+        font-size: clamp(32px, 8vw, 42px);
+      }
+
+      .intro {
+        font-size: 14px;
+      }
+
+      section {
+        padding: 32px 0;
+      }
+
+      .section-head {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+
+      .section-number {
+        padding-top: 0;
+      }
+
+      h2 {
+        font-size: 25px;
+      }
+
+      .section-content {
+        margin-left: 0;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .bottom-nav {
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <header>
+      <a class="brand" href="index.html">WIDED KHADRANI</a>
+
+      <nav aria-label="Main navigation">
+        <a href="index.html#about">About</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <div class="language-switch">
+        <a href="../inetum.html">FR</a>
+        <span>|</span>
+        <a class="active" href="inetum.html">EN</a>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- Introduction -->
+      <section class="hero">
+        <div class="eyebrow">Internship · Inetum · Data & AI</div>
+
+        <h1>Data Collection and Structuring</h1>
+
+        <p class="intro">
+          Development of Python scripts to collect job offers through
+          web scraping, analyse and enrich data using an LLM API, and
+          extract information from CVs to structure it in JSON format.
+        </p>
+
+        <div class="meta">
+          <span>Python</span>
+          <span>Web Scraping</span>
+          <span>LLM API</span>
+          <span>JSON</span>
+        </div>
+      </section>
+
+      <!-- 01: Context -->
+      <section>
+        <div class="section-head">
+          <div class="section-number">01 / CONTEXT</div>
+          <h2>The Assignment</h2>
+        </div>
+
+        <div class="section-content">
+          <p>
+            This internship at Inetum focused on automating the processing
+            of employment market data in the fields of Data and artificial
+            intelligence.
+          </p>
+
+          <p>
+            I developed Python scripts to collect job offers from several
+            platforms, enrich their information using a language model
+            API (LLM), and then extract and structure data from CVs
+            in JSON format.
+          </p>
+        </div>
+      </section>
+
+      <!-- 02: Data collection -->
+      <section>
+        <div class="section-head">
+          <div class="section-number">02 / DATA COLLECTION</div>
+          <h2>Job Offer Collection</h2>
+        </div>
+
+        <div class="section-content">
+          <p>
+            The objective was to build a database of job offers published
+            on the Moroccan market in the fields of Data and artificial
+            intelligence. To achieve this, I developed Python scripts
+            to collect job postings from four employment platforms:
+            Stagiaires.ma, Jobiglo, Rekrute and Bayt.
+          </p>
+
+          <p>
+            Depending on each website's structure, the scripts use
+            Requests and BeautifulSoup or Selenium. They retrieve
+            information such as job titles, companies, locations,
+            contract types and descriptions, then filter the listings
+            matching the targeted fields.
+          </p>
+
+          <div class="step-list">
+            <div class="step">
+              <div class="step-number">01</div>
+              <div>
+                <h3>Data Collection from Platforms</h3>
+                <p>
+                  Browsing search result pages, retrieving relevant job
+                  postings and accessing detailed pages to extract
+                  additional information.
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">02</div>
+              <div>
+                <h3>Cleaning and Standardization</h3>
+                <p>
+                  Filtering job titles, cleaning descriptions, extracting
+                  specific information using regular expressions and
+                  standardizing fields such as required experience.
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">03</div>
+              <div>
+                <h3>File Consolidation</h3>
+                <p>
+                  Merging the four CSV files, removing duplicates and
+                  preserving the original source of each job posting.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Code snippet 1: Stagiaires.ma scraper -->
+          <div class="code-card">
+            <div class="code-card-header">
+              <strong>Job Scraping · Stagiaires.ma</strong>
+              <span>Python · Selenium · BeautifulSoup</span>
+            </div>
+            <pre><code><span class="code-comment"># Récupération des offres</span>
+cards = driver.find_elements(
+    <span class="code-string">"css selector"</span>, <span class="code-string">"div[data-slot='card-content']"</span>
+)
+
+<span class="code-comment"># Filtrage des intitulés</span>
+title = elements[0].text.strip()
+title_clean = title.lower()
+
+<span class="code-keyword">if</span> <span class="code-string">"data"</span> <span class="code-keyword">in</span> title_clean:
+    <span class="code-comment"># Accès à la page détaillée</span>
+    clickable = card.find_element(
+        <span class="code-string">"css selector"</span>, <span class="code-string">"div[role='link']"</span>
+    )
+    driver.execute_script(<span class="code-string">"arguments[0].click();"</span>, clickable)
+
+    soup = BeautifulSoup(driver.page_source, <span class="code-string">"html.parser"</span>)
+    desc_block = soup.find(
+        <span class="code-string">"div"</span>, class_=<span class="code-string">"job-description-content"</span>
+    )
+    description = desc_block.get_text(separator=<span class="code-string">" "</span>).strip() <span class="code-keyword">if</span> desc_block <span class="code-keyword">else</span> <span class="code-string">""</span>
+    description = re.sub(r<span class="code-string">'\s+'</span>, <span class="code-string">' '</span>, description).strip()</code></pre>
+          </div>
+
+          <p class="code-note">
+            Shortened excerpt illustrating job retrieval, job title
+            filtering and description extraction.
+          </p>
+
+          <!-- Code snippet 2: consolidation script -->
+          <div class="code-card">
+            <div class="code-card-header">
+              <strong>Deduplication Across Platforms</strong>
+              <span>Python · Pandas</span>
+            </div>
+            <pre><code><span class="code-comment"># Comparaison textuelle</span>
+<span class="code-keyword">def</span> <span class="code-function">similar</span>(a, b):
+    <span class="code-keyword">return</span> SequenceMatcher(None, str(a), str(b)).ratio()
+
+<span class="code-comment"># Seuils de similarité définis dans le script</span>
+threshold_title = 0.9
+threshold_company = 0.9
+threshold_desc = 0.85
+
+<span class="code-comment"># Les annonces sont comparées sur le titre,</span>
+<span class="code-comment"># l'entreprise et la description.</span></code></pre>
+          </div>
+
+          <p class="code-note">
+            Excerpt illustrating the comparison of job titles, companies
+            and descriptions to identify similar listings collected
+            from different platforms.
+          </p>
+
+          <!-- Consolidated CSV preview: 6 job offers -->
+          <div class="data-preview">
+            <div class="data-preview-header">
+              <div>
+                <h3>The Consolidated CSV File</h3>
+                <p>
+                  Extract from the dataset combining job offers collected
+                  from several employment platforms.
+                </p>
+              </div>
+            </div>
+
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Job Title</th>
+                    <th>Company</th>
+                    <th>Location</th>
+                    <th>Contract</th>
+                    <th>Job Category</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Financial BI Analyst (M/F)</td>
+                    <td>Maroc Climate and Security (MCS) - Carrier</td>
+                    <td>Casablanca (Morocco)</td>
+                    <td>Permanent</td>
+                    <td>Data</td>
+                    <td>Rekrute</td>
+                  </tr>
+                  <tr>
+                    <td>Data Steward Junior – Audit &amp; Assurance</td>
+                    <td>Deloitte</td>
+                    <td>Casablanca (Morocco)</td>
+                    <td>Entry-level position</td>
+                    <td>Data</td>
+                    <td>Stagiaires.ma</td>
+                  </tr>
+                  <tr>
+                    <td>Data Analyst – Power BI &amp; Qlik Sense</td>
+                    <td>SII Group Germany</td>
+                    <td>Casablanca (Morocco)</td>
+                    <td>Not specified</td>
+                    <td>Data</td>
+                    <td>Jobiglo</td>
+                  </tr>
+                  <tr>
+                    <td>Senior Python Data Scraping Engineer</td>
+                    <td>Mindrift</td>
+                    <td>Morocco</td>
+                    <td>Not specified</td>
+                    <td>Data</td>
+                    <td>Bayt</td>
+                  </tr>
+                  <tr>
+                    <td>Expert(e) DATA | Technopolis</td>
+                    <td>DXC - CDG</td>
+                    <td>Morocco</td>
+                    <td>Not specified</td>
+                    <td>Data</td>
+                    <td>Rekrute</td>
+                  </tr>
+                  <tr>
+                    <td>Chef de Projet Data &amp; Digital Senior H/F</td>
+                    <td>Sothema</td>
+                    <td>Morocco</td>
+                    <td>Not specified</td>
+                    <td>Data</td>
+                    <td>Rekrute</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="table-caption">
+              Extract from the consolidated CSV file. The complete file
+              also includes the industry sector, job description,
+              required experience and link to the job posting.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03: Analysis and enrichment -->
+      <section>
+        <div class="section-head">
+          <div class="section-number">03 / ENRICHMENT</div>
+          <h2>Analysis and Enrichment Using an LLM API</h2>
+        </div>
+
+        <div class="section-content">
+          <p>
+            Implementation of a process using a language model API (LLM)
+            to analyse job offer content and enrich the collected
+            information.
+          </p>
+
+          <p>
+            Based on job titles, descriptions and other available
+            information, the process identifies skills and their
+            categories, job types, industry sectors, as well as
+            certain details related to contracts and required experience.
+          </p>
+
+          <div class="step-list">
+            <div class="step">
+              <div class="step-number">01</div>
+              <div>
+                <h3>Content Analysis</h3>
+                <p>
+                  Sending job offer information to the API along with
+                  instructions specifying which elements to identify.
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">02</div>
+              <div>
+                <h3>Information Extraction</h3>
+                <p>
+                  Identifying additional fields based on the textual
+                  content of job offers.
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">03</div>
+              <div>
+                <h3>Structuring the Results</h3>
+                <p>
+                  Organizing the extracted information into structured
+                  fields, then consolidating and filtering the resulting
+                  files.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- LLM API enrichment code snippet -->
+          <div class="code-card">
+            <div class="code-card-header">
+              <strong>Job Offer Analysis and Structuring</strong>
+              <span>Python · LLM API · JSON</span>
+            </div>
+            <pre><code><span class="code-comment"># Analyse du contenu de l'offre par le modèle</span>
+response = client.models.generate_content(
+    model=<span class="code-string">"gemini-3.1-flash-lite"</span>,
+    contents=prompt
+)
+
+<span class="code-comment"># Conversion de la réponse JSON en données Python</span>
+result = json.loads(response.text)
+
+<span class="code-comment"># Structuration des informations extraites</span>
+resultats.append({
+    <span class="code-string">"Titre"</span>: titre,
+    <span class="code-string">"Entreprise"</span>: entreprise,
+    <span class="code-string">"Secteur"</span>: result[<span class="code-string">"secteur"</span>],
+    <span class="code-string">"Contrat"</span>: result[<span class="code-string">"contrat"</span>],
+    <span class="code-string">"Experience"</span>: result[<span class="code-string">"experience"</span>],
+    <span class="code-string">"Type_metier"</span>: result[<span class="code-string">"type_metier"</span>],
+    <span class="code-string">"Hard_skills"</span>: <span class="code-string">"; "</span>.join(result[<span class="code-string">"hard_skills"</span>]),
+    <span class="code-string">"Categories"</span>: <span class="code-string">"; "</span>.join(result[<span class="code-string">"categories"</span>]),
+    <span class="code-string">"Pertinent_data_ia"</span>: result[<span class="code-string">"pertinent_data_ia"</span>]
+})</code></pre>
+          </div>
+
+          <p class="code-note">
+            Excerpt from the processing script: calling the model using
+            a prompt defined beforehand, converting its JSON response,
+            then organizing the information into fields for the enriched
+            CSV file. The API key and its initialization are not shown.
+          </p>
+
+          <!-- Enriched CSV preview: 4 job offers and 9 columns -->
+          <div class="data-preview">
+            <div class="data-preview-header">
+              <div>
+                <h3>The Enriched CSV File</h3>
+                <p>
+                  Extract showing additional information identified by
+                  the language model, including skills and their
+                  classification.
+                </p>
+              </div>
+            </div>
+
+            <div class="table-scroll">
+              <table class="data-table enriched-table">
+                <thead>
+                  <tr>
+                    <th>Job Title</th>
+                    <th>Company</th>
+                    <th>Industry</th>
+                    <th>Location</th>
+                    <th>Contract</th>
+                    <th>Experience</th>
+                    <th>Job Category</th>
+                    <th>Hard Skills</th>
+                    <th>Categories</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Senior Python Data Scraping Engineer (Freelance)</td>
+                    <td>Mindrift</td>
+                    <td>Technology / AI</td>
+                    <td>Remote</td>
+                    <td>Freelance</td>
+                    <td>Experienced (5 to 10 years)</td>
+                    <td>Data + AI</td>
+                    <td>Python; BeautifulSoup; Selenium; AWS; Docker; SQL</td>
+                    <td>Programming Languages; Data Acquisition; Cloud; DevOps; Databases</td>
+                  </tr>
+                  <tr>
+                    <td>Industry 4.0 Data Engineer</td>
+                    <td>Lear Corporation</td>
+                    <td>Industry</td>
+                    <td>Rabat</td>
+                    <td>Not specified</td>
+                    <td>Intermediate (3 to 5 years)</td>
+                    <td>Data</td>
+                    <td>Python; SQL; Spark; ETL</td>
+                    <td>Programming Languages; Databases; Big Data; Pipelines</td>
+                  </tr>
+                  <tr>
+                    <td>Data Analyst (F/H)</td>
+                    <td>SQLI</td>
+                    <td>IT Services</td>
+                    <td>Rabat</td>
+                    <td>Not specified</td>
+                    <td>Junior (1 to 3 years)</td>
+                    <td>Data</td>
+                    <td>SQL; Python; Power BI; Excel</td>
+                    <td>Databases; Programming Languages; Visualization; Other</td>
+                  </tr>
+                  <tr>
+                    <td>Data Engineer confirmé</td>
+                    <td>Orange</td>
+                    <td>Telecommunications</td>
+                    <td>Not specified</td>
+                    <td>Not specified</td>
+                    <td>Experienced (5 to 10 years)</td>
+                    <td>Data</td>
+                    <td>Hadoop; Spark; Kafka; Azure; Python; SQL; Power BI</td>
+                    <td>Big Data; Cloud; Programming Languages; Databases; Visualization</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="table-caption">
+              Extract from the CSV enriched by the LLM: general job
+              information is supplemented with identified technical
+              skills and their classification, making job listings
+              easier to use and analyse.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 04: CV information extraction -->
+      <section>
+        <div class="section-head">
+          <div class="section-number">04 / AUTOMATION</div>
+          <h2>CV Information Extraction</h2>
+        </div>
+
+        <div class="section-content">
+          <p>
+            Development of a Python script to extract information
+            from Word-format CVs. The script processes documents
+            placed in a folder and gathers the detected information
+            into a JSON file.
+          </p>
+
+          <p>
+            The extraction relies on regular expressions (Regex)
+            and detection rules designed to handle different document
+            sections and layouts. The extracted information is
+            organized into education, technical skills, professional
+            experience and languages.
+          </p>
+
+          <div class="step-list">
+            <div class="step">
+              <div class="step-number">01</div>
+              <div>
+                <h3>Reading Word Documents</h3>
+                <p>
+                  Reading CV paragraphs and tables using the
+                  python-docx library.
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">02</div>
+              <div>
+                <h3>Rule-Based Extraction</h3>
+                <p>
+                  Detecting sections and extracting information,
+                  including skills and their categories, using
+                  rules and regular expressions.
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">03</div>
+              <div>
+                <h3>Generating a JSON File</h3>
+                <p>
+                  Gathering the detected information into an
+                  organized structure to make it easier to consult
+                  and use later.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Skills extraction code snippet -->
+          <div class="code-card">
+            <div class="code-card-header">
+              <strong>Skill Extraction and Structuring</strong>
+              <span>Python · Regex · JSON</span>
+            </div>
+            <pre><code><span class="code-comment"># Repérage d'une catégorie suivie d'une liste</span>
+match = re.match(
+    r"^([A-Za-zÀ-ÿ /&']{2,45})\s*[:\uFF1A]\s*(.+)$",
+    txt_sans_puce
+)
+
+<span class="code-keyword">if</span> match <span class="code-keyword">and</span> <span class="code-string">","</span> <span class="code-keyword">in</span> match.group(2):
+    categorie_brute = match.group(1).strip()
+    categorie = <span class="code-string">""</span> <span class="code-keyword">if</span> is_generic_label(categorie_brute) <span class="code-keyword">else</span> categorie_brute
+
+    <span class="code-keyword">for</span> skill <span class="code-keyword">in</span> split_skills(match.group(2)):
+        hard_skills.append({
+            <span class="code-string">"categorie"</span>: categorie,
+            <span class="code-string">"skill"</span>: skill
+        })</code></pre>
+          </div>
+
+          <p class="code-note">
+            Excerpt from the script: a regular expression identifies
+            a skill category, then the split_skills() function separates
+            individual skills before organizing them into objects
+            containing a category and a skill.
+          </p>
+
+          <!-- JSON output preview -->
+          <div class="data-preview">
+            <div class="data-preview-header">
+              <div>
+                <h3>Example of Structured JSON Data</h3>
+                <p>
+                  Simplified preview of the structure generated by
+                  the script from information extracted from a CV.
+                </p>
+              </div>
+            </div>
+
+            <div class="code-card" style="margin-top: 0; border: 0; border-radius: 0;">
+              <pre><code>{
+  <span class="code-string">"poste"</span>: <span class="code-string">"Data Scientist"</span>,
+  <span class="code-string">"formations"</span>: [
+    {
+      <span class="code-string">"periode"</span>: <span class="code-string">"2020-2022"</span>,
+      <span class="code-string">"diplome"</span>: <span class="code-string">"[Diplôme]"</span>,
+      <span class="code-string">"etablissement"</span>: <span class="code-string">"[Établissement]"</span>
+    }
+  ],
+  <span class="code-string">"hard_skills"</span>: [
+    {
+      <span class="code-string">"categorie"</span>: <span class="code-string">"Programmation"</span>,
+      <span class="code-string">"skill"</span>: <span class="code-string">"Python"</span>
+    }
+  ],
+  <span class="code-string">"experiences"</span>: [],
+  <span class="code-string">"langues"</span>: [
+    {
+      <span class="code-string">"langue"</span>: <span class="code-string">"Français"</span>,
+      <span class="code-string">"niveau"</span>: <span class="code-string">"Courant"</span>
+    }
+  ]
+}</code></pre>
+            </div>
+
+            <div class="table-caption">
+              Fictional and simplified example illustrating the JSON
+              structure, not a copy of the actual content of the CVs
+              processed.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05: Skills -->
+      <section>
+        <div class="section-head">
+          <div class="section-number">05 / SKILLS</div>
+          <h2>Tools & Methods</h2>
+        </div>
+
+        <div class="section-content">
+          <p>
+            This experience allowed me to apply web scraping,
+            data cleaning and enrichment techniques, as well as
+            methods for extracting information from textual content.
+          </p>
+
+          <div class="skills-list">
+            <span>Python</span>
+            <span>Web Scraping</span>
+            <span>Requests</span>
+            <span>BeautifulSoup</span>
+            <span>Selenium</span>
+            <span>Pandas</span>
+            <span>SequenceMatcher</span>
+            <span>LLM API</span>
+            <span>Regex</span>
+            <span>python-docx</span>
+            <span>JSON</span>
+            <span>CSV</span>
+            <span>Data Cleaning</span>
+            <span>Data Structuring</span>
+          </div>
+        </div>
+      </section>
+
+      <nav class="bottom-nav" aria-label="Bottom navigation">
+        <a href="index.html#projects">← All projects</a>
+        <a href="index.html#contact">Get in touch</a>
+      </nav>
+
+    </main>
+
+    <footer>
+      <span>© 2026 Wided Khadrani</span>
+    </footer>
+
+  </div>
+</body>
+</html>
+
