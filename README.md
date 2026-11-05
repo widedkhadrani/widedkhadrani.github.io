@@ -16,9 +16,15 @@ Je suis étudiante en Master 2 Management des Systèmes d’Information à Greno
 - **Base de données MySQL :** conception et exploitation d’une base de données relationnelle pour une station de ski.
 - **CINEMATION — Site web sur le cinéma d’animation :** développement front-end, visualisations interactives et motion design.
 
-## Technologies
+## Technologies & outils
 
-Python, SQL, MySQL, Power BI, HTML, CSS, JavaScript, Chart.js, API LLM.
+- **Data & BI :** Python (Pandas, NumPy, Seaborn, Plotly), Power BI, Tableau, Excel, ETL, KPI.
+- **Collecte & automatisation :** BeautifulSoup, Requests, Selenium, Regex, JSON, API LLM.
+- **Bases de données :** SQL, MySQL, MongoDB, modélisation relationnelle.
+- **Gestion de projet & analyse métier :** Scrum, Kanban, BPMN, Design Thinking, Jira, Trello.
+- **Développement web :** HTML, CSS, JavaScript, PHP.
+- **Cloud & systèmes d’information :** SAP, AWS, cloud computing, virtualisation.
+- **Outils numériques :** Visual Studio Code, Git/GitHub, Microsoft Office, WordPress, Adobe Creative Cloud, Figma, Blender.
 
 ## Contact
 
@@ -45,9 +51,15 @@ I am a Master's student in Information Systems Management at Grenoble IAE – IN
 - **MySQL Database:** design and implementation of a relational database for a ski resort.
 - **CINEMATION — Animated Cinema Website:** front-end development, interactive data visualizations and motion design.
 
-## Technologies
+## Technologies & Tools
 
-Python, SQL, MySQL, Power BI, HTML, CSS, JavaScript, Chart.js, LLM APIs.
+- **Data & BI:** Python (Pandas, NumPy, Seaborn, Plotly), Power BI, Tableau, Excel, ETL, KPIs.
+- **Data Collection & Automation:** BeautifulSoup, Requests, Selenium, Regex, JSON, LLM APIs.
+- **Databases:** SQL, MySQL, MongoDB, relational data modeling.
+- **Project Management & Business Analysis:** Scrum, Kanban, BPMN, Design Thinking, Jira, Trello.
+- **Web Development:** HTML, CSS, JavaScript, PHP.
+- **Cloud & Information Systems:** SAP, AWS, cloud computing, virtualization.
+- **Digital Tools:** Visual Studio Code, Git/GitHub, Microsoft Office, WordPress, Adobe Creative Cloud, Figma, Blender.
 
 ## Contact
 
