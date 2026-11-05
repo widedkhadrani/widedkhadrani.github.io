@@ -68,6 +68,7 @@
     nav {
       display: flex;
       gap: 23px;
+      margin-left: auto;
     }
 
     nav a {
@@ -77,8 +78,26 @@
       transition: color 0.2s ease;
     }
 
+    .language-switch {
+      display: flex;
+      gap: 7px;
+      flex-shrink: 0;
+      font-size: 11px;
+    }
+
+    .language-switch a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .language-switch a.active {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
     nav a:hover,
-    .text-link:hover {
+    .text-link:hover,
+    .language-switch a:hover {
       color: var(--accent);
     }
 
@@ -362,6 +381,7 @@
       header {
         align-items: flex-start;
         gap: 16px;
+        flex-wrap: wrap;
         padding: 19px 0;
       }
 
@@ -373,10 +393,16 @@
         gap: 8px 13px;
         flex-wrap: wrap;
         justify-content: flex-end;
+        margin-left: auto;
       }
 
       nav a {
         font-size: 11px;
+      }
+
+      .language-switch {
+        font-size: 11px;
+        gap: 6px;
       }
 
       .hero {
@@ -465,6 +491,12 @@
         <a href="#competences">Compétences</a>
         <a href="#contact">Contact</a>
       </nav>
+
+      <div class="language-switch">
+        <a class="active" href="index.html">FR</a>
+        <span>|</span>
+        <a href="en/index.html">EN</a>
+      </div>
     </header>
 
     <main>
