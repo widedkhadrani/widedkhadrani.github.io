@@ -126,20 +126,23 @@
     }
 
     .site-link {
-      margin-top: 18px;
+      margin-top: 22px;
+    }
+
+    .site-button {
+      display: inline-block;
+      padding: 10px 16px;
+      background: var(--ink);
+      border: 1px solid var(--ink);
+      color: var(--paper);
       font-size: 13px;
+      text-decoration: none;
+      transition: background 0.2s ease, border-color 0.2s ease;
     }
 
-    .site-link a {
-      color: var(--accent);
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 4px;
-      transition: opacity 0.2s ease;
-    }
-
-    .site-link a:hover {
-      opacity: 0.7;
+    .site-button:hover {
+      background: var(--accent);
+      border-color: var(--accent);
     }
 
     section {
@@ -199,15 +202,6 @@
       border: 1px solid var(--line);
     }
 
-    .motion-image {
-      display: block;
-      width: 40%;
-      max-width: 300px;
-      height: auto;
-      margin-top: 20px;
-      border: 1px solid var(--line);
-    }
-
     .image-caption {
       margin-top: 9px;
       color: var(--muted);
@@ -235,6 +229,28 @@
       color: #62645c;
       font-size: 13px;
       line-height: 1.8;
+    }
+
+    .motion-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 22px;
+    }
+
+    .motion-item {
+      min-width: 0;
+    }
+
+    .motion-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--line);
+    }
+
+    .motion-item .image-caption {
+      margin-top: 9px;
     }
 
     .skills-list {
@@ -344,9 +360,9 @@
         gap: 20px;
       }
 
-      .motion-image {
-        width: 75%;
-        max-width: 300px;
+      .motion-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
       }
 
       .bottom-nav {
@@ -377,10 +393,10 @@
         <h1>CINEMATION</h1>
 
         <p class="intro">
-          Conception et développement d'un site one-page consacré au cinéma
-          d'animation, combinant visualisations de données interactives,
-          représentations graphiques et motion design pour présenter
-          différentes informations sur cet univers.
+          Conception d'un site one-page consacré au cinéma d'animation,
+          associant visualisations de données interactives, représentations
+          graphiques et motion design pour explorer différents aspects
+          de cet univers.
         </p>
 
         <div class="meta">
@@ -391,7 +407,12 @@
         </div>
 
         <p class="site-link">
-          <a href="https://widedkhadrani.github.io/cinemation/index.html" target="_blank" rel="noopener noreferrer">
+          <a
+            class="site-button"
+            href="https://widedkhadrani.github.io/cinemation/index.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Voir le site CINEMATION →
           </a>
         </p>
@@ -405,15 +426,15 @@
 
         <div class="section-content">
           <p>
-            Réalisé dans le cadre d'un projet universitaire individuel,
-            CINEMATION avait pour objectif de concevoir un site one-page
-            autour du cinéma d'animation, de sa conception graphique
-            jusqu'à son développement.
+            CINEMATION est un projet universitaire consacré au cinéma
+            d'animation. L'objectif était de concevoir un site one-page
+            réunissant des contenus informatifs et des visualisations
+            autour de cet univers.
           </p>
 
           <p>
-            Le brief prévoyait notamment l'intégration de visualisations
-            de données à l'aide de bibliothèques JavaScript telles que
+            Le brief prévoyait notamment l'intégration de graphiques
+            interactifs à l'aide de bibliothèques JavaScript telles que
             Chart.js ou Plotly, ainsi que la création de représentations
             visuelles en motion design.
           </p>
@@ -503,32 +524,49 @@
 
         <div class="section-content">
           <p>
-            J'ai assuré seule la conception et le développement
-            du site, de l'organisation des contenus à leur intégration
+            La conception du site couvre l'organisation des contenus,
+            la structuration des différentes sections et leur intégration
             dans une interface one-page.
           </p>
 
           <p>
-            Le travail a porté sur la structuration des différentes
-            sections, la mise en page des visualisations et la création
-            d'une identité graphique cohérente avec le thème du cinéma
-            d'animation.
+            Une identité graphique cohérente avec le thème du cinéma
+            d'animation a été développée, en associant mise en page,
+            éléments graphiques et animations.
           </p>
 
           <p>
-            En complément des graphiques interactifs, j'ai également
-            réalisé des représentations visuelles en motion design,
+            En complément des graphiques interactifs, le projet comprend
+            également des représentations visuelles en motion design,
             associant données, animation et éléments graphiques.
           </p>
 
-          <img
-            class="motion-image"
-            src="images/cinemation-motion-design.png"
-            alt="Exemple de création visuelle en motion design réalisée pour le site CINEMATION"
-          >
+          <div class="motion-grid">
 
-          <div class="image-caption">
-            Exemple de visualisation graphique réalisée pour CINEMATION.
+            <div class="motion-item">
+              <img
+                class="motion-image"
+                src="images/cinemation-motion-design-1.png"
+                alt="Première visualisation réalisée en motion design pour CINEMATION"
+              >
+
+              <div class="image-caption">
+                Visualisation en motion design.
+              </div>
+            </div>
+
+            <div class="motion-item">
+              <img
+                class="motion-image"
+                src="images/cinemation-motion-design-2.png"
+                alt="Deuxième visualisation réalisée en motion design pour CINEMATION"
+              >
+
+              <div class="image-caption">
+                Autre représentation visuelle animée.
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -541,9 +579,9 @@
 
         <div class="section-content">
           <p>
-            Ce projet m'a permis de travailler sur la présentation
-            visuelle de données, l'intégration de graphiques interactifs
-            et le développement d'une interface web complète.
+            Ce projet mobilise des compétences en visualisation de données,
+            intégration de graphiques interactifs, conception graphique
+            et développement web.
           </p>
 
           <div class="skills-list">
