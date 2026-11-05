@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -126,6 +125,21 @@
       font-size: 12px;
     }
 
+    .site-link {
+      margin-top: 18px;
+      font-size: 13px;
+    }
+
+    .site-link a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .site-link a:hover {
+      opacity: 0.7;
+    }
+
     section {
       padding: 42px 0;
       border-bottom: 1px solid var(--line);
@@ -180,6 +194,15 @@
       display: block;
       width: 100%;
       height: auto;
+      border: 1px solid var(--line);
+    }
+
+    .motion-image {
+      display: block;
+      width: 65%;
+      max-width: 460px;
+      height: auto;
+      margin-top: 20px;
       border: 1px solid var(--line);
     }
 
@@ -319,6 +342,10 @@
         gap: 20px;
       }
 
+      .motion-image {
+        width: 100%;
+      }
+
       .bottom-nav {
         gap: 12px;
       }
@@ -358,6 +385,23 @@
           <span>Chart.js</span>
           <span>Visualisation de données</span>
           <span>Motion design</span>
+        </div>
+
+        <p class="site-link">
+          <a href="cinemation/index.html" target="_blank" rel="noopener noreferrer">
+            Découvrir le site CINEMATION →
+          </a>
+        </p>
+
+        <img
+          class="project-image"
+          src="images/cinemation-accueil.png"
+          alt="Page d'accueil du site CINEMATION"
+          style="margin-top: 25px;"
+        >
+
+        <div class="image-caption">
+          Page d'accueil du site CINEMATION.
         </div>
       </section>
 
@@ -450,34 +494,7 @@
 
       <section>
         <div class="section-head">
-          <div class="section-number">03 / MOTION DESIGN</div>
-          <h2>Créer des représentations visuelles</h2>
-        </div>
-
-        <div class="section-content">
-          <p>
-            En complément des graphiques interactifs, le projet
-            comprenait la création de visualisations conçues en
-            motion design. Ces représentations permettaient de
-            présenter certaines informations sous une autre forme,
-            en associant données, animation et éléments graphiques.
-          </p>
-
-          <img
-            class="project-image"
-            src="images/cinemation-motion-design.png"
-            alt="Exemple de création visuelle en motion design réalisée pour le site CINEMATION"
-          >
-
-          <div class="image-caption">
-            Exemple de visualisation graphique réalisée pour CINEMATION.
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div class="section-head">
-          <div class="section-number">04 / DÉVELOPPEMENT</div>
+          <div class="section-number">03 / DÉVELOPPEMENT</div>
           <h2>Conception du site web</h2>
         </div>
 
@@ -496,22 +513,26 @@
           </p>
 
           <p>
-            Les graphiques et les éléments animés ont été intégrés
-            directement dans le site afin de proposer une présentation
-            interactive et visuelle des contenus.
+            En complément des graphiques interactifs, j'ai également
+            réalisé des représentations visuelles en motion design,
+            associant données, animation et éléments graphiques.
           </p>
 
-          <p style="margin-top: 22px;">
-            <a href="cinemation/index.html" target="_blank" rel="noopener noreferrer">
-              Découvrir le site CINEMATION →
-            </a>
-          </p>
+          <img
+            class="motion-image"
+            src="images/cinemation-motion-design.png"
+            alt="Exemple de création visuelle en motion design réalisée pour le site CINEMATION"
+          >
+
+          <div class="image-caption">
+            Exemple de visualisation graphique réalisée pour CINEMATION.
+          </div>
         </div>
       </section>
 
       <section>
         <div class="section-head">
-          <div class="section-number">05 / COMPÉTENCES</div>
+          <div class="section-number">04 / COMPÉTENCES</div>
           <h2>Outils & méthodes</h2>
         </div>
 
