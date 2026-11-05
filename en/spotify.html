@@ -1,1 +1,530 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Power BI project: analysis of Spotify music data, star schema modeling and development of an interactive dashboard.">
+  <title>Spotify Dashboard — Wided Khadrani</title>
+
+  <style>
+    :root {
+      --paper: #f8f7f3;
+      --ink: #252821;
+      --muted: #77796f;
+      --line: #deded5;
+      --accent: #52654e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .wrap {
+      width: min(1000px, 88%);
+      margin: 0 auto;
+    }
+
+    /* Sticky header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .brand {
+      flex-shrink: 0;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: -0.3px;
+    }
+
+    nav {
+      display: flex;
+      gap: 23px;
+      margin-left: auto;
+    }
+
+    nav a {
+      color: var(--muted);
+      font-size: 13px;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .language-switch {
+      display: flex;
+      gap: 7px;
+      flex-shrink: 0;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .language-switch a {
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .language-switch a.active {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    nav a:hover,
+    .bottom-nav a:hover,
+    .language-switch a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      padding: 57px 0 43px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 400;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 13px 0 17px;
+      font-size: clamp(34px, 4.5vw, 46px);
+      line-height: 1.15;
+      letter-spacing: -1px;
+    }
+
+    .intro {
+      max-width: 690px;
+      margin: 0;
+      color: #5f6159;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 22px;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    section {
+      padding: 42px 0;
+      border-bottom: 1px solid var(--line);
+      scroll-margin-top: 90px;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 155px minmax(0, 1fr);
+      gap: 25px;
+      margin-bottom: 22px;
+    }
+
+    .section-number {
+      padding-top: 7px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.3;
+      letter-spacing: -0.4px;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      line-height: 1.4;
+    }
+
+    .section-content {
+      min-width: 0;
+      margin-left: 180px;
+    }
+
+    .section-content p {
+      max-width: 700px;
+      margin: 0 0 14px;
+      color: #62645c;
+      font-size: 14px;
+      line-height: 1.85;
+    }
+
+    .section-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .project-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--line);
+    }
+
+    .image-caption {
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 25px;
+    }
+
+    .feature {
+      padding-top: 15px;
+      border-top: 1px solid var(--line);
+    }
+
+    .feature h3 {
+      font-size: 18px;
+    }
+
+    .feature p {
+      margin: 0;
+      color: #62645c;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .skills-list span {
+      padding: 5px 10px;
+      border: 1px solid var(--line);
+      color: #62645c;
+      font-size: 12px;
+    }
+
+    /* Bottom navigation: same style as the header */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 30px 0 34px;
+    }
+
+    .bottom-nav a {
+      color: var(--muted);
+      font-size: 13px;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .bottom-nav a:hover {
+      color: var(--accent);
+    }
+
+    footer {
+      display: flex;
+      justify-content: center;
+      padding: 18px 0;
+      color: var(--muted);
+      font-size: 11px;
+      text-align: center;
+    }
+
+    @media (max-width: 650px) {
+      .wrap {
+        width: 90%;
+      }
+
+      header {
+        align-items: flex-start;
+        gap: 16px;
+        padding: 19px 0;
+        flex-wrap: wrap;
+      }
+
+      .brand {
+        font-size: 12px;
+      }
+
+      nav {
+        gap: 8px 13px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      nav a {
+        font-size: 11px;
+      }
+
+      .language-switch {
+        gap: 6px;
+        font-size: 11px;
+      }
+
+      .hero {
+        padding: 43px 0 35px;
+      }
+
+      h1 {
+        font-size: clamp(32px, 8vw, 42px);
+      }
+
+      .intro {
+        font-size: 14px;
+      }
+
+      section {
+        padding: 32px 0;
+      }
+
+      .section-head {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+
+      .section-number {
+        padding-top: 0;
+      }
+
+      h2 {
+        font-size: 25px;
+      }
+
+      .section-content {
+        margin-left: 0;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .bottom-nav {
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <header>
+      <a class="brand" href="index.html">WIDED KHADRANI</a>
+
+      <nav aria-label="Main navigation">
+        <a href="index.html#about">About</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <div class="language-switch">
+        <a href="../spotify.html">FR</a>
+        <span>|</span>
+        <a class="active" href="spotify.html">EN</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow">Academic Project · Business Intelligence</div>
+        <h1>Spotify Dashboard</h1>
+
+        <p class="intro">
+          Development of an interactive dashboard using music data to analyze
+          track popularity, explore artist performance and track listening
+          trends over time.
+        </p>
+
+        <div class="meta">
+          <span>Power BI</span>
+          <span>Dimensional Modeling</span>
+          <span>Data Preparation</span>
+          <span>KPIs</span>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div class="section-number">01 / CONTEXT</div>
+          <h2>The Project</h2>
+        </div>
+
+        <div class="section-content">
+          <p>
+            Developed as part of an academic project in Business Intelligence,
+            this project is based on a dataset of the most-streamed Spotify
+            tracks in 2024, containing approximately 4,600 records.
+          </p>
+
+          <p>
+            The objective was to transform raw data into a dashboard that
+            allows users to explore listening activity from different
+            perspectives: artists, albums, tracks and time periods.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div class="section-number">02 / DASHBOARD</div>
+          <h2>Artist Analysis</h2>
+        </div>
+
+        <div class="section-content">
+          <p>
+            The main page allows users to select an artist and explore their
+            performance through several indicators and visualizations.
+            It includes total Spotify streams, average Track Score,
+            monthly listening trends and the distribution of streams by album.
+          </p>
+
+          <img
+            class="project-image"
+            src="../images/spotify-dashboard.png"
+            alt="Power BI dashboard — artist analysis"
+          >
+
+          <div class="image-caption">
+            Power BI dashboard — Artist Analysis.
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div class="section-number">03 / DATA MODELING</div>
+          <h2>Data Structuring</h2>
+        </div>
+
+        <div class="section-content">
+          <p>
+            The data was organized using a star schema, with a fact table
+            connected to three dimension tables: Artist, Track and Time.
+            This structure makes it easier to analyze indicators across
+            the different dimensions of the dataset.
+          </p>
+
+          <img
+            class="project-image"
+            src="../images/spotify-schema.png"
+            alt="Spotify data model star schema"
+          >
+
+          <div class="image-caption">
+            Star schema — Power BI data model.
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div class="section-number">04 / EXPLORATION</div>
+          <h2>Hits of the Month</h2>
+        </div>
+
+        <div class="section-content">
+          <p>
+            A second page, accessible through drill-through from the report,
+            provides a view focused on a specific month. It highlights
+            a featured track of the month, the five most represented artists
+            and a detailed ranking of tracks.
+          </p>
+
+          <img
+            class="project-image"
+            src="../images/spotify-hits-du-mois.png"
+            alt="Power BI dashboard — Hits of the Month"
+          >
+
+          <div class="image-caption">
+            "Hits of the Month" page — detailed exploration by time period.
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div class="section-number">05 / SKILLS</div>
+          <h2>Tools & Methods</h2>
+        </div>
+
+        <div class="section-content">
+          <p>
+            This project allowed me to work through the different stages
+            of a Business Intelligence process, from data organization
+            to the development of interactive visualizations.
+          </p>
+
+          <div class="skills-list">
+            <span>Power BI</span>
+            <span>Data Preparation</span>
+            <span>Star Schema Modeling</span>
+            <span>KPIs</span>
+            <span>Data Visualization</span>
+            <span>Drill-through</span>
+          </div>
+        </div>
+      </section>
+
+      <nav class="bottom-nav" aria-label="Bottom navigation">
+        <a href="index.html#projects">← All projects</a>
+        <a href="index.html#contact">Contact me</a>
+      </nav>
+    </main>
+
+    <footer>
+      <span>© 2026 Wided Khadrani</span>
+    </footer>
+
+  </div>
+</body>
+</html>
+
