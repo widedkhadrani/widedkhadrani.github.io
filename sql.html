@@ -1,4 +1,4 @@
-
+ok voici le code de sql fait moi les modif : 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -70,17 +70,6 @@
 
     nav a:hover { color: var(--accent); }
 
-    /* Liens textuels : téléchargements et navigation de bas de page */
-    .download-item a,
-    .bottom-nav a {
-      color: var(--muted);
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      font-weight: 400;
-      transition: color 0.2s ease;
-    }
-
-    .download-item a:hover,
     .bottom-nav a:hover {
       color: var(--accent);
     }
@@ -401,8 +390,13 @@
 
     .download-item a {
       flex-shrink: 0;
+      color: var(--accent);
       font-size: 12px;
+      text-decoration: none;
+      font-weight: 700;
     }
+
+    .download-item a:hover { text-decoration: underline; }
 
     .bottom-nav {
       display: flex;
