@@ -66,6 +66,9 @@
     }
 
     nav {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
       gap: 23px;
     }
@@ -389,6 +392,8 @@
       }
 
       nav {
+        position: static;
+        transform: none;
         gap: 8px 13px;
         flex-wrap: wrap;
         justify-content: flex-end;
@@ -684,4 +689,3 @@
   </div>
 </body>
 </html>
-
