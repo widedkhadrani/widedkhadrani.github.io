@@ -1,1 +1,870 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Academic project involving the design and use of a relational database for a ski resort company using MySQL.">
+  <title>Database Design and Implementation — Wided Khadrani</title>
+
+  <style>
+    :root {
+      --paper: #f8f7f3;
+      --ink: #252821;
+      --muted: #77796f;
+      --line: #deded5;
+      --accent: #52654e;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.65;
+    }
+
+    a { color: inherit; }
+
+    .wrap {
+      width: min(1000px, 88%);
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .brand {
+      flex-shrink: 0;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: -0.3px;
+    }
+
+    nav {
+      display: flex;
+      gap: 23px;
+      margin-left: auto;
+    }
+
+    nav a, .bottom-nav a {
+      color: var(--muted);
+      font-size: 13px;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .language-switch {
+      display: flex;
+      gap: 7px;
+      flex-shrink: 0;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .language-switch a {
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .language-switch a.active {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    nav a:hover,
+    .bottom-nav a:hover,
+    .language-switch a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      padding: 57px 0 43px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 400;
+    }
+
+    h1 {
+      max-width: 780px;
+      margin: 13px 0 17px;
+      font-size: clamp(34px, 4.5vw, 46px);
+      line-height: 1.15;
+      letter-spacing: -1px;
+    }
+
+    .intro {
+      max-width: 700px;
+      margin: 0;
+      color: #5f6159;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 22px;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    section {
+      padding: 42px 0;
+      border-bottom: 1px solid var(--line);
+      scroll-margin-top: 90px;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 155px minmax(0, 1fr);
+      gap: 25px;
+      margin-bottom: 22px;
+    }
+
+    .section-number {
+      padding-top: 7px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.3;
+      letter-spacing: -0.4px;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      line-height: 1.4;
+    }
+
+    .section-content {
+      min-width: 0;
+      margin-left: 180px;
+    }
+
+    .section-content p {
+      max-width: 710px;
+      margin: 0 0 14px;
+      color: #62645c;
+      font-size: 14px;
+      line-height: 1.85;
+    }
+
+    .section-content p:last-child { margin-bottom: 0; }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 25px;
+    }
+
+    .feature {
+      padding-top: 15px;
+      border-top: 1px solid var(--line);
+    }
+
+    .feature h3 { font-size: 18px; }
+
+    .feature p {
+      margin: 0;
+      color: #62645c;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .step-list {
+      display: grid;
+      gap: 0;
+      margin-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 36px minmax(0, 1fr);
+      gap: 14px;
+      padding: 17px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .step:last-child { border-bottom: none; }
+
+    .step-number {
+      padding-top: 2px;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .step h3 {
+      margin-bottom: 4px;
+      font-size: 17px;
+    }
+
+    .step p { margin: 0; font-size: 13px; }
+
+    .diagram {
+      margin-top: 24px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      background: #fffdf8;
+    }
+
+    .diagram img {
+      display: block;
+      width: 100%;
+      max-height: 780px;
+      object-fit: contain;
+    }
+
+    .diagram-caption {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .code-card {
+      margin-top: 22px;
+      overflow: hidden;
+      border: 1px solid #414247;
+      border-radius: 5px;
+      background: #292a2d;
+    }
+
+    .code-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 15px;
+      border-bottom: 1px solid #414247;
+      background: #323338;
+      color: #b5b5ba;
+      font-size: 11px;
+    }
+
+    .code-card-header strong {
+      color: #e0e0e2;
+      font-weight: 600;
+    }
+
+    .code-card pre {
+      margin: 0;
+      padding: 17px;
+      overflow-x: auto;
+      background: #292a2d;
+      color: #dedee1;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+      line-height: 1.8;
+      tab-size: 4;
+    }
+
+    .code-card code { font-family: inherit; }
+
+    /* SQL syntax highlighting */
+    .code-keyword { color: #c9a7d8; }
+    .code-function { color: #e0c18a; }
+    .code-string { color: #a8c995; }
+    .code-comment { color: #92949b; }
+    .code-type { color: #8fc5d8; }
+    .code-number { color: #e0c18a; }
+
+    .code-note {
+      margin-top: 9px !important;
+      color: var(--muted) !important;
+      font-size: 11px !important;
+      line-height: 1.7 !important;
+    }
+
+    .data-preview {
+      margin-top: 26px;
+      border: 1px solid var(--line);
+      background: #fffdf8;
+    }
+
+    .data-preview-header {
+      padding: 14px 15px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .data-preview-header h3 {
+      margin: 0 0 4px;
+      font-size: 20px;
+    }
+
+    .data-preview-header p {
+      margin: 0;
+      color: #62645c;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .table-scroll { width: 100%; overflow-x: auto; }
+
+    .data-table {
+      width: 100%;
+      min-width: 520px;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 11px;
+    }
+
+    .data-table th, .data-table td {
+      padding: 11px 13px;
+      border-bottom: 1px solid #ebe8df;
+      vertical-align: top;
+    }
+
+    .data-table th {
+      background: #f1eee6;
+      color: #55554e;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .data-table td { color: #55564f; }
+
+    .data-table td:first-child {
+      color: #30312c;
+      font-weight: 600;
+    }
+
+    .data-table tr:last-child td { border-bottom: none; }
+
+    .table-caption {
+      padding: 10px 15px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .skills-list span {
+      padding: 5px 10px;
+      border: 1px solid var(--line);
+      color: #62645c;
+      font-size: 12px;
+    }
+
+    .download-list {
+      display: grid;
+      gap: 0;
+      margin-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    .download-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+    }
+
+    .download-item span { color: #62645c; }
+
+    .download-item a {
+      flex-shrink: 0;
+      color: var(--accent);
+      font-size: 12px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .download-item a:hover { text-decoration: underline; }
+
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 30px 0 34px;
+    }
+
+    footer {
+      display: flex;
+      justify-content: center;
+      padding: 18px 0;
+      color: var(--muted);
+      font-size: 11px;
+      text-align: center;
+    }
+
+    @media (max-width: 650px) {
+      .wrap { width: 90%; }
+
+      header {
+        align-items: flex-start;
+        gap: 16px;
+        padding: 19px 0;
+        flex-wrap: wrap;
+      }
+
+      .brand { font-size: 12px; }
+
+      nav {
+        gap: 8px 13px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      nav a { font-size: 11px; }
+
+      .language-switch {
+        gap: 6px;
+        font-size: 11px;
+      }
+
+      .hero { padding: 43px 0 35px; }
+      h1 { font-size: clamp(32px, 8vw, 42px); }
+      .intro { font-size: 14px; }
+      section { padding: 32px 0; }
+
+      .section-head {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+
+      .section-number { padding-top: 0; }
+      h2 { font-size: 25px; }
+      .section-content { margin-left: 0; }
+      .feature-grid { grid-template-columns: 1fr; gap: 20px; }
+      .bottom-nav { gap: 12px; }
+      .download-item { align-items: flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <header>
+      <a class="brand" href="index.html">WIDED KHADRANI</a>
+
+      <nav aria-label="Main navigation">
+        <a href="index.html#about">About</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <div class="language-switch">
+        <a href="../sql.html">FR</a>
+        <span>|</span>
+        <a class="active" href="sql.html">EN</a>
+      </div>
+    </header>
+
+    <main>
+
+      <section class="hero">
+        <div class="eyebrow">Academic Project · Database</div>
+        <h1>Database Design and Implementation</h1>
+        <p class="intro">
+          Design of a relational database for SnowPeak, a fictional ski resort
+          management company. Data modeling, table creation, SQL queries and
+          process automation using views, triggers and stored procedures.
+        </p>
+        <div class="meta">
+          <span>MySQL</span>
+          <span>SQL</span>
+          <span>Relational Modeling</span>
+          <span>Queries & Automation</span>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div class="section-number">01 / CONTEXT</div>
+          <h2>The Project</h2>
+        </div>
+
+        <div class="section-content">
+          <p>
+            The project involved designing a database to support the
+            management of a fictional ski resort company, SnowPeak.
+            The system was designed to centralize information about customers,
+            resorts, employees, bookings, lessons, equipment and billing.
+          </p>
+          <p>
+            The work covered data modeling, database creation and population,
+            followed by the development of queries to retrieve and use the
+            stored information. Advanced SQL features were also implemented
+            to automate certain operations.
+          </p>
+
+          <div class="feature-grid">
+            <div class="feature">
+              <h3>14 Relational Tables</h3>
+              <p>
+                Data organized around the main resort management activities,
+                using primary keys, foreign keys and integrity constraints.
+              </p>
+            </div>
+            <div class="feature">
+              <h3>3NF Database Structure</h3>
+              <p>
+                The relational model was structured according to the
+                third normal form to reduce data redundancy.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div class="section-number">02 / DATA MODELING</div>
+          <h2>Database Modeling</h2>
+        </div>
+
+        <div class="section-content">
+          <p>
+            Data modeling makes it possible to represent the system's
+            entities and the relationships between them before implementation
+            in MySQL. The diagram below shows the entity-relationship model
+            of the SnowPeak database.
+          </p>
+
+          <div class="diagram">
+            <img src="../images/EER.png" alt="SnowPeak database entity-relationship diagram">
+            <div class="diagram-caption">
+              SnowPeak database entity-relationship diagram (14 tables).
+            </div>
+          </div>
+
+          <div class="step-list">
+            <div class="step">
+              <div class="step-number">01</div>
+              <div>
+                <h3>Identifying Entities</h3>
+                <p>
+                  Defining the main entities required to manage resorts,
+                  customers, employees, bookings and the services offered.
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">02</div>
+              <div>
+                <h3>Defining Relationships</h3>
+                <p>
+                  Establishing relationships between entities and defining
+                  the cardinalities required to represent business rules.
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">03</div>
+              <div>
+                <h3>Relational Implementation</h3>
+                <p>
+                  Translating the model into SQL tables, with primary keys,
+                  foreign keys and appropriate constraints.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <strong>Creating the reservation table</strong>
+              <span>SQL · MySQL</span>
+            </div>
+            <pre><code><span class="code-keyword">CREATE TABLE IF NOT EXISTS</span> reservation (
+    id_reservation <span class="code-type">INT</span> <span class="code-keyword">AUTO_INCREMENT</span>,
+    date_debut <span class="code-type">date</span> <span class="code-keyword">NOT NULL</span>,
+    date_fin <span class="code-type">date</span> <span class="code-keyword">NOT NULL</span>,
+    statut <span class="code-type">ENUM</span>(<span class="code-string">'En cours'</span>, <span class="code-string">'Terminée'</span>, <span class="code-string">'Annulée'</span>) <span class="code-keyword">NOT NULL DEFAULT</span> <span class="code-string">'En cours'</span>,
+    id_client <span class="code-type">INT</span> <span class="code-keyword">NOT NULL</span>,
+    id_station <span class="code-type">INT</span> <span class="code-keyword">NOT NULL</span>,
+    <span class="code-keyword">CONSTRAINT</span> pk_reservation <span class="code-keyword">PRIMARY KEY</span> (id_reservation),
+    <span class="code-keyword">CONSTRAINT</span> fk_reservation_client <span class="code-keyword">FOREIGN KEY</span> (id_client) <span class="code-keyword">REFERENCES</span> client (id_client),
+    <span class="code-keyword">CONSTRAINT</span> fk_reservation_station <span class="code-keyword">FOREIGN KEY</span> (id_station) <span class="code-keyword">REFERENCES</span> station (id_station),
+    <span class="code-keyword">CONSTRAINT</span> ck_date_fin <span class="code-keyword">CHECK</span> (date_fin &gt; date_debut)
+);</code></pre>
+          </div>
+          <p class="code-note">
+            Excerpt from <strong>1_BD_schema.sql</strong>.
+            Comments from the original script have been omitted from this display;
+            the SQL statements shown have been kept unchanged.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div class="section-number">03 / DATA QUERIES</div>
+          <h2>Querying and Analyzing Data</h2>
+        </div>
+
+        <div class="section-content">
+          <p>
+            SQL queries were developed to retrieve data and provide useful
+            information for business management, including booking tracking,
+            lesson attendance, equipment rentals and resort revenue.
+          </p>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <strong>Number of bookings per customer</strong>
+              <span>SQL · Joins · Aggregation</span>
+            </div>
+            <pre><code><span class="code-keyword">SELECT</span> cl.nom_client, cl.prenom_client, <span class="code-function">COUNT</span>(r.id_reservation) <span class="code-keyword">AS</span> nb_reservations
+<span class="code-keyword">FROM</span> client cl
+<span class="code-keyword">LEFT JOIN</span> reservation r <span class="code-keyword">ON</span> cl.id_client = r.id_client
+<span class="code-keyword">GROUP BY</span> cl.id_client
+<span class="code-keyword">ORDER BY</span> nb_reservations <span class="code-keyword">DESC</span>;</code></pre>
+          </div>
+          <p class="code-note">
+            Query from <strong>3_BD_advance.sql</strong>:
+            it counts the bookings made by each customer and sorts
+            the results in descending order.
+          </p>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <strong>Total revenue per resort</strong>
+              <span>SQL · Joins · SUM</span>
+            </div>
+            <pre><code><span class="code-keyword">SELECT</span> s.nom_station, <span class="code-function">SUM</span>(fc.montant_total) <span class="code-keyword">AS</span> chiffre_affaires_total, <span class="code-function">COUNT</span>(fc.id_facture_client) <span class="code-keyword">AS</span> nb_factures
+<span class="code-keyword">FROM</span> station s
+<span class="code-keyword">JOIN</span> reservation r <span class="code-keyword">ON</span> s.id_station = r.id_station
+<span class="code-keyword">JOIN</span> facture_client fc <span class="code-keyword">ON</span> r.id_reservation = fc.id_reservation
+<span class="code-keyword">GROUP BY</span> s.id_station, s.nom_station
+<span class="code-keyword">ORDER BY</span> chiffre_affaires_total <span class="code-keyword">DESC</span>;</code></pre>
+          </div>
+          <p class="code-note">
+            Query from <strong>3_BD_advance.sql</strong>:
+            it groups invoices by resort and calculates the total amount
+            as well as the number of associated invoices.
+          </p>
+
+          <div class="feature-grid">
+            <div class="feature">
+              <h3>Joins</h3>
+              <p>
+                Combining information stored in multiple tables
+                using relationships between identifiers.
+              </p>
+            </div>
+            <div class="feature">
+              <h3>Aggregate Functions</h3>
+              <p>
+                Using COUNT, SUM, AVG and other functions
+                to generate summary indicators.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div class="section-number">04 / AUTOMATION</div>
+          <h2>Advanced SQL Features</h2>
+        </div>
+
+        <div class="section-content">
+          <p>
+            Beyond data retrieval queries, the project includes views,
+            triggers and stored procedures to group operations and automate
+            certain management tasks.
+          </p>
+
+          <div class="feature-grid">
+            <div class="feature">
+              <h3>SQL Views</h3>
+              <p>
+                Two views simplify access to lesson registrations
+                by instructor and equipment rentals.
+              </p>
+            </div>
+            <div class="feature">
+              <h3>Triggers</h3>
+              <p>
+                A lesson is automatically created when an employee
+                with the instructor role is added. A customer invoice
+                is also created when a booking is inserted.
+              </p>
+            </div>
+          </div>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <strong>Stored procedure · sp_inscrire_cours</strong>
+              <span>SQL · Business Rules</span>
+            </div>
+            <pre><code><span class="code-keyword">IF</span> v_station_cours != v_station_resa <span class="code-keyword">THEN</span>
+    <span class="code-keyword">SELECT</span> <span class="code-string">'Erreur : ce cours n appartient pas à la station de la réservation.'</span> <span class="code-keyword">AS</span> message;
+    <span class="code-keyword">LEAVE</span> proc;
+<span class="code-keyword">END IF</span>;
+
+<span class="code-comment">-- Places déjà occupées (inscriptions non annulées)</span>
+<span class="code-keyword">SELECT</span> <span class="code-function">IFNULL</span>(<span class="code-function">SUM</span>(nb_participants), <span class="code-number">0</span>)
+<span class="code-keyword">INTO</span>   v_places_prises
+<span class="code-keyword">FROM</span>   inscription_cours
+<span class="code-keyword">WHERE</span>  id_cours = p_id_cours
+  <span class="code-keyword">AND</span>  statut_inscription != <span class="code-string">'Annulé'</span>;
+
+<span class="code-keyword">SET</span> v_places_libres = v_capacite_max - v_places_prises;
+
+<span class="code-keyword">IF</span> p_nb_participants &gt; v_places_libres <span class="code-keyword">THEN</span>
+    <span class="code-keyword">SELECT</span> <span class="code-function">CONCAT</span>(<span class="code-string">'Erreur : seulement '</span>, v_places_libres, <span class="code-string">' place(s) disponible(s) dans ce cours.'</span>) <span class="code-keyword">AS</span> message;
+    <span class="code-keyword">LEAVE</span> proc;
+<span class="code-keyword">END IF</span>;
+
+<span class="code-keyword">INSERT INTO</span> inscription_cours
+    (id_reservation, id_cours, nb_participants, statut_inscription)
+<span class="code-keyword">VALUES</span>
+    (p_id_reservation, p_id_cours, p_nb_participants, <span class="code-string">'Confirmé'</span>);</code></pre>
+          </div>
+          <p class="code-note">
+            Consecutive excerpt from the <strong>sp_inscrire_cours</strong>
+            procedure in <strong>3_BD_advance.sql</strong>. It illustrates
+            the resort and capacity checks performed before inserting
+            a lesson registration. The procedure declarations and its
+            initial statements are not included here.
+          </p>
+
+          <div class="feature-grid">
+            <div class="feature">
+              <h3>Lesson Registration</h3>
+              <p>
+                Checking the resort and available places, then creating
+                the registration with the status "Confirmed".
+              </p>
+            </div>
+            <div class="feature">
+              <h3>Equipment Booking</h3>
+              <p>
+                Checking availability, calculating the rental price
+                based on the rental period, inserting the rental
+                and updating equipment availability.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div class="section-number">05 / SKILLS</div>
+          <h2>Tools & Methods</h2>
+        </div>
+
+        <div class="section-content">
+          <p>
+            This project allowed me to apply relational database design,
+            SQL query writing and process automation based on
+            business rules.
+          </p>
+
+          <div class="skills-list">
+            <span>MySQL</span>
+            <span>SQL</span>
+            <span>Relational Modeling</span>
+            <span>Entity-Relationship Model</span>
+            <span>Primary & Foreign Keys</span>
+            <span>Integrity Constraints</span>
+            <span>Joins</span>
+            <span>Aggregate Queries</span>
+            <span>SQL Views</span>
+            <span>Triggers</span>
+            <span>Stored Procedures</span>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div class="section-number">06 / RESOURCES</div>
+          <h2>Project Files</h2>
+        </div>
+
+        <div class="section-content">
+          <p>
+            The SQL scripts are available below to explore the database
+            structure, test data and implemented features.
+          </p>
+
+          <div class="download-list">
+            <div class="download-item">
+              <span>Database structure — table and relationship creation</span>
+              <a href="../fichiers/1_BD_schema.sql" download>Download</a>
+            </div>
+            <div class="download-item">
+              <span>Dataset — test data insertion</span>
+              <a href="../fichiers/2_BD_data.sql" download>Download</a>
+            </div>
+            <div class="download-item">
+              <span>Advanced features — queries, views, triggers and procedures</span>
+              <a href="../fichiers/3_BD_advance.sql" download>Download</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="bottom-nav" aria-label="Bottom navigation">
+        <a href="index.html#projects">← All projects</a>
+        <a href="index.html#contact">Contact me</a>
+      </nav>
+
+    </main>
+
+    <footer>
+      <span>© 2026 Wided Khadrani</span>
+    </footer>
+
+  </div>
+</body>
+</html>
+
