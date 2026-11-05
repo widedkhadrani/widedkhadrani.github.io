@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -68,6 +69,17 @@
     }
 
     nav a:hover, .bottom-nav a:hover { color: var(--accent); }
+
+    /* Mise en évidence du lien Me contacter */
+    .bottom-nav a:last-child {
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .bottom-nav a:last-child:hover {
+      color: var(--accent);
+    }
 
     .hero {
       padding: 57px 0 43px;
