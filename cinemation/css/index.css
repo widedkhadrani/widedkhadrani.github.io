@@ -1,0 +1,177 @@
+html {
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: #7897C4;
+}
+
+header {
+    width:auto;
+}
+
+#header {
+    background-color : #FFFFFF;
+    opacity: 80%;
+}
+
+#logo{
+    width: 150px;
+    height: auto;
+}
+
+.navbar-toggler-icon{
+    color:#0C456B;
+}
+
+footer p {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+footer {
+    width:auto;
+}
+
+#footer {
+    background-color : #FFFFFF;
+    opacity: 80%;
+}
+
+.public{
+    text-align: center;
+}
+
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Paytone One", sans-serif;
+    color: #0C456B;
+}
+
+p{
+    font-family: "Cabin", sans-serif;
+    color: #0C456B;
+}
+
+.txtcentre{
+    text-align: center;
+}
+
+.txtjustifie{
+    text-align: justify;
+}
+
+
+
+
+
+.navbar {
+    font-family: "Cabin", sans-serif;
+    font-weight: 700;
+}
+.navbar-brand {
+    font-size: 1.75rem;
+}
+.navbar-brand img {
+    vertical-align: baseline;
+}
+
+#header.scrolled {
+    background-color: white !important;
+}
+
+.navbar-collapse.collapse.show,
+.navbar-collapse.collapsing {
+    background-color: white;
+    padding: 0.5em;
+}
+
+
+
+
+.hero {
+    min-height: 100vh;
+    padding: 120px 0 60px 0;
+    background-attachment: fixed;
+}
+.hero h1 {
+    margin: 0;
+    font-size: 48px;
+    font-weight: 700;
+    color: #0C456B;
+}
+.hero h2 {
+    color: #444444;
+    margin: 15px 0 0 0;
+    font-size: 26px;
+}
+
+.cta-btn {
+    background-color: #FFFFFF;
+    opacity: 80%;
+    color: #0C456B !important;
+    border-radius: 5px;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 1rem;
+    padding: 0.5em 1em;
+}
+
+
+.cta-btn:hover i {
+    margin-left: 5px;
+    margin-right: 0;
+}
+.cta-btn i {
+    margin-right: 5px;
+    transition: margin 300ms;
+}
+
+
+section {
+    padding: 60px 0;
+}
+
+.section-header {
+    text-align: center;
+    padding-bottom: 40px;
+    font-weight: 700;
+}
+
+.section-header h2 {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.section-header p {
+    font-size: 2rem;
+}
+
+.reduc{
+    padding-top: 50px;
+    padding-bottom: -520px;
+}
+
+.adding{
+    padding-top: 100px;
+
+}
+
+.rogn{
+    margin-top: -135px;
+    overflow: hidden;
+
+}
+
+
+
+

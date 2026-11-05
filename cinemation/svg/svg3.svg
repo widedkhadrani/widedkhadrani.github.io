@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_2" data-name="Calque 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 886.48 291.74">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke: #0c456b;
+      }
+
+      .cls-1, .cls-3 {
+        fill: none;
+        stroke-width: 3px;
+      }
+
+      .cls-4 {
+        fill: #0c456b;
+        font-family: PaytoneOne-Regular, 'Paytone One';
+        font-size: 26px;
+      }
+
+      .cls-5 {
+        letter-spacing: 0em;
+      }
+
+      .cls-6 {
+        letter-spacing: 0em;
+      }
+
+      .cls-7 {
+        letter-spacing: 0em;
+      }
+
+      .cls-8 {
+        letter-spacing: 0em;
+      }
+
+      .cls-9 {
+        letter-spacing: 0em;
+      }
+
+      .cls-2 {
+        fill: #387aa7;
+        font-family: Cabin-Regular, Cabin;
+        font-size: 12.31px;
+        font-variation-settings: 'wght' 400, 'wdth' 100;
+        stroke-width: .25px;
+      }
+
+      .cls-10 {
+        fill: #c7e1ff;
+        stroke-width: 0px;
+      }
+
+      .cls-3 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-11 {
+        letter-spacing: 0em;
+      }
+    </style>
+  </defs>
+  <path class="cls-10" d="M62.51,30.24h161.12c16.99,0,30.79,13.8,30.79,30.79v229.76c0,.53-.43.96-.96.96H81.34c-30.1,0-54.54-24.44-54.54-54.54V65.95c0-19.71,16-35.71,35.71-35.71Z"/>
+  <text class="cls-4" transform="translate(57.11 116.44) scale(.92 1)"><tspan x="0" y="0">Animat</tspan><tspan class="cls-9" x="101.24" y="0">i</tspan><tspan x="110.39" y="0">on 2D</tspan></text>
+  <text class="cls-2" transform="translate(44.92 147.42) scale(.92 1)"><tspan x="0" y="0">L&apos;animation 2D crée le mouvement en</tspan><tspan x="-7.99" y="14.77">dessinant chaque image individuellement</tspan><tspan x="-6.18" y="29.54">sur une surface bidimensionnelle, offrant</tspan><tspan x="27.66" y="44.31">un style artistique classique.</tspan></text>
+  <path class="cls-10" d="M368.78,30.06h161.12c16.99,0,30.79,13.8,30.79,30.79v229.76c0,.53-.43.96-.96.96h-172.13c-30.1,0-54.54-24.44-54.54-54.54V65.77c0-19.71,16-35.71,35.71-35.71Z"/>
+  <text class="cls-4" transform="translate(363.38 116.26) scale(.92 1)"><tspan x="0" y="0">Animat</tspan><tspan class="cls-9" x="101.24" y="0">i</tspan><tspan x="110.39" y="0">on 3D</tspan></text>
+  <text class="cls-2" transform="translate(367.86 147.24) scale(.92 1)"><tspan x="0" y="0">L&apos;animation 3D utilise des images</tspan><tspan x="-24.49" y="14.77">tridimensionnelles générées par ordinateur</tspan><tspan x="-18.03" y="29.54">pour produire des mouvements réalistes</tspan><tspan x="-10.04" y="44.31">et des effets visuels impressionnants,</tspan><tspan x="-10.11" y="59.08">offrant une grande flexibilité créative.</tspan></text>
+  <path class="cls-10" d="M673.64,29.88h161.12c16.99,0,30.79,13.8,30.79,30.79v229.76c0,.53-.43.96-.96.96h-172.13c-30.1,0-54.54-24.44-54.54-54.54V65.59c0-19.71,16-35.71,35.71-35.71Z"/>
+  <text class="cls-4" transform="translate(678.54 116.64) scale(.92 1)"><tspan x="0" y="0">S</tspan><tspan class="cls-8" x="14.64" y="0">l</tspan><tspan class="cls-7" x="24.26" y="0">o</tspan><tspan class="cls-5" x="40.38" y="0">w </tspan><tspan class="cls-9" x="67.89" y="0">M</tspan><tspan class="cls-6" x="90.27" y="0">o</tspan><tspan class="cls-11" x="106.47" y="0">t</tspan><tspan class="cls-9" x="117.23" y="0">i</tspan><tspan x="126.39" y="0">on</tspan></text>
+  <text class="cls-2" transform="translate(665.91 144.18) scale(.92 1)"><tspan x="0" y="0">Le slow motion, ou ralenti, ralentit la</tspan><tspan x="-5.39" y="14.77">vitesse d&apos;enregistrement de la caméra,</tspan><tspan x="-3.52" y="29.54">permettant une visualisation détaillée</tspan><tspan x="7.86" y="44.31">des mouvements et ajoutant une</tspan><tspan x="3.73" y="59.08">dimension artistique aux moments</tspan><tspan x="70.16" y="73.85">spéciaux.</tspan></text>
+  <g>
+    <path class="cls-1" d="M160.84,262.81H18.02s-11.17-1.46-11.17-16.03v-113.68"/>
+    <circle class="cls-1" cx="6.84" cy="127.75" r="5.34"/>
+    <g>
+      <circle class="cls-1" cx="166.19" cy="262.81" r="5.34"/>
+      <polyline class="cls-3" points="176.99 267.8 183.87 262.93 176.99 257.81"/>
+      <polyline class="cls-3" points="185.82 267.8 192.7 262.93 185.82 257.81"/>
+    </g>
+  </g>
+  <g>
+    <path class="cls-1" d="M116.69,7.43h142.83s11.17,1.46,11.17,16.03v113.68"/>
+    <circle class="cls-1" cx="270.69" cy="142.49" r="5.34"/>
+    <circle class="cls-1" cx="111.34" cy="7.43" r="5.34"/>
+    <polyline class="cls-3" points="100.54 2.44 93.66 7.31 100.54 12.43"/>
+    <polyline class="cls-3" points="91.7 2.44 84.82 7.31 91.7 12.43"/>
+  </g>
+  <g>
+    <path class="cls-1" d="M419.41,7.43h142.83s11.17,1.46,11.17,16.03v113.68"/>
+    <circle class="cls-1" cx="573.41" cy="142.49" r="5.34"/>
+    <circle class="cls-1" cx="414.07" cy="7.43" r="5.34"/>
+    <polyline class="cls-3" points="403.27 2.44 396.39 7.31 403.27 12.43"/>
+    <polyline class="cls-3" points="394.43 2.44 387.55 7.31 394.43 12.43"/>
+  </g>
+  <g>
+    <path class="cls-1" d="M469.19,262.58h-142.83s-11.17-1.46-11.17-16.03v-113.68"/>
+    <circle class="cls-1" cx="315.19" cy="127.53" r="5.34"/>
+    <g>
+      <circle class="cls-1" cx="474.54" cy="262.58" r="5.34"/>
+      <polyline class="cls-3" points="485.34 267.58 492.22 262.7 485.34 257.59"/>
+      <polyline class="cls-3" points="494.17 267.58 501.05 262.7 494.17 257.59"/>
+    </g>
+  </g>
+  <g>
+    <path class="cls-1" d="M771.98,262.45h-142.83s-11.17-1.46-11.17-16.03v-113.68"/>
+    <circle class="cls-1" cx="617.98" cy="127.39" r="5.34"/>
+    <g>
+      <circle class="cls-1" cx="777.32" cy="262.45" r="5.34"/>
+      <polyline class="cls-3" points="788.12 267.44 795 262.57 788.12 257.45"/>
+      <polyline class="cls-3" points="796.96 267.44 803.84 262.57 796.96 257.45"/>
+    </g>
+  </g>
+  <g>
+    <path class="cls-1" d="M725.63,6.84h142.83s11.17,1.46,11.17,16.03v113.68"/>
+    <circle class="cls-1" cx="879.64" cy="141.9" r="5.34"/>
+    <circle class="cls-1" cx="720.29" cy="6.84" r="5.34"/>
+    <polyline class="cls-3" points="709.49 1.85 702.61 6.72 709.49 11.84"/>
+    <polyline class="cls-3" points="700.65 1.85 693.77 6.72 700.65 11.84"/>
+  </g>
+</svg>

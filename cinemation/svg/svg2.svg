@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 629.65 646">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: 0em;
+      }
+
+      .cls-2 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-3, .cls-4 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-3, .cls-5 {
+        fill: none;
+        stroke: #0c456b;
+        stroke-width: 3px;
+      }
+
+      .cls-4 {
+        fill: #f7d490;
+        stroke: #387aa7;
+        stroke-width: 2.5px;
+      }
+
+      .cls-6 {
+        letter-spacing: 0em;
+      }
+
+      .cls-7 {
+        letter-spacing: 0em;
+      }
+
+      .cls-8 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-9 {
+        letter-spacing: 0em;
+      }
+
+      .cls-10 {
+        letter-spacing: 0em;
+      }
+
+      .cls-11 {
+        font-size: 24.43px;
+      }
+
+      .cls-11, .cls-12 {
+        font-family: PaytoneOne-Regular, 'Paytone One';
+      }
+
+      .cls-11, .cls-12, .cls-13 {
+        fill: #0c456b;
+      }
+
+      .cls-14 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-15 {
+        letter-spacing: 0em;
+      }
+
+      .cls-16 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-12 {
+        font-size: 18.7px;
+      }
+
+      .cls-17 {
+        letter-spacing: -.06em;
+      }
+
+      .cls-18 {
+        fill: #3576a5;
+      }
+
+      .cls-18, .cls-13, .cls-19 {
+        stroke-width: 0px;
+      }
+
+      .cls-19 {
+        fill: #102f46;
+      }
+
+      .cls-20 {
+        letter-spacing: 0em;
+      }
+
+      .cls-5 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-21 {
+        letter-spacing: 0em;
+      }
+
+      .cls-22 {
+        letter-spacing: 0em;
+      }
+    </style>
+  </defs>
+  <text class="cls-11" transform="translate(83.01 31.51) scale(.92 1)"><tspan x="0" y="0">2020</tspan></text>
+  <text class="cls-12" transform="translate(134.73 63.94) scale(.92 1)"><tspan class="cls-17" x="0" y="0">T</tspan><tspan x="9.37" y="0">oy </tspan><tspan class="cls-8" x="37.05" y="0">S</tspan><tspan class="cls-2" x="47.36" y="0">t</tspan><tspan class="cls-1" x="54.92" y="0">ory 4</tspan></text>
+  <path class="cls-19" d="M210.7,607.38v24.08s6.65,15.56,118.62,14.48c111.97-1.08,110.53-15.43,110.53-15.43v-22.13s-229.15-1-229.15-1Z"/>
+  <path class="cls-13" d="M241.21,583s-54.93,8.22-24.65,29.41c30.27,21.19,181.59,9.2,181.59,9.2,0,0,27.35-2.78,35.95-8.34,12.13-7.83,16.63-21.16-26.39-30.27-73.52-15.57-166.51,0-166.51,0Z"/>
+  <path class="cls-18" d="M243.54,477.27v115.42s84.83,27.87,161.28,0c.58-65.3-1.02-116.86-1.02-116.86,0,0-10.15-15.53-81.65-13.08-65.73,2.79-70.5,5.79-78.62,14.52Z"/>
+  <path class="cls-13" d="M243.27,497.21v7.19s19.04,7.01,74.29,6.43c13.65-.14,29.69.39,48.02-.9,12-.84,26.69-.58,39.07-4.61-.23-3.01,0-8.12,0-8.12,0,0,12.29,1.62,10.43,11.59-1.85,9.97-8.2,13.45-25.2,14.84-8.37.69-37.98,3.22-65.88,3.05-28.76-.17-76.57-3.74-82.83-7.45-6.26-3.71-8.81-9.97-7.65-14.14,1.16-4.17,3.48-6.96,9.74-7.88Z"/>
+  <path class="cls-4" d="M274.97,91.02c10.68-6.29,19.76-6,25.33-11.84,8.01-8.4,6.14-24.09,5.87-26.39-.19-1.67-.5-3.38-.5-3.38-.8-4.48-1.84-7.27-2.65-9.99,0,0-1.59-4.86-2.09-10.24-1.75-18.59,4.68-27.06,20.81-27.86,9.32-.47,15.34,2.37,19.18,5.73,1.24,1.09,4.28,3.75,5.79,8.22.08.23.35,1.04.61,2.33,1.13,5.63.14,10.56-.06,11.58-2.68,13.34-4.06,20.01-4.26,21.76-1.33,11.76,2.37,30.53,13.17,33.9,22.94,7.17,37.21,15.76,33,42.42-4.21,26.66-8.02,56.11-8.02,56.11,0,0,.27,11.02-12.1,19.09-12.37,8.07-8.07,22.85-8.07,22.85l3.23,32.26s3.76,19.63-1.88,36.83c-5.65,17.21-9.95,35.22-10.49,45.44-.54,10.22.81,27.42.81,27.42,0,0,3.23,20.16-9.14,55.92-6.18,27.69,9.68,41.67,9.68,41.67,0,0,12.64,15.86,0,16.4-12.64.54-57.27,0-57.27,0,0,0-12.91.54-.27-16.94,12.64-17.48,12.16-20.14,7.79-41.92-9.42-19.68-7.25-60.78-7.25-60.78,0,0,2.39-11.11,1.26-24.47-1.12-13.36-11.44-26.75-13.32-46.37-.81-7.53-.39-34.29-.39-34.29,0,0,3.06-21.96,4.38-36.83,1.61-11.83-9.61-17.28-11.83-19.63-2.56-2.71-7.65-7.06-9.41-14.52-3.6-15.21-5.9-42.33-7.53-52.43-2.42-15.06-2.88-31.15,15.63-42.06Z"/>
+  <polyline class="cls-5" points="266.26 71.18 237.13 39.22 83.01 39.22"/>
+  <circle class="cls-3" cx="269.34" cy="74.7" r="4.33"/>
+  <text class="cls-11" transform="translate(406.58 377.97) scale(.92 1)"><tspan x="0" y="0">2023</tspan></text>
+  <text class="cls-12" transform="translate(536.61 407.04) scale(.92 1)"><tspan x="0" y="0">Pino</tspan><tspan class="cls-9" x="43.34" y="0">c</tspan><tspan x="52.11" y="0">ch</tspan><tspan class="cls-15" x="73.83" y="0">i</tspan><tspan x="80.41" y="0">o</tspan><tspan x="-118.23" y="22.45">par Guil</tspan><tspan class="cls-15" x="-42.72" y="22.45">l</tspan><tspan x="-35.8" y="22.45">ermo del </tspan><tspan class="cls-17" x="51.23" y="22.45">T</tspan><tspan x="60.6" y="22.45">o</tspan><tspan class="cls-16" x="72.33" y="22.45">r</tspan><tspan x="80.41" y="22.45">o</tspan></text>
+  <circle class="cls-3" cx="366.94" cy="348.12" r="4.33"/>
+  <text class="cls-11" transform="translate(436.02 119.69) scale(.92 1)"><tspan x="0" y="0">2021</tspan></text>
+  <text class="cls-12" transform="translate(511.78 151.08) scale(.92 1)"><tspan class="cls-21" x="0" y="0">S</tspan><tspan x="10.62" y="0">oul</tspan></text>
+  <circle class="cls-3" cx="401.35" cy="162.68" r="4.33"/>
+  <text class="cls-11" transform="translate(171.48 271.74) scale(.92 1)"><tspan x="0" y="0">2022</tspan></text>
+  <text class="cls-12" transform="translate(4.12 304.71) scale(.92 1)"><tspan x="0" y="0">En</tspan><tspan class="cls-10" x="23.55" y="0">c</tspan><tspan x="32.32" y="0">a</tspan><tspan class="cls-7" x="45.32" y="0">n</tspan><tspan class="cls-2" x="57.98" y="0">t</tspan><tspan class="cls-1" x="65.54" y="0">o : </tspan><tspan class="cls-20" x="89.59" y="0">L</tspan><tspan class="cls-22" x="99.53" y="0">a </tspan><tspan class="cls-14" x="116.02" y="0">F</tspan><tspan x="126.01" y="0">a</tspan><tspan class="cls-7" x="139.01" y="0">n</tspan><tspan class="cls-2" x="151.67" y="0">t</tspan><tspan x="159.23" y="0">ast</tspan><tspan class="cls-20" x="188.5" y="0">i</tspan><tspan class="cls-22" x="195.09" y="0">que</tspan><tspan class="cls-14" x="0" y="22.45">F</tspan><tspan class="cls-22" x="9.99" y="22.45">amil</tspan><tspan class="cls-6" x="55.87" y="22.45">l</tspan><tspan class="cls-1" x="62.79" y="22.45">e </tspan><tspan class="cls-15" x="76.67" y="22.45">M</tspan><tspan x="92.77" y="22.45">adr</tspan><tspan class="cls-20" x="127.11" y="22.45">i</tspan><tspan x="133.7" y="22.45">gal</tspan></text>
+  <circle class="cls-3" cx="266.18" cy="243.82" r="4.33"/>
+  <polyline class="cls-5" points="558.64 127.29 433.55 127.29 404.43 159.25"/>
+  <polyline class="cls-5" points="1.5 280.53 79.85 280.53 233.97 280.53 263.1 248.57"/>
+  <polyline class="cls-5" points="628.15 384.84 541.39 384.84 399.14 384.84 370.02 352.88"/>
+</svg>
