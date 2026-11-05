@@ -67,6 +67,7 @@
     nav {
       display: flex;
       gap: 23px;
+      margin-left: auto;
     }
 
     nav a {
@@ -78,6 +79,27 @@
 
     nav a:hover,
     .bottom-nav a:hover {
+      color: var(--accent);
+    }
+
+    .language-switch {
+      display: flex;
+      gap: 7px;
+      flex-shrink: 0;
+      font-size: 11px;
+    }
+
+    .language-switch a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .language-switch a.active {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .language-switch a:hover {
       color: var(--accent);
     }
 
@@ -263,6 +285,7 @@
       header {
         align-items: flex-start;
         gap: 16px;
+        flex-wrap: wrap;
         padding: 19px 0;
       }
 
@@ -274,10 +297,16 @@
         gap: 8px 13px;
         flex-wrap: wrap;
         justify-content: flex-end;
+        margin-left: auto;
       }
 
       nav a {
         font-size: 11px;
+      }
+
+      .language-switch {
+        font-size: 11px;
+        gap: 6px;
       }
 
       .hero {
@@ -338,6 +367,12 @@
         <a href="index.html#competences">Compétences</a>
         <a href="index.html#contact">Contact</a>
       </nav>
+
+      <div class="language-switch">
+        <a class="active" href="spotify.html">FR</a>
+        <span>|</span>
+        <a href="en/spotify.html">EN</a>
+      </div>
     </header>
 
     <main>
